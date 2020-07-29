@@ -10,3 +10,9 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
+
+hue:
+  bridges:
+    - host: !secret philips_hue_hub_ip 
+      allow_hue_groups: false
+      allow_unreachable: true

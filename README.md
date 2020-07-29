@@ -4,13 +4,21 @@ This repo contains the config and setup instructions for the home assistant inst
 
 Setup
 ----
-We discuss in the order this should be done. I'm using the docker based approach to install Home assistant on Raspberry Pi 4.
+We discuss in the order this should be done. I'm using the docker based approach to install Home assistant.
 
 #1 Setup host OS
 ----
-I run Home Assistant on a Raspberry Pi 4. See [setup instructions](docs/setup-host-os.md).
+I run my Home Assistant on a Raspberry Pi 4. See [setup instructions](docs/setup-host-os.md).
 
-#2 Run homeassistant
+#2 Run home-assistant
 ----
 - Clone this repo
 - Run `docker-compose up -d`
+
+Devices
+----
+Devices in the home
+
+### Lights
+----
+- Philips Hue GU10 color spot lights
