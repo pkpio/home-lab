@@ -12,6 +12,7 @@
 *.log
 *.db
 *.sqlite
+*.env
 .cloud
 .storage
 .google.token
