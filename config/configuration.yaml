@@ -11,6 +11,10 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
+duckdns:
+  domain: !secret duckdns_domain
+  access_token: !secret duckdns_token
+
 hue:
   bridges:
     - host: !secret philips_hue_hub_ip 
