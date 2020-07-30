@@ -54,3 +54,6 @@ sonoff:
     1000c1872c:
       device_class: light
       name: Cooktop lights
+
+hacs:
+  token: !secret github_personal_token
