@@ -10,10 +10,11 @@ jobs:
     - name: Checkout source code
       uses: actions/checkout@v2
     
+    - name: Install Python
+      run: sudo apt install python3 python3-pip python3-setuptools
+
     - name: Install Home Assistant
-      run: |
-        sudo apt install python3 python3-pip python3-setuptools
-        pip3 install homeassistant
+      run: pip3 install homeassistant
 
     - name: Prepare environment
       run: cp config/secrets.yaml.sample config/secrets.yaml
