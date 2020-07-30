@@ -35,6 +35,10 @@ lovelace: !include lovelace.yaml
 light: !include lights.yaml
 switch: !include switches.yaml
 
+python_script:
+sun:
+person:
+mobile_app:
 cloud:
   google_actions: !include google_actions.yaml
 
@@ -69,10 +73,6 @@ sonoff:
 
 hacs:
   token: !secret github_personal_token
-
-python_script:
-sun:
-person:
 
 media_player:
 - platform: androidtv
