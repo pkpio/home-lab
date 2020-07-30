@@ -1,5 +1,44 @@
 vacuum_clean_lounge:
   alias: Clean lounge
+  icon: mdi:google-controller
+  mode: single
+  sequence:
+  - data:
+      command: app_segment_clean
+      entity_id: vacuum.kevin_clean
+      params:
+      - !secret robot_vaccum_roomid_lounge
+    entity_id: vacuum.kevin_clean
+    service: vacuum.send_command
+
+vacuum_clean_kitchen:
+  alias: Clean kitchen
+  icon: mdi:silverware-spoon
+  mode: single
+  sequence:
+  - data:
+      command: app_segment_clean
+      entity_id: vacuum.kevin_clean
+      params:
+      - !secret robot_vaccum_roomid_kitchen
+    entity_id: vacuum.kevin_clean
+    service: vacuum.send_command
+
+vacuum_clean_dining:
+  alias: Clean dining
+  icon: mdi:silverware-fork-knife
+  mode: single
+  sequence:
+  - data:
+      command: app_segment_clean
+      entity_id: vacuum.kevin_clean
+      params:
+      - !secret robot_vaccum_roomid_dining
+    entity_id: vacuum.kevin_clean
+    service: vacuum.send_command
+
+vacuum_clean_living_room:
+  alias: Clean living room
   icon: mdi:sofa
   mode: single
   sequence:
@@ -7,6 +46,60 @@ vacuum_clean_lounge:
       command: app_segment_clean
       entity_id: vacuum.kevin_clean
       params:
-      - !secret robot_vaccum_map.lounge
+      - !secret robot_vaccum_roomid_kitchen
+      - !secret robot_vaccum_roomid_dining
+      - !secret robot_vaccum_roomid_lounge
+    entity_id: vacuum.kevin_clean
+    service: vacuum.send_command
+
+vacuum_clean_bedroom:
+  alias: Clean bedroom
+  icon: mdi:bed-empty
+  mode: single
+  sequence:
+  - data:
+      command: app_segment_clean
+      entity_id: vacuum.kevin_clean
+      params:
+      - !secret robot_vaccum_roomid_bedroom
+    entity_id: vacuum.kevin_clean
+    service: vacuum.send_command
+
+vacuum_clean_ensuite:
+  alias: Clean ensuite
+  icon: mdi:shower-head
+  mode: single
+  sequence:
+  - data:
+      command: app_segment_clean
+      entity_id: vacuum.kevin_clean
+      params:
+      - !secret robot_vaccum_roomid_ensuite
+    entity_id: vacuum.kevin_clean
+    service: vacuum.send_command
+
+vacuum_clean_guestroom:
+  alias: Clean guest room
+  icon: mdi:face
+  mode: single
+  sequence:
+  - data:
+      command: app_segment_clean
+      entity_id: vacuum.kevin_clean
+      params:
+      - !secret robot_vaccum_roomid_guestroom
+    entity_id: vacuum.kevin_clean
+    service: vacuum.send_command
+
+vacuum_clean_bathroom:
+  alias: Clean bathroom
+  icon: mdi:shower
+  mode: single
+  sequence:
+  - data:
+      command: app_segment_clean
+      entity_id: vacuum.kevin_clean
+      params:
+      - !secret robot_vaccum_roomid_bathroom
     entity_id: vacuum.kevin_clean
     service: vacuum.send_command
