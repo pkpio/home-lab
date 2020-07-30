@@ -1,9 +1,81 @@
 - platform: template
   switches:
     vacuum_clean_kitchen:
-      value_template: "{{ is_state('vacuum.kevin_clean', 'cleaning') }}"
+      value_template: "{{ not is_state('vacuum.kevin_clean', 'docked') }}"
       turn_on:
         service: script.vacuum_clean_kitchen
+      turn_off:
+        service: vacuum.return_to_base
+        data:
+          entity_id: vacuum.kevin_clean
+
+    vacuum_clean_dining:
+      value_template: "{{ not is_state('vacuum.kevin_clean', 'docked') }}"
+      turn_on:
+        service: script.vacuum_clean_dining
+      turn_off:
+        service: vacuum.return_to_base
+        data:
+          entity_id: vacuum.kevin_clean
+
+    vacuum_clean_lounge:
+      value_template: "{{ not is_state('vacuum.kevin_clean', 'docked') }}"
+      turn_on:
+        service: script.vacuum_clean_lounge
+      turn_off:
+        service: vacuum.return_to_base
+        data:
+          entity_id: vacuum.kevin_clean
+
+    vacuum_clean_living_room:
+      value_template: "{{ not is_state('vacuum.kevin_clean', 'docked') }}"
+      turn_on:
+        service: script.vacuum_clean_living_room
+      turn_off:
+        service: vacuum.return_to_base
+        data:
+          entity_id: vacuum.kevin_clean
+
+    vacuum_clean_hallway:
+      value_template: "{{ not is_state('vacuum.kevin_clean', 'docked') }}"
+      turn_on:
+        service: script.vacuum_clean_hallway
+      turn_off:
+        service: vacuum.return_to_base
+        data:
+          entity_id: vacuum.kevin_clean
+
+    vacuum_clean_bedroom:
+      value_template: "{{ not is_state('vacuum.kevin_clean', 'docked') }}"
+      turn_on:
+        service: script.vacuum_clean_bedroom
+      turn_off:
+        service: vacuum.return_to_base
+        data:
+          entity_id: vacuum.kevin_clean
+
+    vacuum_clean_guestroom:
+      value_template: "{{ not is_state('vacuum.kevin_clean', 'docked') }}"
+      turn_on:
+        service: script.vacuum_clean_guestroom
+      turn_off:
+        service: vacuum.return_to_base
+        data:
+          entity_id: vacuum.kevin_clean
+
+    vacuum_clean_ensuite:
+      value_template: "{{ not is_state('vacuum.kevin_clean', 'docked') }}"
+      turn_on:
+        service: script.vacuum_clean_ensuite
+      turn_off:
+        service: vacuum.return_to_base
+        data:
+          entity_id: vacuum.kevin_clean
+
+    vacuum_clean_bathroom:
+      value_template: "{{ not is_state('vacuum.kevin_clean', 'docked') }}"
+      turn_on:
+        service: script.vacuum_clean_bathroom
       turn_off:
         service: vacuum.return_to_base
         data:
