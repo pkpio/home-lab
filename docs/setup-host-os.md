@@ -9,3 +9,10 @@
 # Setup Docker
 ----
 - Install [docker and docker compose using instructions here](https://devdojo.com/bobbyiliev/how-to-install-docker-and-docker-compose-on-raspberry-pi)
+
+# Setup ADB
+----
+This is required for the Android TV integration.
+- Install adb `sudo apt install android-tools-adb`
+- Authorize adb with the TV `adb connect TV_IP`
+- Copy authorized key to config `cp ~/.android/adbkey config/adbkey`

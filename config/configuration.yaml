@@ -1,9 +1,6 @@
 homeassistant:
   auth_providers:
-    - type: homeassistant
-    - type: trusted_networks
-      trusted_networks:
-        - 192.168.1.0/24
+  - type: homeassistant
 
   name: !secret home_name
   temperature_unit: !secret temperature_unit
@@ -25,7 +22,7 @@ recorder:
 
 # Text to speech
 tts:
-  - platform: google_translate
+- platform: google_translate
 
 group: !include groups.yaml
 automation: !include automations.yaml
@@ -43,15 +40,15 @@ cloud:
 
 hue:
   bridges:
-    - host: !secret philips_hue_hub_ip 
-      allow_hue_groups: false
-      allow_unreachable: true
+  - host: !secret philips_hue_hub_ip 
+    allow_hue_groups: false
+    allow_unreachable: true
 
 vacuum:
-  - platform: xiaomi_miio
-    name: Kevin clean
-    host: !secret robot_vacuum_host
-    token: !secret robot_vacuum_token
+- platform: xiaomi_miio
+  name: Kevin clean
+  host: !secret robot_vacuum_host
+  token: !secret robot_vacuum_token
 
 tuya:
   username: !secret tuya_username
@@ -78,11 +75,12 @@ sun:
 person:
 
 media_player:
-  - platform: androidtv
-    name: Lounge TV
-    host: !secret android_tv_host
+- platform: androidtv
+  name: Lounge TV
+  host: !secret android_tv_host
+  adbkey: "/config/adbkey"
 
 notify:
-  - platform: nfandroidtv
-    name: Lounge TV
-    host: !secret android_tv_host
+- platform: nfandroidtv
+  name: Lounge TV
+  host: !secret android_tv_host
