@@ -6,7 +6,7 @@ filter:
   - cover
   - vacuum
 
-  include:
+  include_entities:
   - script.vacuum_clean_bedroom
   - script.vacuum_clean_ensuite
   - script.vacuum_clean_hallway
@@ -20,7 +20,7 @@ filter:
   exclude_domains:
   - media_player
 
-  exclude:
+  exclude_entities:
     # These lights are grouped so we want them shown together as a group
   - light.kitchen_light_1
   - light.kitchen_light_2
