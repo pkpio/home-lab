@@ -8,4 +8,4 @@
 
 # Setup Docker
 ----
-Install [docker and docker compose using instructions here](https://devdojo.com/bobbyiliev/how-to-install-docker-and-docker-compose-on-raspberry-pi)
+- Install [docker and docker compose using instructions here](https://devdojo.com/bobbyiliev/how-to-install-docker-and-docker-compose-on-raspberry-pi)

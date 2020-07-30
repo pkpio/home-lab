@@ -10,10 +10,13 @@ We discuss in the order this should be done. I'm using the docker based approach
 ----
 I run my Home Assistant on a Raspberry Pi 4. See [setup instructions](docs/setup-host-os.md).
 
-#2 Run home-assistant
+#2 Setup home-assistant
 ----
-- Clone this repo
-- Run `docker-compose up -d`
+We need to setup some secrets before we can spin up our Home assistant instance for the first time. See [setup instructions](docs/setup-home-assistant.md).
+
+#3 Spin up Home Assistant
+----
+Just run `docker-compose up -d` to bring up Home Assistant and all other services.
 
 Devices
 ----
