@@ -12,6 +12,16 @@ script: !include scripts.yaml
 scene: !include scenes.yaml
 
 cloud:
+  google_actions:
+    filter:
+      # Disconnect Hue in Google assistant
+      include_domains:
+        - light
+        
+      # All media players in the home are google cast enabled. They will appear in the google assistant
+      exclude_domains:
+        - media_player
+
 hue:
   bridges:
     - host: !secret philips_hue_hub_ip 
