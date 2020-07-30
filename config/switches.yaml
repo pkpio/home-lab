@@ -1,0 +1,10 @@
+- platform: template
+  switches:
+    vacuum_clean_kitchen:
+      value_template: "{{ is_state('vacuum.kevin_clean', 'cleaning') }}"
+      turn_on:
+        service: script.vacuum_clean_kitchen
+      turn_off:
+        service: vacuum.return_to_base
+        data:
+          entity_id: vacuum.kevin_clean

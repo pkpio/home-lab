@@ -5,17 +5,17 @@ filter:
   - light
   - cover
   - vacuum
-  - script
+  - switch
 
   include_entities:
-  - script.vacuum_clean_bedroom
-  - script.vacuum_clean_ensuite
-  - script.vacuum_clean_hallway
-  - script.vacuum_clean_kitchen
-  - script.vacuum_clean_dining
-  - script.vacuum_clean_lounge
-  - script.vacuum_clean_living_room
-  - script.vacuum_clean_guestroom
+  # - script.vacuum_clean_bedroom
+  # - script.vacuum_clean_ensuite
+  # - script.vacuum_clean_hallway
+  - switch.vacuum_clean_kitchen
+  # - script.vacuum_clean_dining
+  # - script.vacuum_clean_lounge
+  # - script.vacuum_clean_living_room
+  # - script.vacuum_clean_guestroom
 
   # All media players in the home are google cast enabled. They will appear in the google assistant
   exclude_domains:
@@ -68,7 +68,7 @@ entity_config:
   script.vacuum_clean_hallway:
     room: Hallway
 
-  script.vacuum_clean_kitchen:
+  switch.vacuum_clean_kitchen:
     room: Living room    
   script.vacuum_clean_dining:
     room: Living room

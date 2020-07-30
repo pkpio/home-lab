@@ -36,6 +36,7 @@ logbook: !include logbook.yaml
 history: !include history.yaml
 lovelace: !include lovelace.yaml
 light: !include lights.yaml
+switch: !include switches.yaml
 
 cloud:
   google_actions: !include google_actions.yaml
