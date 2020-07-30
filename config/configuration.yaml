@@ -11,6 +11,7 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
+cloud:
 hue:
   bridges:
     - host: !secret philips_hue_hub_ip 

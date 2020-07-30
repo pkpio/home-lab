@@ -17,11 +17,3 @@ We need to setup some secrets before we can spin up our Home assistant instance 
 #3 Spin up Home Assistant
 ----
 Just run `docker-compose up -d` to bring up Home Assistant and all other services.
-
-Devices
-----
-Devices in the home
-
-### Lights
-----
-- Philips Hue GU10 color spot lights

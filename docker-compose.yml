@@ -9,11 +9,3 @@ services:
       - ./docker-env/common.env
     restart: always
     network_mode: host
-
-  duckdns:
-    image: linuxserver/duckdns
-    container_name: duckdns
-    env_file: 
-      - ./docker-env/common.env
-      - ./docker-env/duckdns.env
-    restart: unless-stopped
