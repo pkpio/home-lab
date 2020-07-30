@@ -5,6 +5,7 @@ filter:
   - light
   - cover
   - vacuum
+  - script
 
   include_entities:
   - script.vacuum_clean_bedroom
@@ -21,7 +22,7 @@ filter:
   - media_player
 
   exclude_entities:
-    # These lights are grouped so we want them shown together as a group
+  # These lights are grouped so we want them shown together as a group
   - light.kitchen_light_1
   - light.kitchen_light_2
   - light.kitchen_light_3
@@ -44,6 +45,9 @@ filter:
   - light.corridor_light_1
   - light.corridor_light_2
   - light.corridor_light_3
+
+  # A dummy light added by deconz
+  - light.configuration_tool_1
 
 entity_config:
   ##### Robo vacuum #####
