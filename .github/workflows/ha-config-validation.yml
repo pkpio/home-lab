@@ -18,7 +18,7 @@ jobs:
           python3-setuptools \
           python3-wheel \
           python3-venv -y
-        python3 -m venv .env
+        python3.7 -m venv .env
 
     - name: Install Home Assistant
       run: |
