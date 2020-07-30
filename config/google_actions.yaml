@@ -79,10 +79,8 @@ entity_config:
   ##### Lights #####
   light.kitchen_lights:
     room: Living room
-
   light.dining_lights:
     room: Living room
-
   light.lounge_lights:
     room: Living room
 
@@ -103,9 +101,18 @@ entity_config:
   light.ensuite_light_2:
     room: Ensuite
 
+  light.balcony_light:
+    room: Balcony
+
+  light.electronics_storage_light:
+    room: Storage
+  light.shoe_storage_light:
+    room: Storage
+
   ##### Covers #####
   cover.balcony_curtain:
     room: Living room
+
   cover.bedroom_curtain:
     room: Bedroom
 
