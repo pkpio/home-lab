@@ -1,0 +1,111 @@
+filter:
+  # Disconnect Hue in Google assistant to avoid duplicate lights
+  # I see HA as better than Hue because it won't pollute with so many scenes in Google home
+  include_domains:
+  - light
+  - cover
+  - vacuum
+
+  include:
+  - script.vacuum_clean_bedroom
+  - script.vacuum_clean_ensuite
+  - script.vacuum_clean_hallway
+  - script.vacuum_clean_kitchen
+  - script.vacuum_clean_dining
+  - script.vacuum_clean_lounge
+  - script.vacuum_clean_living_room
+  - script.vacuum_clean_guestroom
+
+  # All media players in the home are google cast enabled. They will appear in the google assistant
+  exclude_domains:
+  - media_player
+
+  exclude:
+    # These lights are grouped so we want them shown together as a group
+  - light.kitchen_light_1
+  - light.kitchen_light_2
+  - light.kitchen_light_3
+  - light.cooktop_light
+
+  - light.dining_light_1
+  - light.dining_light_2
+
+  - light.lounge_light_1
+  - light.lounge_light_2
+  - light.lounge_light_3
+  - light.lounge_light_4
+  - light.lounge_light_5
+  - light.lounge_light_6
+
+  - light.entrance_light_1
+  - light.entrance_light_2
+  - light.entrance_light_3
+
+  - light.corridor_light_1
+  - light.corridor_light_2
+  - light.corridor_light_3
+
+entity_config:
+  ##### Robo vacuum #####
+  vacuum.kevin_clean:
+    name: Robo Vacuum
+    aliases:
+    - Kevin clean
+    - Robovac
+    room: Living room
+
+  script.vacuum_clean_bedroom:
+    room: Bedroom
+
+  script.vacuum_clean_ensuite:
+    room: Ensuite
+
+  script.vacuum_clean_hallway:
+    room: Hallway
+
+  script.vacuum_clean_kitchen:
+    room: Living room    
+  script.vacuum_clean_dining:
+    room: Living room
+  script.vacuum_clean_lounge:
+    room: Living room
+  script.vacuum_clean_living_room:
+    room: Living room
+
+  script.vacuum_clean_guestroom:
+    room: Guest room
+
+
+  ##### Lights #####
+  light.kitchen_lights:
+    room: Living room
+
+  light.dining_lights:
+    room: Living room
+
+  light.lounge_lights:
+    room: Living room
+
+  light.corridor_lights:
+    room: Hallway
+  light.entrance_lights:
+    room: Hallway
+
+  light.bedroom_light_1:
+    room: Bedroom
+  light.bedroom_light_2:
+    room: Bedroom
+  light.bedroom_light_3:
+    room: Bedroom
+
+  light.ensuite_light_1:
+    room: Ensuite
+  light.ensuite_light_2:
+    room: Ensuite
+
+  ##### Covers #####
+  cover.balcony_curtain:
+    room: Living room
+  cover.bedroom_curtain:
+    room: Bedroom
+

@@ -35,19 +35,10 @@ frontend: !include frontend.yaml
 logbook: !include logbook.yaml
 history: !include history.yaml
 lovelace: !include lovelace.yaml
+light: !include lights.yaml
 
 cloud:
-  google_actions:
-    filter:
-      # Disconnect Hue in Google assistant
-      include_domains:
-        - light
-        - cover
-        - vacuum
-
-      # All media players in the home are google cast enabled. They will appear in the google assistant
-      exclude_domains:
-        - media_player
+  google_actions: !include google_actions.yaml
 
 hue:
   bridges:
