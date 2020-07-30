@@ -103,3 +103,16 @@ vacuum_clean_bathroom:
       - !secret robot_vaccum_roomid_bathroom
     entity_id: vacuum.kevin_clean
     service: vacuum.send_command
+
+vacuum_clean_hallway:
+  alias: Clean hallway
+  icon: mdi:laravel
+  mode: single
+  sequence:
+  - data:
+      command: app_segment_clean
+      entity_id: vacuum.kevin_clean
+      params:
+      - !secret robot_vaccum_roomid_hallway
+    entity_id: vacuum.kevin_clean
+    service: vacuum.send_command
