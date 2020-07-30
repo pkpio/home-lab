@@ -31,6 +31,10 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
+frontend: !include frontend.yaml
+logbook: !include logbook.yaml
+history: !include history.yaml
+lovelace: !include lovelace.yaml
 
 cloud:
   google_actions:
@@ -75,3 +79,7 @@ sonoff:
 
 hacs:
   token: !secret github_personal_token
+
+python_script:
+sun:
+person:

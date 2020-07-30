@@ -1,0 +1,24 @@
+  include:
+    domains:
+      - cover
+      - input_boolean
+      - input_select
+      - light
+      - media_player
+      - switch
+      - person
+      - vacuum
+  exclude:
+    domains:
+      - sun
+      - binary_sensor
+      - camera
+      - device_tracker
+      - group
+      - input_number
+      - input_text
+      - script
+      - sensor
+      - weather
+      - zone
+      - automation
