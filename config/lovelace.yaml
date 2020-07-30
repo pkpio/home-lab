@@ -1,1 +1,6 @@
 mode: yaml
+resources:
+- url: /hacsfiles/vacuum-card/vacuum-card.js
+  type: module
+- url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
+  type: module
