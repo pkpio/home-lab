@@ -16,7 +16,7 @@ jobs:
         pip3 install homeassistant
 
     - name: Prepare environment
-      run: cp secrets.yaml.sample secrets.yaml
+      run: cp config/secrets.yaml.sample config/secrets.yaml
     
     - name: Verify config
       run: hass -c config/ --script check_config --info all
