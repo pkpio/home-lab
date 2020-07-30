@@ -12,7 +12,7 @@ jobs:
     
     - name: Install Python
       run: |
-        sudo apt install python3 \
+        sudo apt install python3.7 \
           python3-pip \
           python3-dev \
           python3-setuptools \
@@ -24,6 +24,7 @@ jobs:
       run: |
         source .env/bin/activate
         pip3 install homeassistant
+        python3 -V
 
     - name: Prepare environment
       run: |

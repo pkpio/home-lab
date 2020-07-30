@@ -80,7 +80,7 @@ media_player:
 - platform: androidtv
   name: Lounge TV
   host: !secret android_tv_host
-  adbkey: "/config/adbkey"
+  adbkey: ./adbkey
 
 notify:
 - platform: nfandroidtv
