@@ -10,21 +10,13 @@ jobs:
     - name: Checkout source code
       uses: actions/checkout@v2
     
-    - name: Install Python
-      run: |
-        sudo apt install python3.7 \
-          python3-pip \
-          python3-dev \
-          python3.7-setuptools \
-          python3.7-wheel \
-          python3.7-venv -y
-        python3.7 -m venv .env
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
 
     - name: Install Home Assistant
-      run: |
-        source .env/bin/activate
-        pip3 install homeassistant
-        python3 -V
+      run: pip3 install homeassistant
 
     - name: Prepare environment
       run: |
@@ -32,6 +24,4 @@ jobs:
         touch config/adbkey
     
     - name: Verify config
-      run: |
-        source .env/bin/activate
-        hass -c config/ --script check_config --info all
+      run: hass -c config/ --script check_config --info all
