@@ -46,7 +46,6 @@ filter:
 
   # A dummy light added by deconz
   - light.configuration_tool_1
-  - script.vacuum_clean_bathroom
 
 entity_config:
   ##### Robo vacuum #####
@@ -89,6 +88,8 @@ entity_config:
 
   ##### Lights #####
   light.kitchen_lights:
+    room: Living room
+  light.cooktop_light:
     room: Living room
   light.dining_lights:
     room: Living room
