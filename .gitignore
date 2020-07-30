@@ -23,11 +23,8 @@ OZW_Log.txt
 home-assistant.log
 home-assistant_v2.db
 deps
-icloud
 __pycache__
-hacs
 alexa_media
-custom_components
 tts
 secrets.yaml
 secrets
