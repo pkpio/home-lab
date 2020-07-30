@@ -26,7 +26,9 @@ jobs:
         pip3 install homeassistant
 
     - name: Prepare environment
-      run: cp config/secrets.yaml.sample config/secrets.yaml
+      run: |
+        cp config/secrets.yaml.sample config/secrets.yaml
+        touch config/adbkey
     
     - name: Verify config
       run: |
