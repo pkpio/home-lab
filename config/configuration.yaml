@@ -43,3 +43,14 @@ tuya:
   password: !secret tuya_password
   country_code: !secret tuya_country_code
 
+sonoff:
+  username: !secret sonoff_username
+  password: !secret sonoff_password
+  mode: local
+  devices:
+    100094996f:
+      device_class: light
+      name: Balcony light
+    1000c1872c:
+      device_class: light
+      name: Cooktop lights
