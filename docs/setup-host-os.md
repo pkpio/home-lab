@@ -15,4 +15,4 @@
 This is required for the Android TV integration.
 - Install adb `sudo apt install android-tools-adb`
 - Authorize adb with the TV `adb connect TV_IP`
-- Copy authorized key to config `cp ~/.android/adbkey config/adbkey`
+- Clone this repo and copy authorized key to config `cp ~/.android/adbkey config/adbkey`

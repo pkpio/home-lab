@@ -9,6 +9,7 @@ views:
 
   cards:
   - type: 'custom:vacuum-card'
+    entity: vacuum.kevin_clean
     actions:
     - icon: 'mdi:silverware-spoon'
       name: Clean kitchen
@@ -28,7 +29,6 @@ views:
     - icon: 'mdi:laravel'
       name: Clean guest room
       service: script.vacuum_clean_hallway
-    entity: vacuum.kevin_clean
     stats:
       cleaning:
       - attribute: cleaned_area
