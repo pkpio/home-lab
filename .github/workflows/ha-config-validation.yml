@@ -1,0 +1,20 @@
+name: HA config validation
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v2
+    
+    - name: Install Home Assistant
+      run: pip3 install homeassistant
+
+    - name: Prepare environment
+      run: cp secrets.yaml.sample secrets.yaml
+    
+    - name: Verify config
+      run: hass -c config/ --script check_config --info all
