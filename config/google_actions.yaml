@@ -59,15 +59,15 @@ entity_config:
     room: Living room
 
   switch.vacuum_clean_bedroom:
-    room: Clean bedroom 
+    name: Clean bedroom 
     room: Bedroom
 
   switch.vacuum_clean_ensuite:
-    room: Clean ensuite 
+    name: Clean ensuite 
     room: Ensuite
 
   switch.vacuum_clean_hallway:
-    room: Clean hallway    
+    name: Clean hallway    
     room: Hallway
 
   switch.vacuum_clean_kitchen:
