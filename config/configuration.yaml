@@ -1,6 +1,25 @@
+default:
 
-# Configure a default setup of Home Assistant (frontend, api, etc)
-default_config:
+homeassistant:
+  auth_providers:
+    - type: homeassistant
+    - type: trusted_networks
+      trusted_networks:
+        - 192.168.1.0/24
+
+  name: !secret home_name
+  temperature_unit: !secret temperature_unit
+  time_zone: !secret time_zone
+  unit_system: !secret unit_system
+
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude_home
+  longitude: !secret longitude_home
+  elevation: !secret elevation_home
+
+  customize: !include customize.yaml
+  customize_glob: !include customize_glob.yaml
+  packages: !include_dir_named packages
 
 # Data saving policy
 recorder:
@@ -21,6 +40,7 @@ cloud:
       # Disconnect Hue in Google assistant
       include_domains:
         - light
+        - cover
 
       # All media players in the home are google cast enabled. They will appear in the google assistant
       exclude_domains:
@@ -34,7 +54,7 @@ hue:
 
 vacuum:
   - platform: xiaomi_miio
-    name: kevin_clean
+    name: Kevin clean
     host: !secret robot_vacuum_host
     token: !secret robot_vacuum_token
 
