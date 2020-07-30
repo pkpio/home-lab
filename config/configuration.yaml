@@ -2,6 +2,10 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
+# Data saving policy
+recorder:
+  purge_keep_days: 10
+
 # Text to speech
 tts:
   - platform: google_translate
@@ -17,7 +21,7 @@ cloud:
       # Disconnect Hue in Google assistant
       include_domains:
         - light
-        
+
       # All media players in the home are google cast enabled. They will appear in the google assistant
       exclude_domains:
         - media_player
@@ -27,3 +31,15 @@ hue:
     - host: !secret philips_hue_hub_ip 
       allow_hue_groups: false
       allow_unreachable: true
+
+vacuum:
+  - platform: xiaomi_miio
+    name: kevin_clean
+    host: !secret robot_vacuum_host
+    token: !secret robot_vacuum_token
+
+tuya:
+  username: !secret tuya_username
+  password: !secret tuya_password
+  country_code: !secret tuya_country_code
+
