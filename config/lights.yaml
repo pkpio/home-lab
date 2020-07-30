@@ -5,7 +5,6 @@
   - light.kitchen_light_1
   - light.kitchen_light_2
   - light.kitchen_light_3
-  - light.sonoff_1000c1872c # Cooktop light
 
 - platform: group
   name: Dining lights

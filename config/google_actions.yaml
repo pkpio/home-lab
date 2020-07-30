@@ -5,7 +5,6 @@ filter:
   - light
   - cover
   - vacuum
-  - sensor
 
   include_entities:
   - switch.vacuum_clean_bedroom
@@ -26,7 +25,6 @@ filter:
   - light.kitchen_light_1
   - light.kitchen_light_2
   - light.kitchen_light_3
-  - light.cooktop_light
 
   - light.dining_light_1
   - light.dining_light_2
@@ -128,21 +126,4 @@ entity_config:
 
   cover.bedroom_curtain:
     room: Bedroom
-
-  ##### Temperature sensors #####
-  sensor.bedroom_environment:
-    name: Bedroom temperature
-    room: Bedroom
-
-  sensor.guest_environment:
-    name: Guestroom temperature
-    room: Guestroom
-
-  sensor.hallway_environment:
-    name: Bedroom temperature
-    room: Bedroom
-
-  sensor.living_room_environment:
-    name: Living room temperature
-    room: Living room
 
