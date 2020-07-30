@@ -1,0 +1,12 @@
+vacuum_clean_lounge:
+  alias: Clean lounge
+  icon: mdi:sofa
+  mode: single
+  sequence:
+  - data:
+      command: app_segment_clean
+      entity_id: vacuum.kevin_clean
+      params:
+      - !secret robot_vaccum_map.lounge
+    entity_id: vacuum.kevin_clean
+    service: vacuum.send_command
