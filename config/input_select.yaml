@@ -1,0 +1,17 @@
+# For exposing to Google Assistant
+vacuum_cleaner_mode:
+  name: Vacuum cleaner mode
+  options:
+    - Idle
+    - Clean Kitchen
+    - Clean Dining
+    - Clean Lounge
+    - Clean Living room
+    - Clean Hallway
+    - Clean Bedroom
+    - Clean Ensuite
+    - Clean Guestroom
+    - Clean Bathroom
+    - Busy
+  initial: Idle
+  icon: mdi:robot-vacuum
