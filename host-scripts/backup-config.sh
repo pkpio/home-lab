@@ -13,3 +13,6 @@ echo "Backed up $SRCDIR to $BACKUPNAME"
 # Delete backups older than 10 days
 find $DESDIR -name 'HA-Config-Backup-*.tar.gz' -mtime +10 -exec rm {}\;
 echo "Deleted backups older than 10 days"
+
+echo "Syncing backups to Google Drive"
+rclone sync backups/ gdrive:/ha-backups --progress --create-empty-src-dirs
