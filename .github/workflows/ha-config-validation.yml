@@ -9,14 +9,6 @@ jobs:
     steps:
     - name: Checkout source code
       uses: actions/checkout@v2
-    
-    # - name: Set up Python 3.7
-    #   uses: actions/setup-python@v2
-    #   with:
-    #     python-version: 3.7
-
-    # - name: Install Home Assistant
-    #   run: pip3 install homeassistant
 
     - name: Prepare environment
       run: |
@@ -26,10 +18,10 @@ jobs:
     - name: Start Home Assistant
       run: |
         docker run -d --name="home-assistant" \
-        -v /config:/config \
-        -v /etc/localtime:/etc/localtime:ro \
-        --net=host \
-        homeassistant/home-assistant:stable
+          -v /config:/config \
+          -v /etc/localtime:/etc/localtime:ro \
+          --net=host \
+          homeassistant/home-assistant:stable
     
     - name: Verify config
       run: |
