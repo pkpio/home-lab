@@ -4,9 +4,7 @@
     entity_id: input_select.vacuum_cleaner_mode
     from: "Idle"
   action:
-    service: script.turn_on
-    data_template:
-      entity_id: script.vacuum_clean_kitchen
+    service: script.vacuum_clean_kitchen
         # {% if is_state("input_select.vacuum_cleaner_mode", "Clean Kitchen") %}
         #   - script.vacuum_clean_kitchen
         # {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Dining") %}
