@@ -12,8 +12,6 @@ homeassistant:
   longitude: !secret longitude_home
   elevation: !secret elevation_home
 
-  customize: !include_dir_merge_list customize
-  customize_glob: !include_dir_merge_list customize_glob
   packages: !include_dir_named packages
 
 # Data saving policy
@@ -80,7 +78,7 @@ media_player:
 - platform: androidtv
   name: Lounge TV
   host: !secret android_tv_host
-  adbkey: ./adbkey
+  adbkey: /config/adbkey
 
 notify:
 - platform: nfandroidtv
