@@ -1,4 +1,4 @@
-- alias: Vacuum cleaner starts room cleaning on input selection
+- alias: Start cleaning on input selection
   trigger:
     platform: state
     entity_id: input_select.vacuum_cleaner_mode
@@ -27,7 +27,7 @@
           - script.vacuum_clean_bathroom
         {% endif %}
 
-- alias: Vacuum cleaner stops cleaning and docks on input selection
+- alias: Stop cleaning on input selection
   trigger:
     platform: state
     entity_id: input_select.vacuum_cleaner_mode
@@ -39,7 +39,7 @@
   - service: vacuum.return_to_base
     entity_id: vacuum.kevin_clean
 
-- alias: Change vacuum cleaner mode selection to Idle on docking
+- alias: Set vacuum cleaner to Idle
   trigger:
     platform: state
     entity_id: vacuum.kevin_clean
