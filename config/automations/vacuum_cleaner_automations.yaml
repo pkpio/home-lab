@@ -6,28 +6,28 @@
   action:
     service: script.turn_on
     data_template:
-      entity_id: >
-        {% if is_state("input_select.vacuum_cleaner_mode", "Clean Kitchen") %}
-          - script.vacuum_clean_kitchen
-        {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Dining") %}
-          - script.vacuum_clean_dining
-        {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Lounge") %}
-          - script.vacuum_clean_lounge
-        {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Living room") %}
-          - script.vacuum_clean_living_room
-        {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Hallway") %}
-          - script.vacuum_clean_hallway
-        {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Bedroom") %}
-          - script.vacuum_clean_bedroom
-        {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Ensuite") %}
-          - script.vacuum_clean_ensuite
-        {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Guestroom") %}
-          - script.vacuum_clean_guestroom
-        {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Bathroom") %}
-          - script.vacuum_clean_bathroom
-        {% else %}
-          none
-        {% endif %}
+      entity_id: script.vacuum_clean_kitchen
+        # {% if is_state("input_select.vacuum_cleaner_mode", "Clean Kitchen") %}
+        #   - script.vacuum_clean_kitchen
+        # {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Dining") %}
+        #   - script.vacuum_clean_dining
+        # {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Lounge") %}
+        #   - script.vacuum_clean_lounge
+        # {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Living room") %}
+        #   - script.vacuum_clean_living_room
+        # {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Hallway") %}
+        #   - script.vacuum_clean_hallway
+        # {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Bedroom") %}
+        #   - script.vacuum_clean_bedroom
+        # {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Ensuite") %}
+        #   - script.vacuum_clean_ensuite
+        # {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Guestroom") %}
+        #   - script.vacuum_clean_guestroom
+        # {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Bathroom") %}
+        #   - script.vacuum_clean_bathroom
+        # {% else %}
+        #   none
+        # {% endif %}
 
 - alias: Stop cleaning on input selection
   trigger:
