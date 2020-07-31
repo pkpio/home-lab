@@ -39,3 +39,4 @@ ip_bans.yaml
 production_auth.json
 .sonoff.json
 adbkey
+backups
