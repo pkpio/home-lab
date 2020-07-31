@@ -20,10 +20,6 @@ jobs:
 
     - name: Prepare environment
       run: |
-        # Use dummy environment variables for containers
-        cp docker-env/common.env.sample docker-env/common.env
-
-        # Create dummy secrets
         cp config/secrets.yaml.sample config/secrets.yaml
         touch config/adbkey
 
