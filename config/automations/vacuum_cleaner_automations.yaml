@@ -1,0 +1,50 @@
+- alias: Vacuum cleaner starts room cleaning on input selection
+  trigger:
+    platform: state
+    entity_id: input_select.vacuum_cleaner_mode
+    from: "Idle"
+  action:
+    service: script.turn_on
+    data_template:
+      entity_id: >
+        {% if is_state("input_select.vacuum_cleaner_mode", "Clean Kitchen") %}
+          vacuum_clean_kitchen
+        {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Dining") %}
+          vacuum_clean_dining
+        {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Lounge") %}
+          vacuum_clean_lounge
+        {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Living room") %}
+          vacuum_clean_living_room
+        {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Hallway") %}
+          vacuum_clean_hallway
+        {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Bedroom") %}
+          vacuum_clean_bedroom
+        {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Ensuite") %}
+          vacuum_clean_ensuite
+        {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Guestroom") %}
+          vacuum_clean_guestroom
+        {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Bathroom") %}
+          vacuum_clean_bathroom
+        {% endif %}
+
+- alias: Vacuum cleaner stops cleaning and docks on input selection
+  trigger:
+    platform: state
+    entity_id: input_select.vacuum_cleaner_mode
+    to: "Idle"
+  action:
+  - service: vacuum.stop
+    entity_id: vacuum.kevin_clean
+  - wait_template: "{{ is_state('vacuum.kevin_clean', 'paused') }}"
+  - service: vacuum.return_to_base
+    entity_id: vacuum.kevin_clean
+
+- alias: Change vacuum cleaner mode selection to Idle on docking
+  trigger:
+    platform: state
+    entity_id: vacuum.kevin_clean
+    to: "docked"
+  action:
+    service: input_select.select_option
+    entity_id: input_select.vacuum_cleaner_mode
+    option: "Idle"

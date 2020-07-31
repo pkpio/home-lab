@@ -12,6 +12,5 @@ vacuum_cleaner_mode:
     - Clean Ensuite
     - Clean Guestroom
     - Clean Bathroom
-    - Busy
   initial: Idle
   icon: mdi:robot-vacuum

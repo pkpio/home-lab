@@ -8,14 +8,6 @@ filter:
 
   include_entities:
   - input_select.vacuum_cleaner_mode
-  # - switch.vacuum_clean_bedroom
-  # - switch.vacuum_clean_ensuite
-  # - switch.vacuum_clean_hallway
-  # - switch.vacuum_clean_kitchen
-  # - switch.vacuum_clean_dining
-  # - switch.vacuum_clean_lounge
-  # - switch.vacuum_clean_living_room
-  # - switch.vacuum_clean_guestroom
 
   # All media players in the home are google cast enabled. They will appear in the google assistant
   exclude_domains:
@@ -59,35 +51,6 @@ entity_config:
 
   input_select.vacuum_cleaner_mode:
     room: Living room
-
-  # switch.vacuum_clean_bedroom:
-  #   name: Clean bedroom 
-  #   room: Bedroom
-
-  # switch.vacuum_clean_ensuite:
-  #   name: Clean ensuite 
-  #   room: Ensuite
-
-  # switch.vacuum_clean_hallway:
-  #   name: Clean hallway    
-  #   room: Hallway
-
-  # switch.vacuum_clean_kitchen:
-  #   name: Clean kitchen
-  #   room: Living room    
-  # switch.vacuum_clean_dining:
-  #   name: Clean dining
-  #   room: Living room
-  # switch.vacuum_clean_lounge:
-  #   name: Clean lounge
-  #   room: Living room
-  # switch.vacuum_clean_living_room:
-  #   name: Clean living room
-  #   room: Living room
-
-  # switch.vacuum_clean_guestroom:
-  #   name: Clean guestroom
-  #   room: Guest room
 
 
   ##### Lights #####
