@@ -46,5 +46,6 @@
     to: "docked"
   action:
     service: input_select.select_option
-    entity_id: input_select.vacuum_cleaner_mode
-    option: "Idle"
+    data:
+      entity_id: input_select.vacuum_cleaner_mode
+      option: "Idle"
