@@ -28,7 +28,14 @@ jobs:
         touch config/adbkey
 
     - name: Start Home Assistant
-      run: docker-compose up -d
+      run: |
+        docker run -d --name="home-assistant" \
+        -v /config:/config \
+        -v /etc/localtime:/etc/localtime:ro \
+        --net=host \
+        homeassistant/home-assistant:stable
     
     - name: Verify config
-      run: docker exec home-assistant python -m homeassistant --script check_config --config /config
+      run: |
+        docker exec home-assistant \
+          python -m homeassistant --script check_config --config /config
