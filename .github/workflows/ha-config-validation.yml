@@ -31,4 +31,4 @@ jobs:
       run: docker-compose up -d
     
     - name: Verify config
-      run: hass -c config/ --script check_config --info all
+      run: docker exec home-assistant python -m homeassistant --script check_config --config /config
