@@ -8,23 +8,23 @@
     data_template:
       entity_id: >
         {% if is_state("input_select.vacuum_cleaner_mode", "Clean Kitchen") %}
-          - vacuum_clean_kitchen
+          - script.vacuum_clean_kitchen
         {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Dining") %}
-          - vacuum_clean_dining
+          - script.vacuum_clean_dining
         {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Lounge") %}
-          - vacuum_clean_lounge
+          - script.vacuum_clean_lounge
         {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Living room") %}
-          - vacuum_clean_living_room
+          - script.vacuum_clean_living_room
         {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Hallway") %}
-          - vacuum_clean_hallway
+          - script.vacuum_clean_hallway
         {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Bedroom") %}
-          - vacuum_clean_bedroom
+          - script.vacuum_clean_bedroom
         {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Ensuite") %}
-          - vacuum_clean_ensuite
+          - script.vacuum_clean_ensuite
         {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Guestroom") %}
-          - vacuum_clean_guestroom
+          - script.vacuum_clean_guestroom
         {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Bathroom") %}
-          - vacuum_clean_bathroom
+          - script.vacuum_clean_bathroom
         {% endif %}
 
 - alias: Vacuum cleaner stops cleaning and docks on input selection
