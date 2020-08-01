@@ -1,4 +1,18 @@
 # Grouping all the lights here
+
+- platform: group
+  name: Bedroom lights
+  entities:
+  - light.bedroom_light_1
+  - light.bedroom_light_2
+  - light.bedroom_light_3
+  
+- platform: group
+  name: Ensuite lights
+  entities:
+  - light.ensuite_light_1
+  - light.ensuite_light_2
+
 - platform: group
   name: Kitchen lights
   entities:
@@ -49,9 +63,3 @@
   - light.corridor_lights
   - light.entrance_lights
 
-- platform: group
-  name: Bedroom lights
-  entities:
-  - light.bedroom_light_1
-  - light.bedroom_light_2
-  - light.bedroom_light_3
