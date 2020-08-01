@@ -1,6 +1,7 @@
 # Grouping all the lights here
 - platform: group
   name: Kitchen lights
+  id: kitchen_lights
   entities:
   - light.kitchen_light_1
   - light.kitchen_light_2
@@ -8,12 +9,14 @@
 
 - platform: group
   name: Dining lights
+  id: dining_lights
   entities:
   - light.dining_light_1
   - light.dining_light_2
 
 - platform: group
   name: Lounge lights
+  id: lounge_lights
   entities:
   - light.lounge_light_1
   - light.lounge_light_2
@@ -23,7 +26,16 @@
   - light.lounge_light_6
 
 - platform: group
+  name: Living room lights
+  id: living_room_lights
+  entities:
+  - light.lounge_lights
+  - light.kitchen_lights
+  - light.dining_lights
+
+- platform: group
   name: Entrance lights
+  id: entrance_lights
   entities:
   - light.entrance_light_1
   - light.entrance_light_2
@@ -31,6 +43,7 @@
 
 - platform: group
   name: Corridor lights
+  id: corridor_lights
   entities:
   - light.corridor_light_1
   - light.corridor_light_2

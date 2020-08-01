@@ -29,6 +29,8 @@ filter:
   - light.lounge_light_5
   - light.lounge_light_6
 
+  - light.living_room_lights
+
   - light.entrance_light_1
   - light.entrance_light_2
   - light.entrance_light_3
