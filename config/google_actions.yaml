@@ -2,45 +2,33 @@ filter:
   # Disconnect Hue in Google assistant to avoid duplicate lights
   # I see HA as better than Hue because it won't pollute with so many scenes in Google home
   include_domains:
-  - light
   - cover
   - vacuum
 
   include_entities:
   - input_select.vacuum_cleaner_mode
 
+  # Lights
+  - light.kitchen_lights
+  - light.cooktop_light
+  - light.dining_lights
+  - light.lounge_lights
+
+  - light.bedroom_lights
+  - light.ensuite_lights
+
+  - light.entrance_lights
+  - light.corridor_lights
+
+  - light.balcony_light
+
+  - light.electronics_storage_light
+  - light.shoe_storage_light
+
   # All media players in the home are google cast enabled. They will appear in the google assistant
   exclude_domains:
+  - light
   - media_player
-
-  exclude_entities:
-  # These lights are grouped so we want them shown together as a group
-  - light.kitchen_light_1
-  - light.kitchen_light_2
-  - light.kitchen_light_3
-
-  - light.dining_light_1
-  - light.dining_light_2
-
-  - light.lounge_light_1
-  - light.lounge_light_2
-  - light.lounge_light_3
-  - light.lounge_light_4
-  - light.lounge_light_5
-  - light.lounge_light_6
-
-  - light.living_room_lights
-
-  - light.entrance_light_1
-  - light.entrance_light_2
-  - light.entrance_light_3
-
-  - light.corridor_light_1
-  - light.corridor_light_2
-  - light.corridor_light_3
-
-  # A dummy light added by deconz
-  - light.configuration_tool_1
 
 entity_config:
   ##### Robo vacuum #####
@@ -70,16 +58,9 @@ entity_config:
   light.entrance_lights:
     room: Hallway
 
-  light.bedroom_light_1:
+  light.bedroom_lights:
     room: Bedroom
-  light.bedroom_light_2:
-    room: Bedroom
-  light.bedroom_light_3:
-    room: Bedroom
-
-  light.ensuite_light_1:
-    room: Ensuite
-  light.ensuite_light_2:
+  light.ensuite_lights:
     room: Ensuite
 
   light.balcony_light:

@@ -48,3 +48,10 @@
   entities:
   - light.corridor_lights
   - light.entrance_lights
+
+- platform: group
+  name: Bedroom lights
+  entities:
+  - light.bedroom_light_1
+  - light.bedroom_light_2
+  - light.bedroom_light_3
