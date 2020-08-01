@@ -52,13 +52,13 @@ hue_dimmer_switch_on_button:
       entity_id: "{{ light }}"
       brightness: >-
         {% if event | int == 1000 %}
-          200
+          100
         {%-elif event | int == 1001 %}
           255
         {% endif %}
 
 #### INCREASE #####
-hue_dimmer_switch_increase_button_default:
+hue_dimmer_switch_increase_button:
   alias: Hue dimmer switch "Increase" button
   icon: mdi:brightness-5
   mode: parallel
