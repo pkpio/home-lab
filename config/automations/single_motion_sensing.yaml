@@ -4,7 +4,7 @@
 # level sensing from that sensor
 #=================================================
 
-####    Lounge      ####
+##################    Lounge    ##################
 - alias: Lounge motion detected
   trigger:
     platform: state
@@ -13,7 +13,7 @@
   condition:
   - condition: numeric_state
     entity_id: sensor.lounge_activity
-    below: 0
+    below: 10
   action:
     service: light.turn_on
     entity_id: light.lounge_lights
@@ -24,53 +24,21 @@
     entity_id: binary_sensor.lounge_activity
     to: 'off'
     for:
-      minutes: 10
+      minutes: 20
   action:
     service: light.turn_off
     entity_id: light.lounge_lights
 
-####    Kitchen and Living room     ####
-- alias: Kitchen or Living room motion detected
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.living_room_activity
-    to: 'on'
-  - platform: state
-    entity_id: binary_sensor.kitchen_activity
-    to: 'on'
-  action:
-    service: light.turn_on
-    entity_id: light.kitchen_lights
-
-- alias: Kitchen and Living room motion ended
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.living_room_activity
-    to: 'off'
-    for:
-      minutes: 10
-  - platform: state
-    entity_id: binary_sensor.kitchen_activity
-    to: 'off'
-    for:
-      minutes: 10
-  condition:
-  - condition: state
-    entity_id: binary_sensor.living_room_activity
-    state: 'off'
-  - condition: state
-    entity_id: binary_sensor.kitchen_activity
-    state: 'off'
-  action:
-    service: light.turn_off
-    entity_id: light.kitchen_lights
-
-####    Dining      ####
+##################    Dining    ##################
 - alias: Dining motion detected
   trigger:
     platform: state
     entity_id: binary_sensor.dining_activity
     to: 'on'
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.dining_activity
+    below: 10
   action:
     service: light.turn_on
     entity_id: light.dining_lights
@@ -81,17 +49,21 @@
     entity_id: binary_sensor.dining_activity
     to: 'off'
     for:
-      minutes: 10
+      minutes: 20
   action:
     service: light.turn_off
     entity_id: light.dining_lights
 
-####    Corridor      ####
+##################    Corridor    ##################
 - alias: Corridor motion detected
   trigger:
     platform: state
     entity_id: binary_sensor.corridor_activity
     to: 'on'
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.corridor_activity
+    below: 10
   action:
     service: light.turn_on
     entity_id: light.corridor_lights
@@ -107,12 +79,16 @@
     service: light.turn_off
     entity_id: light.corridor_lights
 
-####    Entrance      ####
+##################    Entrance    ##################
 - alias: Entrance motion detected
   trigger:
     platform: state
     entity_id: binary_sensor.entrance_activity
     to: 'on'
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.entrance_activity
+    below: 10
   action:
     service: light.turn_on
     entity_id: light.entrance_lights
