@@ -1,8 +1,8 @@
-#### Hue dimmer switch ####
-# X000 - Initial press
-# X001 - Short release
-# X002 - Long press
-# X003 - Long release
+#### Philips Hue dimmer switch with deconz ####
+# X000 Initial Press
+# X001 Hold
+# X002 Release (after press)
+# X003 Release (after hold)
 # X - can be 1 to 3 
 hue_dimmer_switch:
   alias: Hue dimmer switch
@@ -20,13 +20,11 @@ hue_dimmer_switch:
       {% if event | int >= 1000 and event | int <= 1003 %}
         script.hue_dimmer_switch_on_button
       {%-elif event | int >= 2000 and event | int <= 2003 %}
-        script.hue_dimmer_switch_increase_button
+        script.hue_dimmer_switch_up_button
       {%-elif event | int >= 3000 and event | int <= 3003 %}
-        script.hue_dimmer_switch_decrease_button
+        script.hue_dimmer_switch_down_button
       {%-elif event | int >= 4000 and event | int <= 4003 %}
         script.hue_dimmer_switch_off_button
-      {% else %}
-        none
       {% endif %}
     data_template:
       event: "{{ event }}"
@@ -58,8 +56,8 @@ hue_dimmer_switch_on_button:
         {% endif %}
 
 #### INCREASE #####
-hue_dimmer_switch_increase_button:
-  alias: Hue dimmer switch "Increase" button
+hue_dimmer_switch_up_button:
+  alias: Hue dimmer switch "Up" button
   icon: mdi:brightness-5
   mode: parallel
   fields:
@@ -83,8 +81,8 @@ hue_dimmer_switch_increase_button:
         {% endif %}
 
 #### DECREASE #####
-hue_dimmer_switch_decrease_button:
-  alias: Hue dimmer switch "Decrease" button
+hue_dimmer_switch_down_button:
+  alias: Hue dimmer switch "Down" button
   icon: mdi:brightness-2
   mode: parallel
   fields:

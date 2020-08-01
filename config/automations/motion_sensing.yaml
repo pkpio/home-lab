@@ -1,0 +1,12 @@
+- alias: Living room switch 1
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: living_room_switch_1
+  action:
+  - service: script.hue_dimmer_switch
+    data_template:
+      light: light.living_room_lights
+      event: "{{ trigger.event.data.event }}"

@@ -1,0 +1,13 @@
+- alias: Dining button
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: dining_button
+  action:
+  - service: script.hue_dimmer_switch
+    data_template:
+      light: light.dining_lights
+      event: "{{ trigger.event.data.event }}"
+
