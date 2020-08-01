@@ -45,19 +45,15 @@ hue_dimmer_switch_on_button:
       description: 'Entity id of the light to turn on'
       example: light.corridor_lights
   sequence:
-  - service: notify.mobile_app_sm_g981b
-    data_template:
-      message: >
-        Event was {{ event }}
   - condition: template
-    value_template: '{{ event|int == 1002 or event|int == 1003 }}'
+    value_template: '{{ event|int == 1000 or event|int == 1001 }}'
   - service: light.turn_on
     data_template:
       entity_id: "{{ light }}"
       brightness: >
-        {% if event|int == 1002 %}
-          200 # TODO use some dynamic value updated with time
-        {%-elif event|int == 1003 %}
+        {% if event|int == 1000 %}
+          200
+        {%-elif event|int == 1001 %}
           255
         {% endif %}
 
