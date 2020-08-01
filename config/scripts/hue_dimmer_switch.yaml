@@ -11,15 +11,15 @@ hue_dimmer_switch:
       description: 'Entity id of the light to interact on'
       example: light.corridor_lights
   sequence:
-  - service_template:>
+  - service_template: >
       {% if event >= 1000 and event <= 1003 %}
-        script.hue_dimmer_switch_on_button_default
+        script.hue_dimmer_switch_on_button
       {%-elif event >= 2000 and event <= 2003 %}
-        script.hue_dimmer_switch_increase_button_default
+        script.hue_dimmer_switch_increase_button
       {%-elif event >= 3000 and event <= 3003 %}
-        script.hue_dimmer_switch_decrease_button_default
+        script.hue_dimmer_switch_decrease_button
       {%-elif event >= 4000 and event <= 4003 %}
-        script.hue_dimmer_switch_off_button_default
+        script.hue_dimmer_switch_off_button
       {% endif %}
     data_template:
       variables:
@@ -43,7 +43,7 @@ hue_dimmer_switch_on_button:
     value_template: '{{ event == 1002 or event == 1003 }}'
   - service: light.turn_on
     data_template:
-      entity_id: {{ light }}
+      entity_id: "{{ light }}"
       brightness:>
         {% if event == 1002 %} # short release
           200 # TODO use some dynamic value updated with time
@@ -68,8 +68,8 @@ hue_dimmer_switch_increase_button_default:
     value_template: '{{ event == 2000 or event == 2001 }}'
   - service: light.turn_on
     data_template:
-      entity_id: {{ light }}
-      brightness_step:>
+      entity_id: "{{ light }}"
+      brightness_step: >
         {% if event == 2000 %} # on press (before release)
           25
         {%-elif event == 2001 %} # long press and hold
@@ -93,8 +93,8 @@ hue_dimmer_switch_decrease_button:
     value_template: '{{ event == 3000 or event == 3001 }}'
   - service: light.turn_on
     data_template:
-      entity_id: {{ light }}
-      brightness_step:>
+      entity_id: "{{ light }}"
+      brightness_step: >
         {% if event == 3000 %} # on press (before release)
           25
         {%-elif event == 3001 %} # long press and hold
@@ -116,4 +116,4 @@ hue_dimmer_switch_off_button_default:
   sequence:
   - service: light.turn_off
     data_template:
-      entity_id: {{ light }}
+      entity_id: "{{ light }}"
