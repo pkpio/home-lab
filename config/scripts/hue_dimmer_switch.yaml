@@ -1,4 +1,9 @@
 #### Hue dimmer switch ####
+# X000 - Initial press
+# X001 - Short release
+# X002 - Long press
+# X003 - Long release
+# X - can be 1 to 3 
 hue_dimmer_switch:
   alias: Hue dimmer switch
   icon: mdi:light-switch
@@ -44,10 +49,10 @@ hue_dimmer_switch_on_button:
   - service: light.turn_on
     data_template:
       entity_id: "{{ light }}"
-      brightness:>
-        {% if event == 1002 %} # short release
+      brightness: >
+        {% if event == 1002 %}
           200 # TODO use some dynamic value updated with time
-        {%-elif event == 1003 %} # long release
+        {%-elif event == 1003 %}
           255
         {% endif %}
 
@@ -70,9 +75,9 @@ hue_dimmer_switch_increase_button_default:
     data_template:
       entity_id: "{{ light }}"
       brightness_step: >
-        {% if event == 2000 %} # on press (before release)
+        {% if event == 2000 %}
           25
-        {%-elif event == 2001 %} # long press and hold
+        {%-elif event == 2001 %}
           50
         {% endif %}
 
@@ -95,9 +100,9 @@ hue_dimmer_switch_decrease_button:
     data_template:
       entity_id: "{{ light }}"
       brightness_step: >
-        {% if event == 3000 %} # on press (before release)
+        {% if event == 3000 %}
           25
-        {%-elif event == 3001 %} # long press and hold
+        {%-elif event == 3001 %}
           50
         {% endif %}
 
