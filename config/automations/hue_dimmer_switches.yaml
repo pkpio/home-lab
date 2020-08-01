@@ -1,0 +1,57 @@
+#### Left switch in the living room entrance ####
+- alias: Living room switch 1
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: living_room_switch_1
+  action:
+  - service: script.hue_dimmer_switch
+    data_template:
+      light: light.living_room_lights
+      event: "{{ trigger.event.data.event }}"
+
+#### Right switch in the living room entrance ####
+- alias: Living room switch 2
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: living_room_switch_2
+  action:
+  - service: script.hue_dimmer_switch
+    data_template:
+      light: light.kitchen_lights
+      event: "{{ trigger.event.data.event }}"
+
+- alias: Bedroom switch
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: bedroom_switch
+  action:
+  - service: script.hue_dimmer_switch
+    data_template:
+      light: light.bedroom_lights
+      event: "{{ trigger.event.data.event }}"
+
+- alias: Entrance switch
+  mode: parallel
+  trigger:
+  - platform: event
+    event_type: deconz_event
+    event_data:
+      id: entrance_switch
+  - platform: event
+    event_type: deconz_event
+    event_data:
+      id: corridor_switch
+  action:
+  - service: script.hue_dimmer_switch
+    data_template:
+      light: light.hallway_lights
+      event: "{{ trigger.event.data.event }}"

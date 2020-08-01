@@ -42,3 +42,9 @@
   - light.corridor_light_1
   - light.corridor_light_2
   - light.corridor_light_3
+
+- platform: group
+  name: Hallway lights
+  entities:
+  - light.corridor_lights
+  - light.entrance_lights
