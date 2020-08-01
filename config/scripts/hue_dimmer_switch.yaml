@@ -28,7 +28,7 @@ hue_dimmer_switch:
       {% endif %}
     data_template:
       variables:
-        event: {{ event }}
+        event: '{{ event }}'
         light: "{{ light }}"
 
 #### ON #####
