@@ -65,7 +65,7 @@ hue_dimmer_switch_on_button:
 #### INCREASE #####
 hue_dimmer_switch_increase_button_default:
   alias: Hue dimmer switch "Increase" button
-  icon: mdi:power-off
+  icon: mdi:brightness-5
   mode: parallel
   fields:
     event:
@@ -113,7 +113,7 @@ hue_dimmer_switch_decrease_button:
         {% endif %}
 
 #### OFF #####
-hue_dimmer_switch_off_button_default:
+hue_dimmer_switch_off_button:
   alias: Hue dimmer switch "Off" button
   icon: mdi:power-off
   mode: parallel
