@@ -6,9 +6,9 @@
     event_data:
       id: living_room_switch_1
   action:
-  - service: light.turn_on
-    entity_id: light.lounge_lights
-  # - service: script.hue_dimmer_switch
-  #   data_template:
-  #     light: light.lounge_lights
-  #     event: "{{ trigger.event.data.event }}"
+  # - service: light.turn_on
+  #   entity_id: light.lounge_lights
+  - service: script.hue_dimmer_switch
+    data_template:
+      light: light.lounge_lights
+      event: "{{ trigger.event.data.event }}"

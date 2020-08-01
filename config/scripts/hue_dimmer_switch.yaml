@@ -16,6 +16,9 @@ hue_dimmer_switch:
       description: 'Entity id of the light to interact on'
       example: light.corridor_lights
   sequence:
+  - service: notify.mobile_app_sm_g981b
+    data_template:
+      message: "Event is {{ event }}"
   - service_template: >
       {% if event|int >= 1000 and event|int <= 1003 %}
         script.hue_dimmer_switch_on_button
