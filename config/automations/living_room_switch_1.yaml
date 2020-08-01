@@ -1,0 +1,12 @@
+#### Left switch in the living room entrance ####
+- alias: Living room switch 1
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: living_room_switch_1
+  action:
+  - service: script.hue_dimmer_switch
+    data_template:
+      light: light.lounge_lights
+      event: {{ trigger.event_data.event }}

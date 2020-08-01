@@ -1,0 +1,119 @@
+#### Hue dimmer switch ####
+hue_dimmer_switch:
+  alias: Hue dimmer switch
+  icon: mdi:light-switch
+  mode: parallel
+  fields:
+    event:
+      description: 'The event number as sent by deconz (between 1000 and 4003)'
+      example: 1000
+    light:
+      description: 'Entity id of the light to interact on'
+      example: light.corridor_lights
+  sequence:
+  - service_template:>
+      {% if event >= 1000 and event <= 1003 %}
+        script.hue_dimmer_switch_on_button_default
+      {%-elif event >= 2000 and event <= 2003 %}
+        script.hue_dimmer_switch_increase_button_default
+      {%-elif event >= 3000 and event <= 3003 %}
+        script.hue_dimmer_switch_decrease_button_default
+      {%-elif event >= 4000 and event <= 4003 %}
+        script.hue_dimmer_switch_off_button_default
+      {% endif %}
+    data_template:
+      variables:
+        event: {{ event }}
+        light: {{ light }}
+
+#### ON #####
+hue_dimmer_switch_on_button:
+  alias: Hue dimmer switch "On" button
+  icon: mdi:power-on
+  mode: parallel
+  fields:
+    event:
+      description: 'The event number as sent by deconz (between 1000 and 1003)'
+      example: 1000
+    light:
+      description: 'Entity id of the light to turn on'
+      example: light.corridor_lights
+  sequence:
+  - condition: template
+    value_template: '{{ event == 1002 or event == 1003 }}'
+  - service: light.turn_on
+    data_template:
+      entity_id: {{ light }}
+      brightness:>
+        {% if event == 1002 %} # short release
+          200 # TODO use some dynamic value updated with time
+        {%-elif event == 1003 %} # long release
+          255
+        {% endif %}
+
+#### INCREASE #####
+hue_dimmer_switch_increase_button_default:
+  alias: Hue dimmer switch "Increase" button
+  icon: mdi:power-off
+  mode: parallel
+  fields:
+    event:
+      description: 'The event number as sent by deconz (between 2000 and 2003)'
+      example: 2000
+    light:
+      description: 'Entity id of the light to turn off'
+      example: light.corridor_lights
+  sequence:
+  - condition: template
+    value_template: '{{ event == 2000 or event == 2001 }}'
+  - service: light.turn_on
+    data_template:
+      entity_id: {{ light }}
+      brightness_step:>
+        {% if event == 2000 %} # on press (before release)
+          25
+        {%-elif event == 2001 %} # long press and hold
+          50
+        {% endif %}
+
+#### DECREASE #####
+hue_dimmer_switch_decrease_button:
+  alias: Hue dimmer switch "Decrease" button
+  icon: mdi:brightness-2
+  mode: parallel
+  fields:
+    event:
+      description: 'The event number as sent by deconz (between 3000 and 3003)'
+      example: 3000
+    light:
+      description: 'Entity id of the light to turn off'
+      example: light.corridor_lights
+  sequence:
+  - condition: template
+    value_template: '{{ event == 3000 or event == 3001 }}'
+  - service: light.turn_on
+    data_template:
+      entity_id: {{ light }}
+      brightness_step:>
+        {% if event == 3000 %} # on press (before release)
+          25
+        {%-elif event == 3001 %} # long press and hold
+          50
+        {% endif %}
+
+#### OFF #####
+hue_dimmer_switch_off_button_default:
+  alias: Hue dimmer switch "Off" button
+  icon: mdi:power-off
+  mode: parallel
+  fields:
+    event:
+      description: 'The event number as sent by deconz (between 4000 and 4003)'
+      example: 4000
+    light:
+      description: 'Entity id of the light to turn off'
+      example: light.corridor_lights
+  sequence:
+  - service: light.turn_off
+    data_template:
+      entity_id: {{ light }}
