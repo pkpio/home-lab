@@ -25,10 +25,12 @@ hue_dimmer_switch:
         script.hue_dimmer_switch_decrease_button
       {%-elif int(event) >= 4000 and int(event) <= 4003 %}
         script.hue_dimmer_switch_off_button
+      {% else %}
+        none
       {% endif %}
     data_template:
       variables:
-        event: '{{ event }}
+        event: "{{ event }}"
         light: "{{ light }}"
 
 #### ON #####
