@@ -77,9 +77,9 @@ hue_dimmer_switch_increase_button:
       entity_id: "{{ light }}"
       brightness_step: >-
         {% if event | int == 2000 %}
-          25
+          40
         {%-elif event | int == 2001 %}
-          50
+          80
         {% endif %}
 
 #### DECREASE #####
@@ -101,10 +101,10 @@ hue_dimmer_switch_decrease_button:
     data_template:
       entity_id: "{{ light }}"
       brightness_step: >-
-        {% if event == 3000 %}
-          -25
-        {%-elif event == 3001 %}
-          -50
+        {% if event | int == 3000 %}
+          -40
+        {%-elif event | int == 3001 %}
+          -80
         {% endif %}
 
 #### OFF #####
