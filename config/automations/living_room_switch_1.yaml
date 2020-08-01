@@ -9,4 +9,4 @@
   - service: script.hue_dimmer_switch
     data_template:
       light: light.lounge_lights
-      event: {{ trigger.event.data.event }}
+      event: "{{ trigger.event.data.event }}"

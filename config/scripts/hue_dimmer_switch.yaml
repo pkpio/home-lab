@@ -17,18 +17,18 @@ hue_dimmer_switch:
       example: light.corridor_lights
   sequence:
   - service_template: >
-      {% if event >= 1000 and event <= 1003 %}
+      {% if int(event) >= 1000 and int(event) <= 1003 %}
         script.hue_dimmer_switch_on_button
-      {%-elif event >= 2000 and event <= 2003 %}
+      {%-elif int(event) >= 2000 and int(event) <= 2003 %}
         script.hue_dimmer_switch_increase_button
-      {%-elif event >= 3000 and event <= 3003 %}
+      {%-elif int(event) >= 3000 and int(event) <= 3003 %}
         script.hue_dimmer_switch_decrease_button
-      {%-elif event >= 4000 and event <= 4003 %}
+      {%-elif int(event) >= 4000 and int(event) <= 4003 %}
         script.hue_dimmer_switch_off_button
       {% endif %}
     data_template:
       variables:
-        event: '{{ event }}'
+        event: '{{ event }}
         light: "{{ light }}"
 
 #### ON #####
@@ -45,14 +45,14 @@ hue_dimmer_switch_on_button:
       example: light.corridor_lights
   sequence:
   - condition: template
-    value_template: '{{ event == 1002 or event == 1003 }}'
+    value_template: '{{ int(event) == 1002 or int(event) == 1003 }}'
   - service: light.turn_on
     data_template:
       entity_id: "{{ light }}"
       brightness: >
-        {% if event == 1002 %}
+        {% if int(event) == 1002 %}
           200 # TODO use some dynamic value updated with time
-        {%-elif event == 1003 %}
+        {%-elif int(event) == 1003 %}
           255
         {% endif %}
 
@@ -70,14 +70,14 @@ hue_dimmer_switch_increase_button_default:
       example: light.corridor_lights
   sequence:
   - condition: template
-    value_template: '{{ event == 2000 or event == 2001 }}'
+    value_template: '{{ int(event) == 2000 or int(event) == 2001 }}'
   - service: light.turn_on
     data_template:
       entity_id: "{{ light }}"
       brightness_step: >
-        {% if event == 2000 %}
+        {% if int(event) == 2000 %}
           25
-        {%-elif event == 2001 %}
+        {%-elif int(event) == 2001 %}
           50
         {% endif %}
 
