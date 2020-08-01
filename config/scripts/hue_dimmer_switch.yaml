@@ -17,13 +17,13 @@ hue_dimmer_switch:
       example: light.corridor_lights
   sequence:
   - service_template: >
-      {% if int(event) >= 1000 and int(event) <= 1003 %}
+      {% if event|int >= 1000 and event|int <= 1003 %}
         script.hue_dimmer_switch_on_button
-      {%-elif int(event) >= 2000 and int(event) <= 2003 %}
+      {%-elif event|int >= 2000 and event|int <= 2003 %}
         script.hue_dimmer_switch_increase_button
-      {%-elif int(event) >= 3000 and int(event) <= 3003 %}
+      {%-elif event|int >= 3000 and event|int <= 3003 %}
         script.hue_dimmer_switch_decrease_button
-      {%-elif int(event) >= 4000 and int(event) <= 4003 %}
+      {%-elif event|int >= 4000 and event|int <= 4003 %}
         script.hue_dimmer_switch_off_button
       {% else %}
         none
@@ -47,14 +47,14 @@ hue_dimmer_switch_on_button:
       example: light.corridor_lights
   sequence:
   - condition: template
-    value_template: '{{ int(event) == 1002 or int(event) == 1003 }}'
+    value_template: '{{ event|int == 1002 or event|int == 1003 }}'
   - service: light.turn_on
     data_template:
       entity_id: "{{ light }}"
       brightness: >
-        {% if int(event) == 1002 %}
+        {% if event|int == 1002 %}
           200 # TODO use some dynamic value updated with time
-        {%-elif int(event) == 1003 %}
+        {%-elif event|int == 1003 %}
           255
         {% endif %}
 
@@ -72,14 +72,14 @@ hue_dimmer_switch_increase_button_default:
       example: light.corridor_lights
   sequence:
   - condition: template
-    value_template: '{{ int(event) == 2000 or int(event) == 2001 }}'
+    value_template: '{{ event|int == 2000 or event|int == 2001 }}'
   - service: light.turn_on
     data_template:
       entity_id: "{{ light }}"
       brightness_step: >
-        {% if int(event) == 2000 %}
+        {% if event|int == 2000 %}
           25
-        {%-elif int(event) == 2001 %}
+        {%-elif event|int == 2001 %}
           50
         {% endif %}
 
@@ -97,7 +97,7 @@ hue_dimmer_switch_decrease_button:
       example: light.corridor_lights
   sequence:
   - condition: template
-    value_template: '{{ event == 3000 or event == 3001 }}'
+    value_template: '{{ event|int == 3000 or event|int == 3001 }}'
   - service: light.turn_on
     data_template:
       entity_id: "{{ light }}"
