@@ -49,17 +49,7 @@ hue_dimmer_switch_on_button:
   - service: notify.mobile_app_sm_g981b
     data_template:
       message: >
-        {% if event|int >= 1000 and event|int <= 1003 %}
-        script.hue_dimmer_switch_on_button
-        {%-elif event|int >= 2000 and event|int <= 2003 %}
-          script.hue_dimmer_switch_increase_button
-        {%-elif event|int >= 3000 and event|int <= 3003 %}
-          script.hue_dimmer_switch_decrease_button
-        {%-elif event|int >= 4000 and event|int <= 4003 %}
-          script.hue_dimmer_switch_off_button
-        {% else %}
-          none
-        {% endif %}
+        Event was {{ event }}
   - condition: template
     value_template: '{{ event|int == 1002 or event|int == 1003 }}'
   - service: light.turn_on
