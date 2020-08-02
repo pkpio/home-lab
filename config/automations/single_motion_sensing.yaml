@@ -6,6 +6,7 @@
 
 ##################    Lounge    ##################
 - alias: Lounge motion detected
+  mode: queued
   trigger:
     platform: state
     entity_id: binary_sensor.lounge_activity
@@ -19,6 +20,7 @@
     entity_id: light.lounge_lights
 
 - alias: Lounge motion ended
+  mode: queued
   trigger:
     platform: state
     entity_id: binary_sensor.lounge_activity
@@ -31,6 +33,7 @@
 
 ##################    Dining    ##################
 - alias: Dining motion detected
+  mode: queued
   trigger:
     platform: state
     entity_id: binary_sensor.dining_activity
@@ -44,6 +47,7 @@
     entity_id: light.dining_lights
 
 - alias: Dining motion ended
+  mode: queued
   trigger:
     platform: state
     entity_id: binary_sensor.dining_activity
@@ -56,6 +60,7 @@
 
 ##################    Corridor    ##################
 - alias: Corridor motion detected
+  mode: queued
   trigger:
     platform: state
     entity_id: binary_sensor.corridor_activity
@@ -69,6 +74,7 @@
     entity_id: light.corridor_lights
 
 - alias: Corridor motion ended
+  mode: queued
   trigger:
     platform: state
     entity_id: binary_sensor.corridor_activity
@@ -81,6 +87,7 @@
 
 ##################    Entrance    ##################
 - alias: Entrance motion detected
+  mode: queued
   trigger:
     platform: state
     entity_id: binary_sensor.entrance_activity
@@ -94,6 +101,7 @@
     entity_id: light.entrance_lights
 
 - alias: Entrance motion ended
+  mode: queued
   trigger:
     platform: state
     entity_id: binary_sensor.entrance_activity

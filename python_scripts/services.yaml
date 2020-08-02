@@ -1,0 +1,6 @@
+# services.yaml
+update_contextual_brightness:
+  description: Sets the brightness value to be used for lights based on time of the day
+
+update_contextual_color:
+  description: Sets the color value to be used for lights based on time of the day

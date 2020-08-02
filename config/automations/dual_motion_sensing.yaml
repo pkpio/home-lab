@@ -6,6 +6,7 @@
 
 ##################   Kitchen & Living room   ##################
 - alias: Kitchen or Living room motion detected
+  mode: queued
   trigger:
   - platform: state
     entity_id: binary_sensor.living_room_activity
@@ -21,6 +22,7 @@
     entity_id: light.kitchen_lights
 
 - alias: Kitchen and Living room motion ended
+  mode: queued
   trigger:
   - platform: state
     entity_id: binary_sensor.living_room_activity
@@ -46,6 +48,7 @@
 
 ##################   Ensuite - toiler + shower   ##################
 - alias: Ensuite motion detected
+  mode: queued
   trigger:
   - platform: state
     entity_id: binary_sensor.ensuite_shower_activity
@@ -58,6 +61,7 @@
     entity_id: light.ensuite_lights
 
 - alias: Ensuite motion ended
+  mode: queued
   trigger:
   - platform: state
     entity_id: binary_sensor.ensuite_shower_activity

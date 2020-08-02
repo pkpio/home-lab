@@ -1,5 +1,5 @@
 - alias: Dining button
-  mode: parallel
+  mode: queued
   trigger:
     platform: event
     event_type: deconz_event
@@ -12,7 +12,7 @@
       event: "{{ trigger.event.data.event }}"
 
 - alias: Cooktop button
-  mode: parallel
+  mode: queued
   trigger:
     platform: event
     event_type: deconz_event
@@ -25,7 +25,7 @@
       event: "{{ trigger.event.data.event }}"
 
 - alias: Ensuite button
-  mode: parallel
+  mode: queued
   trigger:
     platform: event
     event_type: deconz_event
@@ -38,7 +38,7 @@
       event: "{{ trigger.event.data.event }}"
 
 - alias: Bedroom button
-  mode: parallel
+  mode: queued
   trigger:
     platform: event
     event_type: deconz_event

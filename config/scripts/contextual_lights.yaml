@@ -1,0 +1,22 @@
+#=================================================
+# Contextual lights:
+# Scripts to turn lights on smoothly using different
+# intial behaviours based on context (such as time)
+#=================================================
+
+##################   Turn on smart   ##################
+- alias: Lights on with smart transition
+  mode: queued
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.living_room_activity
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.kitchen_activity
+    to: 'on'
+  - condition: numeric_state
+    entity_id: sensor.kitchen_activity
+    below: 10
+  action:
+    service: light.turn_on
+    entity_id: light.kitchen_lights

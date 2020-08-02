@@ -1,0 +1,15 @@
+#=================================================
+# Contextual updates:
+# Updates the contextual information for the house.
+# Such as intial brightness or color of the lights
+# based on the time of the day
+#=================================================
+
+# Update initial brightness
+- alias: Update contextual brightness for lights
+  mode: queued
+  trigger:
+    platform: time_pattern
+      minutes: "/10" # Every 10 mins
+  action:
+    service: python_script.update_contextual_brightness
