@@ -27,7 +27,7 @@ history: !include history.yaml
 lovelace: !include lovelace.yaml
 
 light: !include lights.yaml
-automation: !include_dir_merge_list automations
+# automation: !include_dir_merge_list automations
 script: !include_dir_merge_named scripts
 input_select: !include input_select.yaml
 input_number: !include input_number.yaml
