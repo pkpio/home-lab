@@ -5,18 +5,22 @@
 #=================================================
 
 ##################   Turn on smart   ##################
-- alias: Lights on with smart transition
+lights_on_smart:
+  alias: Lights on with smart transition
+  icon: mdi:lightbulb-on
   mode: queued
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.living_room_activity
-    to: 'on'
-  - platform: state
-    entity_id: binary_sensor.kitchen_activity
-    to: 'on'
-  - condition: numeric_state
-    entity_id: sensor.kitchen_activity
-    below: 10
-  action:
-    service: light.turn_on
-    entity_id: light.kitchen_lights
+  fields:
+    light:
+      description: 'Entity id of the light to interact on'
+      example: light.corridor_lights
+  sequence:
+  - service: light.turn_on
+    data_template:
+      entity_id: "{{ light }}"
+      brightness: "{{ states('input_number.contextual_brightness') | int }}"
+      rgb_color: [255, 255, 255]
+  - service: light.turn_on
+    data_template:
+      entity_id: "{{ light }}"
+      brightness: 255
+      transition: 10

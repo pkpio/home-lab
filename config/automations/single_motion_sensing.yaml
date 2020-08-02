@@ -28,8 +28,9 @@
     for:
       minutes: 20
   action:
-    service: light.turn_off
-    entity_id: light.lounge_lights
+    service: script.lights_on_smart
+    data:
+      light: light.lounge_lights
 
 ##################    Dining    ##################
 - alias: Dining motion detected
@@ -43,8 +44,9 @@
     entity_id: sensor.dining_activity
     below: 10
   action:
-    service: light.turn_on
-    entity_id: light.dining_lights
+    service: script.lights_on_smart
+    data:
+      light: light.dining_lights
 
 - alias: Dining motion ended
   mode: queued
