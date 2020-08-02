@@ -27,8 +27,8 @@ minuteOfDay = nowHour * 60 + nowMinute
 leftIndex, rightIndex = -1, -1
 
 # Find leftIndex in the loop
-for (index, point) in enumerate(sortedPoints):
-	if point['minuteOfDay'] >= minuteOfDay:
+for index in range(len(sortedPoints)):
+	if sortedPoints[index]['minuteOfDay'] >= minuteOfDay:
 		rightIndex = index
 		break
 
@@ -60,8 +60,8 @@ nowBrightness = int(sortedPoints[leftIndex]['brightness'] * leftWeight + sortedP
 
 # Set the brightness input value on HA
 service_data = {
-	entity_id: "input_number.contextual_brightness", 
-	value: nowBrightness
+	"entity_id": "input_number.contextual_brightness", 
+	"value": nowBrightness
 }
 hass.services.call(
 	"input_number", 
