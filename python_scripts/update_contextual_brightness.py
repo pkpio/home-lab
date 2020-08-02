@@ -1,6 +1,4 @@
 # Updates the initial brightness value of the lights based on time of the day
-import datetime
-
 brightnessPoints = {
 	"00:30": 120,
 	"08:00": 160,
@@ -22,9 +20,9 @@ for timePoint, brightness in brightnessPoints.items():
 sortedPoints = sorted(minutePoints, key = lambda point: point['minuteOfDay'])
 
 # Find the minute of day right now
-now = datetime.datetime.now()
-now = datetime.datetime.now()
-minuteOfDay = now.hour * 60 + now.minute
+nowHour = int(data.get("hour"))
+nowMinute = int(data.get("minute"))
+minuteOfDay = nowHour * 60 + nowMinute
 
 leftIndex, rightIndex = -1, -1
 
