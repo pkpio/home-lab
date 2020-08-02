@@ -10,6 +10,6 @@
   mode: queued
   trigger:
     platform: time_pattern
-      minutes: "/10" # Every 10 mins
+    minutes: "/10" # Every 10 mins
   action:
     service: python_script.update_contextual_brightness
