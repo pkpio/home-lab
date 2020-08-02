@@ -69,5 +69,3 @@ hass.services.call(
 	service_data, 
 	False
 )
-
-
