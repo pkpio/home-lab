@@ -27,7 +27,7 @@ minuteOfDay = nowHour * 60 + nowMinute
 leftIndex, rightIndex = -1, -1
 
 # Find leftIndex in the loop
-for index, point in enumerate(sortedPoints):
+for (index, point) in enumerate(sortedPoints):
 	if point['minuteOfDay'] >= minuteOfDay:
 		rightIndex = index
 		break
