@@ -1,6 +1,6 @@
 # Updates the initial brightness value of the lights based on time of the day
 brightnessPoints = {
-	"00:30": 120,
+	"00:30": 100,
 	"08:00": 150,
 	"17:00": 180,
 	"19:00": 220,
