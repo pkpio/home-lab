@@ -5,7 +5,7 @@
 # based on the time of the day
 #=================================================
 
-# Update initial brightness
+# Update lights initial brightness
 - alias: Update contextual brightness for lights
   mode: queued
   trigger:
@@ -13,6 +13,18 @@
     minutes: "/10" # Every 10 mins
   action:
     service: python_script.update_contextual_brightness
+    data_template:
+      hour: "{{ now().hour }}"
+      minute: "{{ now().hour }}"
+
+# Update lights color
+- alias: Update contextual color for lights
+  mode: queued
+  trigger:
+    platform: time_pattern
+    minutes: "/10" # Every 10 mins
+  action:
+    service: python_script.update_contextual_color
     data_template:
       hour: "{{ now().hour }}"
       minute: "{{ now().hour }}"
