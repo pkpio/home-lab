@@ -23,4 +23,4 @@ lights_on_smart:
     data_template:
       entity_id: "{{ light }}"
       brightness: 255
-      transition: 10
+      transition: 30

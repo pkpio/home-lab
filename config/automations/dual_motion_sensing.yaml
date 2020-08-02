@@ -19,8 +19,9 @@
     entity_id: sensor.kitchen_activity
     below: 10
   action:
-    service: light.turn_on
-    entity_id: light.kitchen_lights
+    service: script.lights_on_smart
+    data:
+      light: light.kitchen_lights
 
 - alias: Kitchen and Living room motion ended
   mode: queued
@@ -43,8 +44,9 @@
     entity_id: binary_sensor.kitchen_activity
     state: 'off'
   action:
-    service: light.turn_off
-    entity_id: light.kitchen_lights
+    service: script.lights_on_smart
+    data:
+      light: light.kitchen_lights
 
 
 ##################   Ensuite - toiler + shower   ##################
@@ -58,8 +60,9 @@
     entity_id: binary_sensor.ensuite_toilet_activity
     to: 'on'
   action:
-    service: light.turn_on
-    entity_id: light.ensuite_lights
+    service: script.lights_on_smart
+    data:
+      light: light.ensuite_lights
 
 - alias: Ensuite motion ended
   mode: queued
