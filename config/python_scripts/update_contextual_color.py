@@ -1,6 +1,6 @@
 # Updates the color value of the lights based on time of the day
 
-br[255, 255, 255]ightnessPoints = {
+colorPoints = {
 	"00:30": [255, 255, 255],
 	"08:00": [255, 255, 255],
 	"17:00": [255, 255, 255],
