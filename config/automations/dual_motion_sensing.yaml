@@ -1,85 +1,85 @@
-#=================================================
-# Dual motion sensing:
-# Involves only two motion sensors and 
-# lighting level sensing from one sensor
-#=================================================
+# #=================================================
+# # Dual motion sensing:
+# # Involves only two motion sensors and 
+# # lighting level sensing from one sensor
+# #=================================================
 
-##################   Kitchen & Living room   ##################
-- alias: Kitchen or Living room motion detected
-  mode: queued
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.living_room_activity
-    to: 'on'
-  - platform: state
-    entity_id: binary_sensor.kitchen_activity
-    to: 'on'
-  - condition: numeric_state
-    entity_id: sensor.kitchen_activity
-    below: 10
-  action:
-    service: light.turn_on
-    entity_id: light.kitchen_lights
+# ##################   Kitchen & Living room   ##################
+# - alias: Kitchen or Living room motion detected
+#   mode: queued
+#   trigger:
+#   - platform: state
+#     entity_id: binary_sensor.living_room_activity
+#     to: 'on'
+#   - platform: state
+#     entity_id: binary_sensor.kitchen_activity
+#     to: 'on'
+#   - condition: numeric_state
+#     entity_id: sensor.kitchen_activity
+#     below: 10
+#   action:
+#     service: light.turn_on
+#     entity_id: light.kitchen_lights
 
-- alias: Kitchen and Living room motion ended
-  mode: queued
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.living_room_activity
-    to: 'off'
-    for:
-      minutes: 20
-  - platform: state
-    entity_id: binary_sensor.kitchen_activity
-    to: 'off'
-    for:
-      minutes: 20
-  condition:
-  - condition: state
-    entity_id: binary_sensor.living_room_activity
-    state: 'off'
-  - condition: state
-    entity_id: binary_sensor.kitchen_activity
-    state: 'off'
-  action:
-    service: light.turn_off
-    entity_id: light.kitchen_lights
+# - alias: Kitchen and Living room motion ended
+#   mode: queued
+#   trigger:
+#   - platform: state
+#     entity_id: binary_sensor.living_room_activity
+#     to: 'off'
+#     for:
+#       minutes: 20
+#   - platform: state
+#     entity_id: binary_sensor.kitchen_activity
+#     to: 'off'
+#     for:
+#       minutes: 20
+#   condition:
+#   - condition: state
+#     entity_id: binary_sensor.living_room_activity
+#     state: 'off'
+#   - condition: state
+#     entity_id: binary_sensor.kitchen_activity
+#     state: 'off'
+#   action:
+#     service: light.turn_off
+#     entity_id: light.kitchen_lights
 
 
-##################   Ensuite - toiler + shower   ##################
-- alias: Ensuite motion detected
-  mode: queued
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.ensuite_shower_activity
-    to: 'on'
-  - platform: state
-    entity_id: binary_sensor.ensuite_toilet_activity
-    to: 'on'
-  action:
-    service: light.turn_on
-    entity_id: light.ensuite_lights
+# ##################   Ensuite - toiler + shower   ##################
+# - alias: Ensuite motion detected
+#   mode: queued
+#   trigger:
+#   - platform: state
+#     entity_id: binary_sensor.ensuite_shower_activity
+#     to: 'on'
+#   - platform: state
+#     entity_id: binary_sensor.ensuite_toilet_activity
+#     to: 'on'
+#   action:
+#     service: light.turn_on
+#     entity_id: light.ensuite_lights
 
-- alias: Ensuite motion ended
-  mode: queued
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.ensuite_shower_activity
-    to: 'off'
-    for:
-      minutes: 10
-  - platform: state
-    entity_id: binary_sensor.ensuite_toilet_activity
-    to: 'off'
-    for:
-      minutes: 10
-  condition:
-  - condition: state
-    entity_id: binary_sensor.ensuite_shower_activity
-    state: 'off'
-  - condition: state
-    entity_id: binary_sensor.ensuite_toilet_activity
-    state: 'off'
-  action:
-    service: light.turn_off
-    entity_id: light.ensuite_lights
+# - alias: Ensuite motion ended
+#   mode: queued
+#   trigger:
+#   - platform: state
+#     entity_id: binary_sensor.ensuite_shower_activity
+#     to: 'off'
+#     for:
+#       minutes: 10
+#   - platform: state
+#     entity_id: binary_sensor.ensuite_toilet_activity
+#     to: 'off'
+#     for:
+#       minutes: 10
+#   condition:
+#   - condition: state
+#     entity_id: binary_sensor.ensuite_shower_activity
+#     state: 'off'
+#   - condition: state
+#     entity_id: binary_sensor.ensuite_toilet_activity
+#     state: 'off'
+#   action:
+#     service: light.turn_off
+#     entity_id: light.ensuite_lights
