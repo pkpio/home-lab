@@ -33,4 +33,4 @@ services:
     labels:
       ofelia.enabled: "true"
       ofelia.job-exec.datecron.schedule: "@every 5s"
-      ofelia.job-exec.datecron.command: "rclone sync /data dropbox:/"
+      ofelia.job-exec.datecron.command: "sync /data dropbox:/"
