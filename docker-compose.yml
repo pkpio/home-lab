@@ -19,10 +19,14 @@ services:
       - home-assistant
     command: daemon --docker
     volumes:
-      # required to schedule cron jobs on other containers
+      - ./docker-volume:/docker-volume
       - /var/run/docker.sock:/var/run/docker.sock:ro
     env_file: 
       - ./docker-env/common.env
+    labels:
+      # Create an archive at 2 am every day
+      ofelia.job-local.archive-docker-volume.schedule: "0 0 2 * * *" 
+      ofelia.job-local.archive-docker-volume.command: "docker-volume/ofelia/backup.sh"
 
   # Manages syncing selected data to a cloud service
   rclone:
@@ -37,5 +41,6 @@ services:
       - ./docker-env/common.env
     labels:
       ofelia.enabled: "true"
-      ofelia.job-exec.datecron.schedule: "@every 5s"
-      ofelia.job-exec.datecron.command: "rclone sync /data dropbox:/"
+      # Sync to dropbox at 3 am every day
+      ofelia.job-exec.dropbox-sync.schedule: "0 0 3 * * *" 
+      ofelia.job-exec.dropbox-sync.command: "rclone sync /data dropbox:/"
