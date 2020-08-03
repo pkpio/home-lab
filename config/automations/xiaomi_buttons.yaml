@@ -1,0 +1,52 @@
+- alias: Dining button
+  mode: queued
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: dining_button
+  action:
+  - service: script.xiaomi_button
+    data_template:
+      light: light.dining_lights
+      event: "{{ trigger.event.data.event }}"
+
+- alias: Cooktop button
+  mode: queued
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: cooktop_button
+  action:
+  - service: script.xiaomi_button
+    data_template:
+      light: light.cooktop_light
+      event: "{{ trigger.event.data.event }}"
+
+- alias: Ensuite button
+  mode: queued
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: ensuite_button
+  action:
+  - service: script.xiaomi_button
+    data_template:
+      light: light.ensuite_lights
+      event: "{{ trigger.event.data.event }}"
+
+- alias: Bedroom button
+  mode: queued
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: bedroom_button
+  action:
+  - service: script.xiaomi_button
+    data_template:
+      light: light.bedroom_lights
+      event: "{{ trigger.event.data.event }}"
+

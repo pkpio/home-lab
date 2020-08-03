@@ -17,3 +17,9 @@ This is required for the Android TV integration.
 - Authorize adb with the TV `adb connect TV_IP`
 - Clone this repo
 - Copy authorized key to config `cp ~/.android/adbkey config/adbkey`
+
+# Setup backups (optional)
+----
+- Open crontab with `crontab -e`
+- Add this cronjob to enable backups `0 2 * * * /bin/sh /home/ubuntu/home-assistant-config/host-scripts/backup-config.sh`
+- Also [setup Google drive backups](https://medium.com/@artur.klauser/mounting-google-drive-on-raspberry-pi-f5002c7095c2) while you are at it

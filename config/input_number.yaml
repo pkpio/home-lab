@@ -1,0 +1,28 @@
+# Initial brigtness to use for lights when they are turned on
+contextual_brightness:
+  name: Lights initial brightness
+  initial: 200
+  min: 0
+  max: 255
+  step: 1
+
+contextual_color_red:
+  name: Lights initial color - red
+  initial: 200
+  min: 0
+  max: 255
+  step: 1
+
+contextual_color_green:
+  name: Lights initial color - green
+  initial: 200
+  min: 0
+  max: 255
+  step: 1
+
+contextual_color_blue:
+  name: Lights initial color - blue
+  initial: 200
+  min: 0
+  max: 255
+  step: 1

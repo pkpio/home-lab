@@ -1,0 +1,117 @@
+#=================================================
+# Single motion sensing:
+# Involves only one motion sensor and maybe living
+# level sensing from that sensor
+#=================================================
+
+##################    Lounge    ##################
+- alias: Lounge motion detected
+  mode: queued
+  trigger:
+    platform: state
+    entity_id: binary_sensor.lounge_activity
+    to: 'on'
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.lounge_activity
+    below: 10
+  action:
+    service: light.turn_on
+    entity_id: light.lounge_lights
+
+- alias: Lounge motion ended
+  mode: queued
+  trigger:
+    platform: state
+    entity_id: binary_sensor.lounge_activity
+    to: 'off'
+    for:
+      minutes: 20
+  action:
+    service: script.lights_on_smart
+    data:
+      light: light.lounge_lights
+
+##################    Dining    ##################
+- alias: Dining motion detected
+  mode: queued
+  trigger:
+    platform: state
+    entity_id: binary_sensor.dining_activity
+    to: 'on'
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.dining_activity
+    below: 10
+  action:
+    service: script.lights_on_smart
+    data:
+      light: light.dining_lights
+
+- alias: Dining motion ended
+  mode: queued
+  trigger:
+    platform: state
+    entity_id: binary_sensor.dining_activity
+    to: 'off'
+    for:
+      minutes: 20
+  action:
+    service: light.turn_off
+    entity_id: light.dining_lights
+
+##################    Corridor    ##################
+- alias: Corridor motion detected
+  mode: queued
+  trigger:
+    platform: state
+    entity_id: binary_sensor.corridor_activity
+    to: 'on'
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.corridor_activity
+    below: 10
+  action:
+    service: script.lights_on_smart
+    data:
+      light: light.corridor_lights
+
+- alias: Corridor motion ended
+  mode: queued
+  trigger:
+    platform: state
+    entity_id: binary_sensor.corridor_activity
+    to: 'off'
+    for:
+      minutes: 5
+  action:
+    service: light.turn_off
+    entity_id: light.corridor_lights
+
+##################    Entrance    ##################
+- alias: Entrance motion detected
+  mode: queued
+  trigger:
+    platform: state
+    entity_id: binary_sensor.entrance_activity
+    to: 'on'
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.entrance_activity
+    below: 10
+  action:
+    service: script.lights_on_smart
+    data:
+      light: light.entrance_lights
+
+- alias: Entrance motion ended
+  mode: queued
+  trigger:
+    platform: state
+    entity_id: binary_sensor.entrance_activity
+    to: 'off'
+    for:
+      minutes: 5
+  action:
+    service: light.turn_off
+    entity_id: light.entrance_lights
