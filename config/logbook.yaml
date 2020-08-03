@@ -8,17 +8,17 @@
       - switch
       - person
       - vacuum
+      - automation
+      - script
+      - input_number
+      - input_select
+      - device_tracker
+      - binary_sensor
   exclude:
     domains:
       - sun
-      - binary_sensor
       - camera
-      - device_tracker
       - group
-      - input_number
-      - input_text
-      - script
       - sensor
       - weather
       - zone
-      - automation
