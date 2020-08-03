@@ -11,20 +11,16 @@ services:
     network_mode: host
 
   # Schedules cron jobs on docker containers or host as per config
-  # cron-service:
-  #   container_name: cron-service
-  #   image: mcuadros/ofelia:latest
-  #   command: daemon --docker
-  #   volumes:
-  #     # required to schedule cron jobs on other containers
-  #     - /var/run/docker.sock:/var/run/docker.sock:ro
-  #   labels:
-  #     ofelia.enabled: "true"
-  #     ofelia.job-exec.datecron.schedule: "@every 5s"
-  #     ofelia.job-exec.datecron.command: "uname -a"
+  ofelia:
+    container_name: ofelia
+    image: mcuadros/ofelia:latest
+    command: daemon --docker
+    volumes:
+      # required to schedule cron jobs on other containers
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
   # Manages syncing selected data to a cloud service
-  rclone-service:
+  rclone:
     container_name: rclone
     image: rclone/rclone:latest
     command: rcd --rc-web-gui --rc-addr :5572
@@ -34,3 +30,7 @@ services:
       - ./docker-volume/rclone-service/data/:/data
     env_file: 
       - ./docker-env/common.env
+    labels:
+      ofelia.enabled: "true"
+      ofelia.job-exec.datecron.schedule: "@every 5s"
+      ofelia.job-exec.datecron.command: "rclone sync /data dropbox:/"
