@@ -27,6 +27,7 @@ services:
   rclone-service:
     container_name: rclone
     image: rclone/rclone:latest
+    command: rclone listremotes
     restart: always
     volumes:
       - ./docker-volume/rclone-service/config/:/config/rclone
