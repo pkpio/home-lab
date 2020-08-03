@@ -41,4 +41,5 @@ production_auth.json
 .sonoff.json
 adbkey
 backups
-docker-volume/rclone
+docker-volume/rclone/data/
+rclone.conf
