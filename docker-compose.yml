@@ -13,7 +13,7 @@ services:
   # Schedules cron jobs on docker containers or host
   ofelia:
     container_name: ofelia
-    image: mcuadros/ofelia:latest
+    build: https://github.com/mcuadros/ofelia.git
     depends_on:
       - rclone
       - home-assistant
