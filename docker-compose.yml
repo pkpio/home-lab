@@ -17,11 +17,10 @@ services:
     depends_on:
       - rclone
       - home-assistant
-    command: daemon --config=/config/config.ini
+    command: daemon --docker
     volumes:
       # required to schedule cron jobs on other containers
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./docker-volume/ofelia/:/config/
     env_file: 
       - ./docker-env/common.env
 
@@ -36,3 +35,8 @@ services:
       - ./docker-volume/rclone/data/:/data
     env_file: 
       - ./docker-env/common.env
+      ofelia.enabled: "true"
+    labels:
+      ofelia.enabled: "true"
+      ofelia.job-exec.datecron.schedule: "@every 5s"
+      ofelia.job-exec.datecron.command: "uname -a"
