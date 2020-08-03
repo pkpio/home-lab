@@ -4,7 +4,7 @@ services:
     container_name: home-assistant
     image: homeassistant/raspberrypi4-homeassistant:stable
     volumes:
-      - ./config/:/config
+      - ./docker-volume/home-assistant/:/config
     env_file: 
       - ./docker-env/common.env
     restart: always
