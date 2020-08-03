@@ -58,7 +58,7 @@ hue_dimmer_switch_on_button:
 #### INCREASE #####
 hue_dimmer_switch_up_button:
   alias: Hue dimmer switch "Up" button
-  icon: mdi:brightness-5
+  icon: mdi:arrow-up
   mode: parallel
   fields:
     event:
@@ -83,7 +83,7 @@ hue_dimmer_switch_up_button:
 #### DECREASE #####
 hue_dimmer_switch_down_button:
   alias: Hue dimmer switch "Down" button
-  icon: mdi:brightness-2
+  icon: mdi:arrow-down
   mode: parallel
   fields:
     event:
