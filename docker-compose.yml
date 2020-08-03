@@ -14,9 +14,6 @@ services:
   ofelia:
     container_name: ofelia
     build: https://github.com/mcuadros/ofelia.git
-    depends_on:
-      - rclone
-      - home-assistant
     command: daemon --docker
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -40,7 +37,7 @@ services:
 
       # Create an archive at 2 am every day
       ofelia.job-exec.archive-docker-volume.schedule: "0 0 2 * * *" 
-      ofelia.job-exec.archive-docker-volume.command: "/docker-volume/ofelia/backup.sh"
+      ofelia.job-exec.archive-docker-volume.command: "/bin/sh -c /docker-volume/rclone/script/backup.sh"
 
       # Sync to dropbox at 3 am every day
       ofelia.job-exec.dropbox-sync.schedule: "0 0 3 * * *" 
