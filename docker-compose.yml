@@ -17,11 +17,11 @@ services:
     depends_on:
       - rclone
       - home-assistant
-    command: daemon --config=/config.ini
+    command: daemon --config=/config/config.ini
     volumes:
       # required to schedule cron jobs on other containers
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./docker-volume/ofelia/:/
+      - ./docker-volume/ofelia/:/config/
     env_file: 
       - ./docker-env/common.env
 
