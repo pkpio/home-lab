@@ -10,14 +10,20 @@ services:
     restart: always
     network_mode: host
 
-  # Schedules cron jobs on docker containers or host as per config
+  # Schedules cron jobs on docker containers or host
   ofelia:
     container_name: ofelia
     image: mcuadros/ofelia:latest
-    command: daemon --docker
+    depends_on:
+      - rclone
+      - home-assistant
+    command: daemon --config=/config.ini
     volumes:
       # required to schedule cron jobs on other containers
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./docker-volume/ofelia/:/
+    env_file: 
+      - ./docker-env/common.env
 
   # Manages syncing selected data to a cloud service
   rclone:
@@ -26,11 +32,7 @@ services:
     command: rcd --rc-web-gui --rc-addr :5572
     restart: always
     volumes:
-      - ./docker-volume/rclone-service/config/:/config/rclone
-      - ./docker-volume/rclone-service/data/:/data
+      - ./docker-volume/rclone/config/:/config/rclone
+      - ./docker-volume/rclone/data/:/data
     env_file: 
       - ./docker-env/common.env
-    labels:
-      ofelia.enabled: "true"
-      ofelia.job-exec.datecron.schedule: "@every 5s"
-      ofelia.job-exec.datecron.command: "sync /data dropbox:/"
