@@ -35,7 +35,6 @@ services:
       - ./docker-volume/rclone/data/:/data
     env_file: 
       - ./docker-env/common.env
-      ofelia.enabled: "true"
     labels:
       ofelia.enabled: "true"
       ofelia.job-exec.datecron.schedule: "@every 5s"
