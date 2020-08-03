@@ -1,6 +1,6 @@
 version: '3'
 services:
-  homeassistant:
+  home-assistant:
     container_name: home-assistant
     image: homeassistant/raspberrypi4-homeassistant:stable
     volumes:
@@ -9,3 +9,27 @@ services:
       - ./docker-env/common.env
     restart: always
     network_mode: host
+
+  # Schedules cron jobs on docker containers or host as per config
+  # cron-service:
+  #   container_name: cron-service
+  #   image: mcuadros/ofelia:latest
+  #   command: daemon --docker
+  #   volumes:
+  #     # required to schedule cron jobs on other containers
+  #     - /var/run/docker.sock:/var/run/docker.sock:ro
+  #   labels:
+  #     ofelia.enabled: "true"
+  #     ofelia.job-exec.datecron.schedule: "@every 5s"
+  #     ofelia.job-exec.datecron.command: "uname -a"
+
+  # Manages syncing selected data to a cloud service
+  rclone-service:
+    container_name: rclone
+    image: rclone/rclone:latest
+    restart: always
+    volumes:
+      - ./docker-volume/rclone-service/config/:/config/rclone
+      - ./docker-volume/rclone-service/data/:/data
+    env_file: 
+      - ./docker-env/common.env
