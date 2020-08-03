@@ -2,6 +2,7 @@ version: '3'
 services:
   home-assistant:
     container_name: home-assistant
+    user: 1000:1000
     image: homeassistant/raspberrypi4-homeassistant:stable
     volumes:
       - ./docker-volume/home-assistant/:/config
@@ -13,6 +14,7 @@ services:
   # Schedules cron jobs on docker containers or host
   ofelia:
     container_name: ofelia
+    user: 1000:1000
     build: https://github.com/mcuadros/ofelia.git
     command: daemon --docker
     volumes:
@@ -23,6 +25,7 @@ services:
   # Manages syncing selected data to a cloud service and creating archives
   rclone:
     container_name: rclone
+    user: 1000:1000
     image: rclone/rclone:latest
     command: rcd --rc-web-gui --rc-addr :5572
     restart: always
