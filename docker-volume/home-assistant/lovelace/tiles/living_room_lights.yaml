@@ -1,4 +1,4 @@
-title: Curtains
+title: Lights
 type: entities
 entities:
   - entity: light.living_room_lights
