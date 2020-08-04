@@ -1,0 +1,72 @@
+#### Simple door based automations. 
+#### Just turns lights on or off based on door state.
+
+##################    Shoe storage door    ##################
+- alias: Shoe storage door opened
+  mode: queued
+  trigger:
+    platform: state
+    entity_id: binary_sensor.shoe_storage_door
+    to: 'on'
+  action:
+    service: script.lights_on_smart
+    data:
+      light: light.shoe_storage_light
+
+- alias: Shoe storage door closed
+  mode: queued
+  trigger:
+    platform: state
+    entity_id: binary_sensor.shoe_storage_door
+    to: 'off'
+  action:
+    service: light.turn_off
+    entity_id: light.shoe_storage_light
+
+##################    Electronics storage door    ##################
+- alias: Electronics storage door opened
+  mode: queued
+  trigger:
+    platform: state
+    entity_id: binary_sensor.electronics_storage_door
+    to: 'on'
+  action:
+    service: script.lights_on_smart
+    data:
+      light: light.electronics_storage_light
+
+- alias: Electronics storage door closed
+  mode: queued
+  trigger:
+    platform: state
+    entity_id: binary_sensor.electronics_storage_door
+    to: 'off'
+  action:
+    service: light.turn_off
+    entity_id: light.electronics_storage_light
+
+##################    Balcony door    ##################
+- alias: Balcony door opened and it's dark
+  mode: queued
+  trigger:
+    platform: state
+    entity_id: binary_sensor.balcony_door
+    to: 'on'
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.dining_activity
+    below: 10
+  action:
+    service: script.lights_on_smart
+    data:
+      light: light.balcony_light
+
+- alias: Balcony door closed
+  mode: queued
+  trigger:
+    platform: state
+    entity_id: binary_sensor.balcony_door
+    to: 'off'
+  action:
+    service: light.turn_off
+    entity_id: light.balcony_light

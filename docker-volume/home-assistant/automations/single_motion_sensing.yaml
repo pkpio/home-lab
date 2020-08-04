@@ -16,8 +16,9 @@
     entity_id: sensor.lounge_activity
     below: 10
   action:
-    service: light.turn_on
-    entity_id: light.lounge_lights
+    service: script.lights_on_smart
+    data:
+      light: light.lounge_lights
 
 - alias: Lounge motion ended
   mode: queued
