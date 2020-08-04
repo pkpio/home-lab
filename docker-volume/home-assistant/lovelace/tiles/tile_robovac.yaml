@@ -1,0 +1,54 @@
+type: 'custom:vacuum-card'
+entity: vacuum.kevin_clean
+actions:
+- icon: 'mdi:silverware-spoon'
+  name: Clean kitchen
+  service: python_script.vacuum_clean_room
+  service_data:
+    room_phrase: kitchen
+- icon: 'mdi:silverware-fork-knife'
+  name: Clean dining
+  service: python_script.vacuum_clean_room
+  service_data:
+    room_phrase: dining
+- icon: 'mdi:sofa'
+  name: Clean living room
+  service: python_script.vacuum_clean_room
+  service_data:
+    room_phrase: kitchen, dining and lounge
+- icon: 'mdi:bed-empty'
+  name: Clean bedroom
+  service: python_script.vacuum_clean_room
+  service_data:
+    room_phrase: bedroom
+- icon: 'mdi:face'
+  name: Clean guest room
+  service: python_script.vacuum_clean_room
+  service_data:
+    room_phrase: Guestroom
+- icon: 'mdi:laravel'
+  name: Clean hallway
+  service: python_script.vacuum_clean_room
+  service_data:
+    room_phrase: hallway
+stats:
+  cleaning:
+  - attribute: cleaned_area
+    subtitle: Cleaning area
+    unit: m2
+  - attribute: cleaning_time
+    subtitle: Cleaning time
+    unit: minutes
+  default:
+  - attribute: filter_left
+    subtitle: Filter
+    unit: hours
+  - attribute: side_brush_left
+    subtitle: Side brush
+    unit: hours
+  - attribute: main_brush_left
+    subtitle: Main brush
+    unit: hours
+  - attribute: sensor_dirty_left
+    subtitle: Sensors
+    unit: hours

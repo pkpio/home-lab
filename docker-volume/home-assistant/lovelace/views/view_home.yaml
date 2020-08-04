@@ -1,0 +1,8 @@
+title: Home
+
+badges:
+- entity: sun.sun
+- entity: person.praveen_pendyala
+
+cards:
+- !include /config/lovelace/tiles/tile_robovac.yaml
