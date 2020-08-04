@@ -80,6 +80,7 @@ media_player:
   name: Lounge TV
   host: !secret android_tv_host
   adbkey: /config/adbkey
+  exclude_unnamed_apps: true
   apps:
     com.google.android.tvlauncher: "Home"
     com.google.android.youtube.tv: "Youtube"
