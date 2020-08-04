@@ -80,6 +80,13 @@ media_player:
   name: Lounge TV
   host: !secret android_tv_host
   adbkey: /config/adbkey
+  apps:
+    com.google.android.tvlauncher: "Home"
+    com.google.android.youtube.tv: "Youtube"
+    com.amazon.amazonvideo.livingroom: "Amazon Prime Video"
+    com.plexapp.android: "Plex"
+    com.netflix.ninja: "Netflix"
+    com.google.android.tv: "Live Channels"
 
 notify:
 - platform: nfandroidtv
