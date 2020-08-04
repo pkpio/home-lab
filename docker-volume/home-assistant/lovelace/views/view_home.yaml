@@ -5,5 +5,7 @@ badges:
 - entity: person.praveen_pendyala
 
 cards:
-- !include /config/lovelace/tiles/tile_robovac.yaml
 - !include /config/lovelace/tiles/living_room_lights.yaml
+- !include /config/lovelace/tiles/living_room_curtains.yaml
+- !include /config/lovelace/tiles/living_room_media.yaml
+- !include /config/lovelace/tiles/tile_robovac.yaml

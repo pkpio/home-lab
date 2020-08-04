@@ -1,0 +1,4 @@
+title: Curtains
+type: entities
+entities:
+  - entity: cover.balcony_curtain
