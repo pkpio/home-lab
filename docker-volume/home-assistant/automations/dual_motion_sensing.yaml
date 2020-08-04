@@ -17,7 +17,7 @@
   condition:
   - condition: numeric_state
     entity_id: sensor.kitchen_activity
-    below: 10
+    below: 20
   action:
     service: script.lights_on_smart
     data:

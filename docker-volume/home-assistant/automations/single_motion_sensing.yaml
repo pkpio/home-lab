@@ -14,7 +14,7 @@
   condition:
   - condition: numeric_state
     entity_id: sensor.lounge_activity
-    below: 10
+    below: 20
   action:
     service: script.lights_on_smart
     data:
@@ -42,7 +42,7 @@
   condition:
   - condition: numeric_state
     entity_id: sensor.dining_activity
-    below: 10
+    below: 20
   action:
     service: script.lights_on_smart
     data:
@@ -70,7 +70,7 @@
   condition:
   - condition: numeric_state
     entity_id: sensor.corridor_activity
-    below: 10
+    below: 20
   action:
     service: script.lights_on_smart
     data:
@@ -98,7 +98,7 @@
   condition:
   - condition: numeric_state
     entity_id: sensor.entrance_activity
-    below: 10
+    below: 20
   action:
     service: script.lights_on_smart
     data:
