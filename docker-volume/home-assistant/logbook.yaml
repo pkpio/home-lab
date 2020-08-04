@@ -14,6 +14,7 @@
       - input_select
       - device_tracker
       - binary_sensor
+      - timer
   exclude:
     domains:
       - sun
