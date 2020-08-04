@@ -1,7 +1,7 @@
 title: Media
 type: entities
 entities:
-  - entity: media_player.lounge_tv
+  - entity: media_player.lounge_tv_2
   - entity: media_player.lounge_tv_chromecast
   - entity: media_player.kitchen_display
   - entity: media_player.dining_speaker
