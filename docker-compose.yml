@@ -32,6 +32,7 @@ services:
       - ./docker-volume:/docker-volume
     env_file: 
       - ./docker-env/common.env
+      - ./docker-env/rclone.env
     labels:
       ofelia.enabled: "true"
 
@@ -39,6 +40,6 @@ services:
       ofelia.job-exec.archive-docker-volume.schedule: "0 0 2 * * *" 
       ofelia.job-exec.archive-docker-volume.command: "/bin/sh -c /docker-volume/rclone/script/backup.sh"
 
-      # Sync to dropbox at 3 am every day
-      ofelia.job-exec.dropbox-sync.schedule: "0 0 3 * * *" 
-      ofelia.job-exec.dropbox-sync.command: "rclone sync /data dropbox:/"
+      # Sync to cloud service at 3 am every day
+      ofelia.job-exec.cloud-sync.schedule: "0 0 3 * * *" 
+      ofelia.job-exec.cloud-sync.command: "${CLOUD_SYNC_COMMAND}"
