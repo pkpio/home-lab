@@ -1,45 +1,9 @@
-title: Lights
-type: vertical-stack
-cards:
-- type: horizontal-stack 
-  cards:
-  - name: Living room
-    entity: light.living_room_lights
-    icon: 'mdi:sofa'
-    type: light
-  - name: Lounge
-    entity: light.lounge_lights
-    icon: 'mdi:google-controller'
-    type: light
-- type: horizontal-stack
-  cards:
-  - name: Kitchen
-    entity: light.kitchen_lights
-    icon: 'mdi:silverware-spoon'
-    type: light
-  - name: Dining
-    entity: light.dining_lights
-    icon: 'mdi:silverware-fork-knife'
-    type: light
-- type: horizontal-stack
-  cards:
-  - name: Cooktop
-    entity: light.cooktop_light
-    hold_action:
-      action: more-info
-    icon: 'mdi:silverware-spoon'
-    show_icon: true
-    show_name: true
-    tap_action:
-      action: toggle
-    type: button
-  - name: Balcony
-    entity: light.balcony_light
-    hold_action:
-      action: more-info
-    icon: 'mdi:silverware-spoon'
-    show_icon: true
-    show_name: true
-    tap_action:
-      action: toggle
-    type: button
+title: Curtains
+type: entities
+entities:
+  - entity: light.living_room_lights
+  - entity: light.lounge_lights
+  - entity: light.kitchen_lights
+  - entity: light.cooktop_light
+  - entity: light.dining_lights
+  - entity: light.balcony_light
