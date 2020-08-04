@@ -1,59 +1,3 @@
-#### Input Selector based automations ####
-- alias: Start cleaning on input selection
-  id: vacuum_room_clean_input_selection_start
-  trigger:
-    platform: state
-    entity_id: input_select.vacuum_cleaner_mode
-    from: "Idle"
-  action:
-    service_template: >
-      {% if is_state("input_select.vacuum_cleaner_mode", "Clean Kitchen") %}
-        script.vacuum_clean_kitchen
-      {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Dining") %}
-        script.vacuum_clean_dining
-      {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Lounge") %}
-        script.vacuum_clean_lounge
-      {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Living room") %}
-        script.vacuum_clean_living_room
-      {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Hallway") %}
-        script.vacuum_clean_hallway
-      {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Bedroom") %}
-        script.vacuum_clean_bedroom
-      {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Ensuite") %}
-        script.vacuum_clean_ensuite
-      {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Guestroom") %}
-        script.vacuum_clean_guestroom
-      {%-elif is_state("input_select.vacuum_cleaner_mode", "Clean Bathroom") %}
-        script.vacuum_clean_bathroom
-      {% else %}
-        none
-      {% endif %}
-
-- alias: Stop cleaning on input selection
-  id: vacuum_room_clean_input_selection_stop
-  trigger:
-    platform: state
-    entity_id: input_select.vacuum_cleaner_mode
-    to: "Idle"
-  action:
-  - service: vacuum.stop
-    entity_id: vacuum.kevin_clean
-  - wait_template: "{{ is_state('vacuum.kevin_clean', 'idle') }}"
-  - service: vacuum.return_to_base
-    entity_id: vacuum.kevin_clean
-
-- alias: Set vacuum cleaner to Idle
-  id: vacuum_input_selection_to_idle
-  trigger:
-    platform: state
-    entity_id: vacuum.kevin_clean
-    to: "docked"
-  action:
-    service: input_select.select_option
-    data:
-      entity_id: input_select.vacuum_cleaner_mode
-      option: "Idle"
-
 #### Voice command based automations ####
 - alias: Clean room with IFTTT
   id: vacuum_room_clean_with_ifttt
@@ -63,7 +7,6 @@
     event_data:
       action: vacuum_clean_room_voice_command
   action:
-    service: input_select.select_option
+    service: python_script.vacuum_clean_room
     data_template:
-      entity_id: input_select.vacuum_cleaner_mode
-      option: "Clean {{ trigger.event.data.room.capitalize() }}"
+      room_phrase: "{{ trigger.event.data.room }}"

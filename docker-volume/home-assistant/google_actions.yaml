@@ -6,8 +6,6 @@ filter:
   - vacuum
 
   include_entities:
-  - input_select.vacuum_cleaner_mode
-
   # Lights
   - light.kitchen_lights
   - light.cooktop_light
@@ -37,9 +35,6 @@ entity_config:
     aliases:
     - Kevin clean
     - Robovac
-    room: Living room
-
-  input_select.vacuum_cleaner_mode:
     room: Living room
 
 

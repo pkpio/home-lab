@@ -13,22 +13,34 @@ views:
     actions:
     - icon: 'mdi:silverware-spoon'
       name: Clean kitchen
-      service: script.vacuum_clean_kitchen
+      service: python_script.vacuum_clean_room
+      data:
+        room_phrase: kitchen
     - icon: 'mdi:silverware-fork-knife'
       name: Clean dining
-      service: script.vacuum_clean_dining
+      service: python_script.vacuum_clean_room
+      data:
+        room_phrase: dining
     - icon: 'mdi:sofa'
       name: Clean living room
-      service: script.vacuum_clean_living_room
+      service: python_script.vacuum_clean_room
+      data:
+        room_phrase: kitchen, dining and lounge
     - icon: 'mdi:bed-empty'
       name: Clean bedroom
-      service: script.vacuum_clean_bedroom
+      service: python_script.vacuum_clean_room
+      data:
+        room_phrase: bedroom
     - icon: 'mdi:face'
       name: Clean guest room
-      service: script.vacuum_clean_guestroom
+      service: python_script.vacuum_clean_room
+      data:
+        room_phrase: Guestroom
     - icon: 'mdi:laravel'
-      name: Clean guest room
-      service: script.vacuum_clean_hallway
+      name: Clean hallway
+      service: python_script.vacuum_clean_room
+      data:
+        room_phrase: hallway
     stats:
       cleaning:
       - attribute: cleaned_area

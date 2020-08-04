@@ -18,3 +18,10 @@ update_contextual_color:
     minute:
       description: Current time's minute value
       example: "30"
+
+vacuum_clean_room:
+  description: Sends robovac to clean specified rooms
+  fields:
+    room_phrase:
+      description: A text phrase of the room / rooms to clean
+      example: "Kitchen and Dining"
