@@ -29,8 +29,9 @@ lovelace: !include lovelace.yaml
 light: !include lights.yaml
 automation: !include_dir_merge_list automations
 script: !include_dir_merge_named scripts
-input_select: !include input_select.yaml
-input_number: !include input_number.yaml
+input_select: !include input_selects.yaml
+input_number: !include input_numbers.yaml
+timer: !include timers.yaml
 
 group: !include groups.yaml
 scene: !include scenes.yaml

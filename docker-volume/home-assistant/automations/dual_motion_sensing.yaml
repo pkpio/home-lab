@@ -60,7 +60,9 @@
     entity_id: binary_sensor.ensuite_toilet_activity
     to: 'on'
   action:
-    service: script.lights_on_smart
+  - service: timer.cancel
+    entity_id: timer.ensuite_door_timer
+  - service: script.lights_on_smart
     data:
       light: light.ensuite_lights
 

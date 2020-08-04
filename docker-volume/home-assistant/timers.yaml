@@ -1,0 +1,10 @@
+# Timers to count down for door timing automations
+entrance_door_timer:
+  name: Entrance door opened time
+  icon: mdi:door-open
+  duration: '00:05:00'
+
+ensuite_door_timer:
+  name: Ensuite door opened time
+  icon: mdi:door-open
+  duration: '00:05:00'
