@@ -28,9 +28,8 @@
     for:
       minutes: 20
   action:
-    service: script.lights_on_smart
-    data:
-      light: light.lounge_lights
+    service: light.turn_off
+    entity_id: light.lounge_lights
 
 ##################    Dining    ##################
 - alias: Dining motion detected
