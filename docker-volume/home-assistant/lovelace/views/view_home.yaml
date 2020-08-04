@@ -6,3 +6,4 @@ badges:
 
 cards:
 - !include /config/lovelace/tiles/tile_robovac.yaml
+- !include /config/lovelace/tiles/living_room_lights.yaml
