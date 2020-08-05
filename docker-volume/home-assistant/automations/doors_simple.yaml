@@ -49,10 +49,18 @@
 - alias: Balcony door opened and it's dark
   mode: queued
   trigger:
-    platform: state
+  - platform: state
     entity_id: binary_sensor.balcony_door
     to: 'on'
+  - platform: numeric_state
+    entity_id: sensor.dining_activity
+    below: 18
+    for:
+      minutes: 15
   condition:
+  - condition: state
+    entity_id: binary_sensor.balcony_door
+    state: 'on'
   - condition: numeric_state
     entity_id: sensor.dining_activity
     below: 18
