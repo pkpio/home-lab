@@ -37,14 +37,13 @@ timer: !include timers.yaml
 group: !include groups.yaml
 scene: !include scenes.yaml
 frontend: !include frontend.yaml
-person: !include persons.yaml
 
-python_script:
-sun:
-person:
+person: !include persons.yaml
 mobile_app:
 cloud:
   google_actions: !include google_actions.yaml
+python_script:
+sun:
 
 hue:
   bridges:
