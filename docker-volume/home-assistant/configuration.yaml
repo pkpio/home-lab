@@ -13,6 +13,7 @@ homeassistant:
   elevation: !secret elevation_home
 
   packages: !include_dir_named packages
+  customize: !include customize.yaml
 
 # Data saving policy
 recorder:
@@ -36,6 +37,7 @@ timer: !include timers.yaml
 group: !include groups.yaml
 scene: !include scenes.yaml
 frontend: !include frontend.yaml
+person: !include persons.yaml
 
 python_script:
 sun:

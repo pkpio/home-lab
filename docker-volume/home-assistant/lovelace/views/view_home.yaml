@@ -2,8 +2,8 @@ title: Home
 
 badges:
 - entity: sun.sun
-- entity: person.praveen_pendyala
-- entity: person.mar_valverde
+- entity: person.praveen
+- entity: person.mar
 
 cards:
 - !include /config/lovelace/tiles/tile_living_room_lights.yaml

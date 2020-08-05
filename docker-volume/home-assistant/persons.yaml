@@ -1,0 +1,9 @@
+- name: Praveen
+  id: praveen
+  device_trackers:
+  - device_tracker.praveen_phone
+
+- name: Mar
+  id: mar
+  device_trackers:
+  - device_tracker.mar_phone
