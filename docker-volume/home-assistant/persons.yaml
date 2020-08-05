@@ -1,9 +1,11 @@
 - name: Praveen
   id: praveen
+  user_id: !secret person_praveen_userid
   device_trackers:
   - device_tracker.praveen_phone
 
 - name: Mar
   id: mar
+  user_id: !secret person_mar_userid
   device_trackers:
   - device_tracker.mar_phone
