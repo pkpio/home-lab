@@ -1,4 +1,4 @@
 person.praveen:
-  entity_picture: "/www/images/praveen.jpg"
+  entity_picture: "/local/images/praveen.jpg"
 person.mar:
-  entity_picture: "/www/images/mar.jpg"
+  entity_picture: "/local/images/mar.jpg"
