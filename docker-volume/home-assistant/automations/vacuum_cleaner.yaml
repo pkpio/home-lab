@@ -1,6 +1,5 @@
 #### Voice command automation ####
 - alias: Clean room with IFTTT
-  id: vacuum_room_clean_with_ifttt
   trigger:
     platform: event
     event_type: ifttt_webhook_received
@@ -13,7 +12,6 @@
 
 #### Scheduled cleaning - Monday, Wednesday, Friday ####
 - alias: Vacuum schedule for Monday / Wednesday / Friday
-  mode: queued
   trigger:
   - platform: state
     entity_id: input_boolean.praveen_home
@@ -48,7 +46,6 @@
 
 #### Scheduled cleaning - Tuesday, Thursday, Saturday ####
 - alias: Vacuum schedule for Tueday / Thursday / Saturday
-  mode: queued
   trigger:
   - platform: state
     entity_id: input_boolean.praveen_home
@@ -77,10 +74,12 @@
   - service: python_script.vacuum_clean_room
     data_template:
       room_phrase: "lounge, kitchen and dining"
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.vacuum_automation_ran_today
 
 #### Scheduled cleaning - Sunday ####
 - alias: Vacuum schedule for Sunday
-  mode: queued
   trigger:
   - platform: state
     entity_id: input_boolean.praveen_home
@@ -107,3 +106,16 @@
   - service: python_script.vacuum_clean_room
     data_template:
       room_phrase: "lounge, kitchen and dining"
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.vacuum_automation_ran_today
+
+#### Reset vacuum ran status for the day #####
+- alias: Reset vacuum ran status
+  trigger:
+    platform: time
+    at: "00:30:00"
+  action:
+    service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.vacuum_automation_ran_today
