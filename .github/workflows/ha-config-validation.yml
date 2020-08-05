@@ -12,8 +12,9 @@ jobs:
 
     - name: Prepare environment
       run: |
-        cp docker-volume/home-assistant/secrets.yaml.sample config/secrets.yaml
-        touch docker-volume/home-assistant/adbkey
+        cd docker-volume/home-assistant/
+        cp secrets.yaml.sample secrets.yaml
+        touch adbkey
 
     - name: Start Home Assistant
       run: |
