@@ -1,0 +1,49 @@
+# Automation to control lights with TV
+# - Lights off when something starts playing on the TV
+# - Disable motion sensing so they don't change lights
+# - Turn back lights on when playing ends
+# - Enable motion sensing
+
+#### Lounge TV playing turns off lights ####
+- alias: TV playing turns off lounge lights
+  trigger:
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    to: 'playing'
+  action:
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.lounge_motion_sensing
+  - service: light.turn_off
+    entity_id: light.lounge_lights
+
+#### Lounge TV pause / idle turns on lights if it's dark ####
+- alias: TV pause or idle turns on lounge lights
+  trigger:
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    to: 'paused'
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    to: 'idle'
+    for:
+      seconds: 15
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.lounge_activity
+    below: 18
+  - condition: or
+    conditions:
+    - condition: sun
+      after: sunset
+      after_offset: "-01:00:00"
+    - condition: sun
+      before: sunrise
+      before_offset: "01:00:00"
+  action:
+  - service: script.lights_on_smart
+    data:
+      light: light.lounge_lights
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.lounge_motion_sensing

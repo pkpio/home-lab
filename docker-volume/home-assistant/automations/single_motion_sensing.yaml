@@ -13,6 +13,9 @@
     entity_id: binary_sensor.lounge_activity
     to: 'on'
   condition:
+  - condition: state
+    entity_id: input_boolean.lounge_motion_sensing
+    state: 'on'
   - condition: numeric_state
     entity_id: sensor.lounge_activity
     below: 18
