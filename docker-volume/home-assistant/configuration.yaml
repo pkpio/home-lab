@@ -81,7 +81,7 @@ hacs:
 
 media_player:
 - platform: androidtv
-  name: Lounge TV
+  name: Lounge Android TV
   host: !secret android_tv_host
   adbkey: /config/adbkey
   exclude_unnamed_apps: true
