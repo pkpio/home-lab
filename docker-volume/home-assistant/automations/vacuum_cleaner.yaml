@@ -32,8 +32,8 @@
     entity_id: input_boolean.vacuum_automation_ran_today
     state: false
   - condition: time
-    after: '08:00:00'
-    before: '22:00:00'
+    after: '07:00:00'
+    before: '22:30:00'
     weekday:
     - mon
     - wed
@@ -67,8 +67,8 @@
     entity_id: input_boolean.vacuum_automation_ran_today
     state: false
   - condition: time
-    after: '08:00:00'
-    before: '22:00:00'
+    after: '07:00:00'
+    before: '22:30:00'
     weekday:
     - tue
     - thu
@@ -99,8 +99,8 @@
     entity_id: input_boolean.vacuum_automation_ran_today
     state: false
   - condition: time
-    after: '08:00:00'
-    before: '22:00:00'
+    after: '07:00:00'
+    before: '22:30:00'
     weekday:
     - sun
   action:
