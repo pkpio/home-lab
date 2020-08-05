@@ -28,8 +28,9 @@
   - platform: state
     entity_id: media_player.lounge_android_tv
     to: 'idle'
-    for:
-      seconds: 15
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    to: 'off'
   condition:
   - condition: numeric_state
     entity_id: sensor.lounge_activity
