@@ -55,7 +55,15 @@
   condition:
   - condition: numeric_state
     entity_id: sensor.dining_activity
-    below: 20
+    below: 18
+  - condition: or
+    conditions:
+    - condition: sun
+      after: sunset
+      after_offset: "-01:00:00"
+    - condition: sun
+      before: sunrise
+      before_offset: "01:00:00"
   action:
     service: script.lights_on_smart
     data:

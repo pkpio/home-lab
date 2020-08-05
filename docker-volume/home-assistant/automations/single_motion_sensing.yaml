@@ -1,7 +1,8 @@
 #=================================================
-# Single motion sensing:
-# Involves only one motion sensor and maybe living
-# level sensing from that sensor
+# Single motion sensing: Involves
+# - one motion sensor
+# - light level sensing
+# - sun position based offsets (optional)
 #=================================================
 
 ##################    Lounge    ##################
@@ -14,7 +15,15 @@
   condition:
   - condition: numeric_state
     entity_id: sensor.lounge_activity
-    below: 20
+    below: 18
+  - condition: or
+    conditions:
+    - condition: sun
+      after: sunset
+      after_offset: "-01:00:00"
+    - condition: sun
+      before: sunrise
+      before_offset: "01:00:00"
   action:
     service: script.lights_on_smart
     data:
@@ -42,7 +51,15 @@
   condition:
   - condition: numeric_state
     entity_id: sensor.dining_activity
-    below: 20
+    below: 18
+  - condition: or
+    conditions:
+    - condition: sun
+      after: sunset
+      after_offset: "-01:00:00"
+    - condition: sun
+      before: sunrise
+      before_offset: "01:00:00"
   action:
     service: script.lights_on_smart
     data:
@@ -70,7 +87,7 @@
   condition:
   - condition: numeric_state
     entity_id: sensor.corridor_activity
-    below: 20
+    below: 18
   action:
     service: script.lights_on_smart
     data:
@@ -98,7 +115,7 @@
   condition:
   - condition: numeric_state
     entity_id: sensor.entrance_activity
-    below: 20
+    below: 18
   action:
   - service: timer.cancel
     entity_id: timer.entrance_door_timer

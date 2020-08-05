@@ -1,3 +1,4 @@
+#### Dining button ####
 - alias: Dining button
   mode: queued
   trigger:
@@ -11,6 +12,7 @@
       light: light.dining_lights
       event: "{{ trigger.event.data.event }}"
 
+#### Cooktop button ####
 - alias: Cooktop button
   mode: queued
   trigger:
@@ -24,6 +26,7 @@
       light: light.cooktop_light
       event: "{{ trigger.event.data.event }}"
 
+#### Ensuite button ####
 - alias: Ensuite button
   mode: queued
   trigger:
@@ -37,6 +40,7 @@
       light: light.ensuite_lights
       event: "{{ trigger.event.data.event }}"
 
+#### Bedroom button ####
 - alias: Bedroom button
   mode: queued
   trigger:

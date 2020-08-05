@@ -26,6 +26,7 @@
       light: light.kitchen_lights
       event: "{{ trigger.event.data.event }}"
 
+#### Bedroom switch ####
 - alias: Bedroom switch
   mode: parallel
   trigger:
@@ -39,7 +40,8 @@
       light: light.bedroom_lights
       event: "{{ trigger.event.data.event }}"
 
-- alias: Entrance switch
+#### Entrance or corridor switch ####
+- alias: Entrance or corridor switch
   mode: parallel
   trigger:
   - platform: event
