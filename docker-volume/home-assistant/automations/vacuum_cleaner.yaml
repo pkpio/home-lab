@@ -17,20 +17,20 @@
   trigger:
   - platform: state
     entity_id: input_boolean.praveen_home
-    to: false
+    to: 'off'
   - platform: state
     entity_id: input_boolean.mar_home
-    to: false
+    to: 'off'
   condition:
   - condition: state
     entity_id: input_boolean.praveen_home
-    state: false
+    state: 'off'
   - condition: state
     entity_id: input_boolean.mar_home
-    state: false
+    state: 'off'
   - condition: state
     entity_id: input_boolean.vacuum_automation_ran_today
-    state: false
+    state: 'off'
   - condition: time
     after: '07:00:00'
     before: '22:30:00'
@@ -52,20 +52,20 @@
   trigger:
   - platform: state
     entity_id: input_boolean.praveen_home
-    to: false
+    to: 'off'
   - platform: state
     entity_id: input_boolean.mar_home
-    to: false
+    to: 'off'
   condition:
   - condition: state
     entity_id: input_boolean.praveen_home
-    state: false
+    state: 'off'
   - condition: state
     entity_id: input_boolean.mar_home
-    state: false
+    state: 'off'
   - condition: state
     entity_id: input_boolean.vacuum_automation_ran_today
-    state: false
+    state: 'off'
   - condition: time
     after: '07:00:00'
     before: '22:30:00'
@@ -84,20 +84,20 @@
   trigger:
   - platform: state
     entity_id: input_boolean.praveen_home
-    to: false
+    to: 'off'
   - platform: state
     entity_id: input_boolean.mar_home
-    to: false
+    to: 'off'
   condition:
   - condition: state
     entity_id: input_boolean.praveen_home
-    state: false
+    state: 'off'
   - condition: state
     entity_id: input_boolean.mar_home
-    state: false
+    state: 'off'
   - condition: state
     entity_id: input_boolean.vacuum_automation_ran_today
-    state: false
+    state: 'off'
   - condition: time
     after: '07:00:00'
     before: '22:30:00'
