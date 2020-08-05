@@ -1,4 +1,4 @@
-#### Voice command based automations ####
+#### Voice command automation ####
 - alias: Clean room with IFTTT
   id: vacuum_room_clean_with_ifttt
   trigger:
@@ -10,3 +10,100 @@
     service: python_script.vacuum_clean_room
     data_template:
       room_phrase: "{{ trigger.event.data.room }}"
+
+#### Scheduled cleaning - Monday, Wednesday, Friday ####
+- alias: Vacuum schedule for Monday / Wednesday / Friday
+  mode: queued
+  trigger:
+  - platform: state
+    entity_id: input_boolean.praveen_home
+    to: false
+  - platform: state
+    entity_id: input_boolean.mar_home
+    to: false
+  condition:
+  - condition: state
+    entity_id: input_boolean.praveen_home
+    state: false
+  - condition: state
+    entity_id: input_boolean.mar_home
+    state: false
+  - condition: state
+    entity_id: input_boolean.vacuum_automation_ran_today
+    state: false
+  - condition: time
+    after: '08:00:00'
+    before: '22:00:00'
+    weekday:
+    - mon
+    - wed
+    - fri
+  action:
+  - service: python_script.vacuum_clean_room
+    data_template:
+      room_phrase: "kitchen and dining"
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.vacuum_automation_ran_today
+
+#### Scheduled cleaning - Tuesday, Thursday, Saturday ####
+- alias: Vacuum schedule for Tueday / Thursday / Saturday
+  mode: queued
+  trigger:
+  - platform: state
+    entity_id: input_boolean.praveen_home
+    to: false
+  - platform: state
+    entity_id: input_boolean.mar_home
+    to: false
+  condition:
+  - condition: state
+    entity_id: input_boolean.praveen_home
+    state: false
+  - condition: state
+    entity_id: input_boolean.mar_home
+    state: false
+  - condition: state
+    entity_id: input_boolean.vacuum_automation_ran_today
+    state: false
+  - condition: time
+    after: '08:00:00'
+    before: '22:00:00'
+    weekday:
+    - tue
+    - thu
+    - sat
+  action:
+  - service: python_script.vacuum_clean_room
+    data_template:
+      room_phrase: "lounge, kitchen and dining"
+
+#### Scheduled cleaning - Sunday ####
+- alias: Vacuum schedule for Sunday
+  mode: queued
+  trigger:
+  - platform: state
+    entity_id: input_boolean.praveen_home
+    to: false
+  - platform: state
+    entity_id: input_boolean.mar_home
+    to: false
+  condition:
+  - condition: state
+    entity_id: input_boolean.praveen_home
+    state: false
+  - condition: state
+    entity_id: input_boolean.mar_home
+    state: false
+  - condition: state
+    entity_id: input_boolean.vacuum_automation_ran_today
+    state: false
+  - condition: time
+    after: '08:00:00'
+    before: '22:00:00'
+    weekday:
+    - sun
+  action:
+  - service: python_script.vacuum_clean_room
+    data_template:
+      room_phrase: "lounge, kitchen and dining"

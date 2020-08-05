@@ -1,0 +1,47 @@
+# Mark Praveen's not home
+- alias: Praveen left home zone
+  trigger:
+    platform: zone
+    event: leave
+    zone: zone.home
+    entity_id: device_tracker.praveen_phone
+  action:
+    service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.praveen_home
+
+# Mark Praveen's home
+- alias: Praveen enter home zone
+  trigger:
+    platform: zone
+    event: enter
+    zone: zone.home
+    entity_id: device_tracker.praveen_phone
+  action:
+    service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.praveen_home
+
+# Mark Mar's not home
+- alias: Mar left home zone
+  trigger:
+    platform: zone
+    event: leave
+    zone: zone.home
+    entity_id: device_tracker.mar_phone
+  action:
+    service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.mar_home
+
+# Mark Mar's home
+- alias: Mar enter home zone
+  trigger:
+    platform: zone
+    event: enter
+    zone: zone.home
+    entity_id: device_tracker.mar_phone
+  action:
+    service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.mar_home

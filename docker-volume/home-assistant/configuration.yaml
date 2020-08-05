@@ -32,10 +32,12 @@ automation: !include_dir_merge_list automations
 script: !include_dir_merge_named scripts
 input_select: !include input_selects.yaml
 input_number: !include input_numbers.yaml
+input_boolean: !include input_booleans.yaml
 timer: !include timers.yaml
 
 group: !include groups.yaml
 scene: !include scenes.yaml
+zone: !include zones.yaml
 frontend: !include frontend.yaml
 
 person: !include persons.yaml
