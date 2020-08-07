@@ -9,7 +9,7 @@ SOURCE_DIR=/docker-volume
 DESTINATION_DIR=/docker-volume/rclone/data
 ARCHIVE_FILEPATH="$DESTINATION_DIR/$ARCHIVE_FILENAME"
 
-tar -cpz --exclude='/docker-volume/rclone/data' -f $ARCHIVE_FILEPATH $SOURCE_DIR
+tar --exclude='**/rclone/data/*' -cpzf $ARCHIVE_FILEPATH $SOURCE_DIR
 echo "Backed up $ARCHIVE_FILEPATH to $SOURCE_DIR"
 
 # Delete backups older than 10 days
