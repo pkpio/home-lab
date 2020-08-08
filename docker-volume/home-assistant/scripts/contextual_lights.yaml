@@ -17,10 +17,10 @@ lights_on_smart:
   - service: light.turn_on
     data_template:
       entity_id: "{{ light }}"
-      brightness: "{{ states('input_number.contextual_brightness') | int }}"
+      brightness: "{{ states('input_number.contextual_start_brightness') | int }}"
       rgb_color: [255, 255, 255]
   - service: light.turn_on
     data_template:
       entity_id: "{{ light }}"
-      brightness: 255
-      transition: 30
+      brightness: "{{ states('input_number.contextual_final_brightness') | int }}"
+      transition: "{{ states('input_number.contextual_transition_time') | int }}"

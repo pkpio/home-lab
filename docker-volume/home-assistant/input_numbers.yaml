@@ -1,9 +1,23 @@
 # Initial brigtness to use for lights when they are turned on
-contextual_brightness:
-  name: Lights initial brightness
-  initial: 200
+contextual_start_brightness:
+  name: Lights start brightness
+  initial: 150
   min: 0
   max: 255
+  step: 1
+
+contextual_final_brightness:
+  name: Lights final brightness
+  initial: 220
+  min: 0
+  max: 255
+  step: 1
+
+contextual_transition_time:
+  name: Lights transition time
+  initial: 10
+  min: 0
+  max: 120
   step: 1
 
 contextual_color_red:
