@@ -24,12 +24,15 @@
   trigger:
   - platform: state
     entity_id: media_player.lounge_android_tv
+    from: 'playing'
     to: 'paused'
   - platform: state
     entity_id: media_player.lounge_android_tv
+    from: 'playing'
     to: 'idle'
   - platform: state
     entity_id: media_player.lounge_android_tv
+    from: 'playing'
     to: 'off'
   condition:
   - condition: numeric_state
