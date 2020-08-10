@@ -20,23 +20,9 @@ contextual_transition_time:
   max: 120
   step: 1
 
-contextual_color_red:
-  name: Lights initial color - red
-  initial: 200
-  min: 0
-  max: 255
-  step: 1
-
-contextual_color_green:
-  name: Lights initial color - green
-  initial: 200
-  min: 0
-  max: 255
-  step: 1
-
-contextual_color_blue:
-  name: Lights initial color - blue
-  initial: 200
-  min: 0
-  max: 255
+contextual_color_temperature:
+  name: Lights color temperature in Kelvin
+  initial: 4500
+  min: 2000
+  max: 6500
   step: 1

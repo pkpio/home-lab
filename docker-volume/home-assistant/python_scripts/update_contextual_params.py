@@ -4,37 +4,37 @@ brightnessPoints = {
 		"startBrightness": 120,
 		"finalBrightness": 180,
 		"transitionTime": 45,
-		"color": [255, 255, 255]
+		"colorTemperature": 6500
 	},
 	"08:00": {
 		"startBrightness": 140,
 		"finalBrightness": 200,
 		"transitionTime": 15,
-		"color": [255, 255, 255]
+		"colorTemperature": 6500
 	},
 	"17:00": {
 		"startBrightness": 170,
 		"finalBrightness": 220,
 		"transitionTime": 10,
-		"color": [255, 255, 255]
+		"colorTemperature": 6500
 	},
 	"19:00": {
 		"startBrightness": 190,
 		"finalBrightness": 230,
 		"transitionTime": 10,
-		"color": [255, 255, 255]
+		"colorTemperature": 6500
 	},
 	"22:30": {
 		"startBrightness": 210,
 		"finalBrightness": 255,
 		"transitionTime": 15,
-		"color": [255, 255, 255]
+		"colorTemperature": 6500
 	},
 	"23:30": {
 		"startBrightness": 180,
 		"finalBrightness": 230,
 		"transitionTime": 20,
-		"color": [255, 255, 255]
+		"colorTemperature": 6500
 	}
 }
 
@@ -88,7 +88,6 @@ else:
 leftWeight, rightWeight = (1 - leftRatio), (1 - rightRatio)
 
 weightedIntVal = lambda key : int(sortedPoints[leftIndex]['contextData'][key] * leftWeight + sortedPoints[rightIndex]['contextData'][key] * rightWeight)
-weightedColorVal = lambda index : int(sortedPoints[leftIndex]['contextData']['color'][index] * leftWeight + sortedPoints[rightIndex]['contextData']['color'][index] * rightWeight)
 
 
 #### Set the start brightness ####
@@ -124,35 +123,14 @@ hass.services.call(
 )
 
 
-#### Set the color - red ####
+#### Set the color temperature ####
 hass.services.call(
 	"input_number", 
 	"set_value", 
 	{
-		"entity_id": "input_number.contextual_color_red", 
-		"value": weightedColorVal(0)
+		"entity_id": "input_number.contextual_color_temperature", 
+		"value": weightedIntVal('colorTemperature')
 	}, 
 	False
 )
 
-#### Set the color - green ####
-hass.services.call(
-	"input_number", 
-	"set_value", 
-	{
-		"entity_id": "input_number.contextual_color_green", 
-		"value": weightedColorVal(1)
-	}, 
-	False
-)
-
-#### Set the color - blue ####
-hass.services.call(
-	"input_number", 
-	"set_value", 
-	{
-		"entity_id": "input_number.contextual_color_blue", 
-		"value": weightedColorVal(2)
-	}, 
-	False
-)
