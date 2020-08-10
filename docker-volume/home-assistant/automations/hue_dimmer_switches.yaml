@@ -9,7 +9,7 @@
   action:
   - service: script.hue_dimmer_switch
     data_template:
-      light: light.living_room_lights
+      entity_id: light.living_room_lights
       event: "{{ trigger.event.data.event }}"
 
 #### Right switch in the living room entrance ####
@@ -23,7 +23,7 @@
   action:
   - service: script.hue_dimmer_switch
     data_template:
-      light: light.kitchen_lights
+      entity_id: light.kitchen_lights
       event: "{{ trigger.event.data.event }}"
 
 #### Bedroom switch ####
@@ -37,7 +37,7 @@
   action:
   - service: script.hue_dimmer_switch
     data_template:
-      light: light.bedroom_lights
+      entity_id: light.bedroom_lights
       event: "{{ trigger.event.data.event }}"
 
 #### Entrance or corridor switch ####
@@ -55,5 +55,5 @@
   action:
   - service: script.hue_dimmer_switch
     data_template:
-      light: light.hallway_lights
+      entity_id: light.hallway_lights
       event: "{{ trigger.event.data.event }}"

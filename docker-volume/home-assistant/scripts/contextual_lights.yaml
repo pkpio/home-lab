@@ -32,3 +32,22 @@ lights_on_smart:
       entity_id: "{{ light }}"
       brightness: "{{ states('input_number.contextual_final_brightness') | int }}"
       transition: "{{ states('input_number.contextual_transition_time') | int }}"
+
+##################   Toggle smart   ##################
+lights_toggle_smart:
+  alias: Lights toggle with smart transition
+  icon: mdi:toggle-switch
+  mode: queued
+  fields:
+    light:
+      description: 'Entity id of the light to interact on'
+      example: light.corridor_lights
+  sequence:
+  - service_template: >
+      {% if is_state(light, 'on') %}
+        light.turn_off
+      {% else %}
+        script.lights_on_smart
+      {% endif %}
+    data_template:
+      entity_id: "{{ light }}"

@@ -23,15 +23,13 @@ xiaomi_button:
     value_template: '{{ event | int == 1000 or event | int == 1001 }}'
   - service_template: >
       {% if event | int == 1000 %}
-        light.toggle
+        script.lights_toggle_smart
       {%-elif event | int == 1001 %}
         light.turn_on
       {% endif %}
     data_template:
       entity_id: "{{ light }}"
       brightness: >-
-        {% if event | int == 1000 %}
-          100
-        {%-elif event | int == 1001 %}
+        {% if event | int == 1001 %}
           255
         {% endif %}
