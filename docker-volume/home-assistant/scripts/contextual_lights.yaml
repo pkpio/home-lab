@@ -24,9 +24,9 @@ lights_on_smart:
           {{ states('input_number.contextual_start_brightness') | int }}
         {% endif %}
       kelvin: "{{ states('input_number.contextual_color_temperature') | int }}"
-      transition: 4
+      transition: 2
   - delay:
-      seconds: 4
+      seconds: 2
   - service: light.turn_on
     data_template:
       entity_id: "{{ light }}"
