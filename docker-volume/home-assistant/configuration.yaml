@@ -92,6 +92,7 @@ media_player:
     com.plexapp.android: "Plex"
     com.netflix.ninja: "Netflix"
     com.google.android.tv: "Live Channels"
+    pct.droid.tv: "Popcorn Time"
 
 notify:
 - platform: nfandroidtv

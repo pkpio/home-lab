@@ -12,6 +12,9 @@
   - platform: state
     entity_id: media_player.lounge_android_tv
     to: 'playing'
+  condition:
+    condition: template
+    value_template: '{{ state_attr("media_player.lounge_android_tv", "source") in state_attr("media_player.lounge_android_tv", "source_list") }}'
   action:
   - service: input_boolean.turn_off
     data:
