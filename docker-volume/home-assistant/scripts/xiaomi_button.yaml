@@ -15,7 +15,7 @@ xiaomi_button:
     event:
       description: 'The event number as sent by deconz'
       example: 1000
-    light:
+    entity_id:
       description: 'Entity id of the light to interact on'
       example: light.corridor_lights
   sequence:
@@ -28,7 +28,7 @@ xiaomi_button:
         light.turn_on
       {% endif %}
     data_template:
-      entity_id: "{{ light }}"
+      entity_id: "{{ entity_id }}"
       brightness: >-
         {% if event | int == 1001 %}
           255

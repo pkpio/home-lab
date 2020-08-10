@@ -9,7 +9,7 @@
   action:
   - service: script.xiaomi_button
     data_template:
-      light: light.dining_lights
+      entity_id: light.dining_lights
       event: "{{ trigger.event.data.event }}"
 
 #### Cooktop button ####
@@ -23,7 +23,7 @@
   action:
   - service: script.xiaomi_button
     data_template:
-      light: light.cooktop_light
+      entity_id: light.cooktop_light
       event: "{{ trigger.event.data.event }}"
 
 #### Ensuite button ####
@@ -37,7 +37,7 @@
   action:
   - service: script.xiaomi_button
     data_template:
-      light: light.ensuite_lights
+      entity_id: light.ensuite_lights
       event: "{{ trigger.event.data.event }}"
 
 #### Bedroom button ####
@@ -51,6 +51,6 @@
   action:
   - service: script.xiaomi_button
     data_template:
-      light: light.bedroom_lights
+      entity_id: light.bedroom_lights
       event: "{{ trigger.event.data.event }}"
 
