@@ -11,7 +11,7 @@
   action:
     service: script.lights_on_smart
     data:
-      light: light.shoe_storage_light
+      entity_id: light.shoe_storage_light
 
 - alias: Shoe storage door closed
   mode: queued
@@ -33,7 +33,7 @@
   action:
     service: script.lights_on_smart
     data:
-      light: light.electronics_storage_light
+      entity_id: light.electronics_storage_light
 
 - alias: Electronics storage door closed
   mode: queued
@@ -75,7 +75,7 @@
   action:
     service: script.lights_on_smart
     data:
-      light: light.balcony_light
+      entity_id: light.balcony_light
 
 - alias: Balcony door closed
   mode: queued

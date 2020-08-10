@@ -52,7 +52,7 @@
   action:
   - service: script.lights_on_smart
     data:
-      light: light.lounge_lights
+      entity_id: light.lounge_lights
   - service: input_boolean.turn_on
     data:
       entity_id: input_boolean.lounge_motion_sensing

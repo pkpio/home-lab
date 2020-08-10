@@ -21,7 +21,7 @@
   action:
     service: script.lights_on_smart
     data:
-      light: light.kitchen_lights
+      entity_id: light.kitchen_lights
 
 - alias: Kitchen and Living room motion ended
   mode: queued
@@ -46,7 +46,7 @@
   action:
     service: script.lights_on_smart
     data:
-      light: light.kitchen_lights
+      entity_id: light.kitchen_lights
 
 
 ##################   Ensuite - toiler + shower   ##################
@@ -64,7 +64,7 @@
     entity_id: timer.ensuite_door_timer
   - service: script.lights_on_smart
     data:
-      light: light.ensuite_lights
+      entity_id: light.ensuite_lights
 
 - alias: Ensuite motion ended
   mode: queued

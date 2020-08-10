@@ -30,7 +30,7 @@
   action:
     service: script.lights_on_smart
     data:
-      light: light.lounge_lights
+      entity_id: light.lounge_lights
 
 - alias: Lounge motion ended
   mode: queued
@@ -66,7 +66,7 @@
   action:
     service: script.lights_on_smart
     data:
-      light: light.dining_lights
+      entity_id: light.dining_lights
 
 - alias: Dining motion ended
   mode: queued
@@ -94,7 +94,7 @@
   action:
     service: script.lights_on_smart
     data:
-      light: light.corridor_lights
+      entity_id: light.corridor_lights
 
 - alias: Corridor motion ended
   mode: queued
@@ -124,7 +124,7 @@
     entity_id: timer.entrance_door_timer
   - service: script.lights_on_smart
     data:
-      light: light.entrance_lights
+      entity_id: light.entrance_lights
 
 - alias: Entrance motion ended
   mode: queued
