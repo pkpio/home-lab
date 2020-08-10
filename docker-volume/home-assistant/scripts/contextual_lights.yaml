@@ -17,7 +17,12 @@ lights_on_smart:
   - service: light.turn_on
     data_template:
       entity_id: "{{ light }}"
-      brightness: "{{ states('input_number.contextual_start_brightness') | int }}"
+      brightness: >-
+        {% if is_state(light, 'on') and state_attr(light, 'brightness') > states('input_number.contextual_start_brightness') %}
+          {{ state_attr(light, 'brightness') | int }}
+        {% else %}
+          {{ states('input_number.contextual_start_brightness') | int }}
+        {% endif %}
       rgb_color: [255, 255, 255]
   - service: light.turn_on
     data_template:
