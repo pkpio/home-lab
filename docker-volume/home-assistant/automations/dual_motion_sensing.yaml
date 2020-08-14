@@ -17,7 +17,15 @@
   condition:
   - condition: numeric_state
     entity_id: sensor.kitchen_activity
-    below: 20
+    below: 18
+  - condition: or
+    conditions:
+    - condition: sun
+      after: sunset
+      after_offset: "-01:00:00"
+    - condition: sun
+      before: sunrise
+      before_offset: "01:00:00"
   action:
     service: script.lights_on_smart
     data:
@@ -44,9 +52,8 @@
     entity_id: binary_sensor.kitchen_activity
     state: 'off'
   action:
-    service: script.lights_on_smart
-    data:
-      entity_id: light.kitchen_lights
+    service: light.turn_off
+    entity_id: light.kitchen_lights
 
 
 ##################   Ensuite - toiler + shower   ##################
