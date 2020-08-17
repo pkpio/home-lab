@@ -42,4 +42,5 @@ production_auth.json
 adbkey
 backups
 cloud-backup/data/
+torrent-client/transmission-home/
 rclone.conf

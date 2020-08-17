@@ -39,4 +39,36 @@ services:
 
       # Sync to cloud service at 3 am every day
       ofelia.job-exec.cloud-sync.schedule: "0 0 3 * * *" 
-      ofelia.job-exec.cloud-sync.command: "rclone sync /all-containers-data cloud:/Home-Assistance-Backups"
+      ofelia.job-exec.cloud-sync.command: "rclone sync /backups cloud:/Home-Assistance-Backups"
+
+  # Runs tranmission torrent client through an OpenVPN tunnel
+  torrent-client:
+    container_name: torrent-client
+    image: haugene/transmission-openvpn:latest-armhf
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - "/dev/net/tun"
+    restart: always
+    ports:
+      - "9091:9091"
+      - "8888:8888"
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./torrent-client/transmission-home:/data
+    env_file:
+      - torrent-client/.env
+
+  # Proxy to access the transmission client's API 
+  torrent-api-proxy:
+    container_name: torrent-api-proxy
+    image: haugene/transmission-openvpn-proxy:latest-armhf
+    links:
+      - transmission-client
+    ports:
+      - "8080:8080"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
