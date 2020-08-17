@@ -50,6 +50,9 @@ services:
     restart: always
     ports:
       - '9091:9091'
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./torrent-client/data/:/data
@@ -57,3 +60,4 @@ services:
       - /dev/net/tun
     env_file:
       - torrent-client/.env
+    network_mode: host
