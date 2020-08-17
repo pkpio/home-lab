@@ -67,7 +67,7 @@ services:
     container_name: torrent-api-proxy
     image: haugene/transmission-openvpn-proxy:latest-armhf
     links:
-      - transmission-client
+      - torrent-client
     ports:
       - "8080:8080"
     volumes:
