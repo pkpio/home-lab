@@ -4,9 +4,8 @@ services:
     container_name: home-assistant
     image: homeassistant/raspberrypi4-homeassistant:stable
     volumes:
-      - ./docker-volume/home-assistant/:/config
-    env_file: 
-      - ./docker-env/common.env
+      - /etc/localtime:/etc/localtime:ro
+      - ./home-assistant/config/:/config
     restart: always
     network_mode: host
 
@@ -16,9 +15,8 @@ services:
     build: https://github.com/mcuadros/ofelia.git
     command: daemon --docker
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    env_file: 
-      - ./docker-env/common.env
 
   # Manages syncing selected data to a cloud service and creating archives
   rclone:
@@ -27,11 +25,9 @@ services:
     command: rcd --rc-web-gui --rc-addr :5572
     restart: always
     volumes:
-      - ./docker-volume/rclone/config/:/config/rclone
-      - ./docker-volume/rclone/data/:/data
-      - ./docker-volume:/docker-volume
-    env_file: 
-      - ./docker-env/common.env
+      - /etc/localtime:/etc/localtime:ro
+      - ./rclone/config/:/config/rclone
+      - ./:/all-containers-data
     labels:
       ofelia.enabled: "true"
 
@@ -41,4 +37,4 @@ services:
 
       # Sync to cloud service at 3 am every day
       ofelia.job-exec.cloud-sync.schedule: "0 0 3 * * *" 
-      ofelia.job-exec.cloud-sync.command: "rclone sync /data cloud:/Home-Assistance-Backups"
+      ofelia.job-exec.cloud-sync.command: "rclone sync /all-containers-data cloud:/Home-Assistance-Backups"
