@@ -12,7 +12,7 @@ jobs:
 
     - name: Prepare environment
       run: |
-        cd docker-volume/home-assistant/
+        cd home-assistant/config/
         cp secrets.yaml.sample secrets.yaml
         touch adbkey
 
