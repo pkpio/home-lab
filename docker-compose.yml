@@ -53,5 +53,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./torrent-client/data/:/data
+    devices:
+      - /dev/net/tun
     env_file:
       - torrent-client/.env
