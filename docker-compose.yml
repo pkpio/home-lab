@@ -1,7 +1,6 @@
 version: '3'
 services:
   home-assistant:
-    container_name: home-assistant
     image: homeassistant/raspberrypi4-homeassistant:stable
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -9,31 +8,31 @@ services:
     restart: always
     network_mode: host
 
-  # Schedules cron jobs on docker containers or host
-  ofelia:
-    container_name: ofelia
+  # Schedules cron jobs on different docker containers or host
+  cron:
     build: https://github.com/mcuadros/ofelia.git
     command: daemon --docker
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
-  # Manages syncing selected data to a cloud service and creating archives
-  rclone:
-    container_name: rclone
+  # Creates backups and syncs them to a cloud service
+  cloud-backup:
     image: rclone/rclone:latest
     command: rcd --rc-web-gui --rc-addr :5572
     restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./rclone/config/:/config/rclone
-      - ./:/all-containers-data
+      - ./rclone/script/:/script
+      - ./rclone/backups:/backups
+      - ./:/all-containers-data:ro
     labels:
       ofelia.enabled: "true"
 
       # Create an archive at 2 am every day
       ofelia.job-exec.archive-docker-volume.schedule: "0 0 2 * * *" 
-      ofelia.job-exec.archive-docker-volume.command: "/bin/sh -c /docker-volume/rclone/script/backup.sh"
+      ofelia.job-exec.archive-docker-volume.command: "/bin/sh -c /script/backup.sh"
 
       # Sync to cloud service at 3 am every day
       ofelia.job-exec.cloud-sync.schedule: "0 0 3 * * *" 
