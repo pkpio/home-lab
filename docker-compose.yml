@@ -23,9 +23,9 @@ services:
     restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./rclone/config/:/config/rclone
-      - ./rclone/script/:/script
-      - ./rclone/backups:/backups
+      - ./cloud-backup/config/:/config/rclone
+      - ./cloud-backup/script/:/script
+      - ./cloud-backup/backups:/backups
       - ./:/all-containers-data:ro
     labels:
       ofelia.enabled: "true"

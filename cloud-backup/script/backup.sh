@@ -9,7 +9,7 @@ SOURCE_DIR=/all-containers-data
 DESTINATION_DIR=/backups
 ARCHIVE_FILEPATH="$DESTINATION_DIR/$ARCHIVE_FILENAME"
 
-tar --exclude='**/rclone/backups*' -cpzf $ARCHIVE_FILEPATH $SOURCE_DIR
+tar --exclude='**/cloud-backup/backups*' -cpzf $ARCHIVE_FILEPATH $SOURCE_DIR
 echo "Backed up $ARCHIVE_FILEPATH to $SOURCE_DIR"
 
 # Delete backups older than 10 days

@@ -41,5 +41,5 @@ production_auth.json
 .sonoff.json
 adbkey
 backups
-rclone/data/
+cloud-backup/data/
 rclone.conf
