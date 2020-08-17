@@ -52,6 +52,6 @@ services:
       - '9091:9091'
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./torrent-client/transmission-home:/data
+      - ./torrent-client/data/:/data
     env_file:
       - torrent-client/.env
