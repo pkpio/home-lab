@@ -47,28 +47,11 @@ services:
     image: haugene/transmission-openvpn:latest-armhf
     cap_add:
       - NET_ADMIN
-    devices:
-      - "/dev/net/tun"
     restart: always
     ports:
-      - "9091:9091"
-      - "8888:8888"
-    dns:
-      - 8.8.8.8
-      - 8.8.4.4
+      - '9091:9091'
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./torrent-client/transmission-home:/data
     env_file:
       - torrent-client/.env
-
-  # Proxy to access the transmission client's API 
-  torrent-api-proxy:
-    container_name: torrent-api-proxy
-    image: haugene/transmission-openvpn-proxy:latest-armhf
-    links:
-      - torrent-client
-    ports:
-      - "8080:8080"
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
