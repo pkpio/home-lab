@@ -12,66 +12,26 @@ services:
       - ./home-assistant/config/:/config
     network_mode: host
 
-  #======================== Cron service ======================#
-  # Schedules cron jobs on different docker containers or host
+
+  #====================== Zigbee dongle =======================#
+  # Runs deconz to support conbee ii usb zigbee dongle
   #============================================================#
-  cron:
-    container_name: cron
-    build: https://github.com/mcuadros/ofelia.git
+  zigbee-app:
+    container_name: zigbee-app
+    image: marthoc/deconz:latest
     restart: always
-    command: daemon --docker
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-
-  #=================== Backup & cloud sync ====================#
-  # Creates backups and syncs them to a cloud service
-  #============================================================#
-  cloud-backup:
-    container_name: cloud-backup
-    image: rclone/rclone:latest
-    restart: always
-    command: rcd --rc-web-gui --rc-addr :5572
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ./cloud-backup/config/:/config/rclone
-      - ./cloud-backup/script/:/script
-      - ./cloud-backup/backups:/backups
-      - ./:/all-containers-data:ro
-    labels:
-      ofelia.enabled: "true"
-
-      # Create an archive at 2 am every day
-      ofelia.job-exec.archive-docker-volume.schedule: "0 0 2 * * *" 
-      ofelia.job-exec.archive-docker-volume.command: "/bin/sh -c /script/backup.sh"
-
-      # Sync to cloud service at 3 am every day
-      ofelia.job-exec.cloud-sync.schedule: "0 0 3 * * *" 
-      ofelia.job-exec.cloud-sync.command: "rclone sync /backups cloud:/Home-Assistance-Backups"
-
-  #===================== Torrent client =======================#
-  # Runs tranmission torrent client through an OpenVPN tunnel
-  #============================================================#
-  torrent-client:
-    container_name: torrent-client
-    image: haugene/transmission-openvpn:latest-armhf
-    restart: unless-stopped
-    cap_add:
-      - NET_ADMIN
     ports:
-      - 9091:9091
-      - 8888:8888
-    dns:
-      - 8.8.8.8
-      - 8.8.4.4
+      - 40850:40850/tcp
+      - 8081:8081/tcp
+      - 5900:5900/tcp
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./torrent-client/data/:/data
+      - ./zigbee-app/config:/root/.local/share/dresden-elektronik/deCONZ
     devices:
-      - /dev/net/tun
+      - /dev/ttyACM0
     env_file:
-      - torrent-client/.env
-    network_mode: host
+      - zigbee-app/.env
+
 
   #====================== Media server ========================#
   # Runs Plex media server in docker. TODO: Setup to use 
@@ -98,3 +58,68 @@ services:
       - ./media-server/data:/data
     env_file:
       - media-server/.env
+
+
+  #======================== Cron service ======================#
+  # Schedules cron jobs on different docker containers or host
+  #============================================================#
+  cron:
+    container_name: cron
+    build: https://github.com/mcuadros/ofelia.git
+    restart: always
+    command: daemon --docker
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+
+  #=================== Backup & cloud sync ====================#
+  # Creates backups and syncs them to a cloud service
+  #============================================================#
+  cloud-backup:
+    container_name: cloud-backup
+    image: rclone/rclone:latest
+    restart: always
+    command: rcd --rc-web-gui --rc-addr :5572
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./cloud-backup/config:/config/rclone
+      - ./cloud-backup/script:/script
+      - ./cloud-backup/backups:/backups
+      - ./:/all-containers-data:ro
+    labels:
+      ofelia.enabled: "true"
+
+      # Create an archive at 2 am every day
+      ofelia.job-exec.archive-docker-volume.schedule: "0 0 2 * * *" 
+      ofelia.job-exec.archive-docker-volume.command: "/bin/sh -c /script/backup.sh"
+
+      # Sync to cloud service at 3 am every day
+      ofelia.job-exec.cloud-sync.schedule: "0 0 3 * * *" 
+      ofelia.job-exec.cloud-sync.command: "rclone sync /backups cloud:/Home-Assistance-Backups"
+
+
+  #===================== Torrent client =======================#
+  # Runs tranmission torrent client through an OpenVPN tunnel
+  #============================================================#
+  torrent-client:
+    container_name: torrent-client
+    image: haugene/transmission-openvpn:latest-armhf
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 9091:9091
+      - 8888:8888
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./torrent-client/data:/data
+    devices:
+      - /dev/net/tun
+    env_file:
+      - torrent-client/.env
+    network_mode: host
+

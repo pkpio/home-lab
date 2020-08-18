@@ -1,23 +1,34 @@
 # Install OS and basics setup
 ----
-1. Get [Raspberry Pi Imager](https://www.raspberrypi.org/downloads/)
-2. I used 64-bit Ubuntu server 20.04 LTS
-3. Enable [SSH access](https://pimylifeup.com/ubuntu-server-raspberry-pi/) before powering up the Pi
-4. Change hostname if (optional)
-5. Allocate static IP on the router (optional)
+- I run on Ubuntu 20.04 server
+- Allocate static IP on the router (optional)
 
-# Setup Docker
+# Docker & docker-compose
 ----
-- Install [docker and docker compose using instructions here](https://devdojo.com/bobbyiliev/how-to-install-docker-and-docker-compose-on-raspberry-pi)
+- Install Docker 
+- Install docker-compose
+- Change the images in docker-compose to match your system arch type
 
-# Setup ADB
+# ADB authentication for Home Assistant
 ----
 This is required for the Android TV integration.
 - Install adb `sudo apt install android-tools-adb`
 - Authorize adb with the TV `adb connect TV_IP`
-- Clone this repo
-- Copy authorized key to config `cp ~/.android/adbkey config/adbkey`
+- Copy authorized key to config `cp ~/.android/adbkey home-assistant/config/adbkey`
 
-# Setup backups (optional)
+# Cloud sync for backups
 ----
-- Authorize dropbox with rsync container and move the config to `docker-volume/config/rclone.conf`
+- Authorize a cloud service with cloud-backup container. It runs rsync - check docs for how to authenticate a service. Name the service as `cloud` to avoid having to make changes in `docker-compose.yaml`
+
+# Plex Media Server
+----
+Check [docs here](https://github.com/plexinc/pms-docker)
+- Needs Plex claim code unless you are migrating an existing instance
+
+# Deconz
+----
+Check [docs here](https://phoscon.de/en/conbee/install#docker)
+- Grant USB permissions to current user `sudo usermod -a -G dialout $USER`
+- Check that deconz USB stick is mounted at `/dev/ttyACM0` if not
+	- Change device in `docker-compose.yml`
+	- Change device in `zigbee-app/.env`
