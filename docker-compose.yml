@@ -68,6 +68,7 @@ services:
     labels:
       - "traefik.port=61208"
       - "traefik.frontend.rule=Host:glances.docker.localhost"
+    network_mode: host
 
 
   #======================== Cron service ======================#
@@ -118,9 +119,6 @@ services:
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
-    ports:
-      - 9091:9091
-      - 8888:8888
     dns:
       - 8.8.8.8
       - 8.8.4.4
