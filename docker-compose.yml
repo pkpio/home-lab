@@ -53,6 +53,23 @@ services:
     network_mode: host
 
 
+  #====================== Monitoring ========================#
+  # Runs Glances to monitor the resources of the Host
+  #============================================================#
+  monitoring:
+    container_name: monitoring
+    image: nicolargo/glances:latest-alpine
+    restart: unless-stopped
+    pid: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - "GLANCES_OPT=-w"
+    labels:
+      - "traefik.port=61208"
+      - "traefik.frontend.rule=Host:glances.docker.localhost"
+
+
   #======================== Cron service ======================#
   # Schedules cron jobs on different docker containers or host
   #============================================================#
