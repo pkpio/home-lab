@@ -45,3 +45,5 @@ cloud-backup/data/
 torrent-client/data/
 rclone.conf
 media-server/config/
+media-server/data/
+media-server/transcode/
