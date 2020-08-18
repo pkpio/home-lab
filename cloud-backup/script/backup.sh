@@ -1,6 +1,7 @@
 #!/bin/sh
-# Creates an archive of docker-volume each day at rclone/backups
-# rclone/backups itself won't be part of this archive
+# Creates an archive of everything in the repo's local copy.
+# Certain paths are included as they are not essential to a 
+# restore in the event of a failure or migration. 
 
 TIME=`date +%b-%d-%y`
 ARCHIVE_FILENAME=all-containers-data-$TIME.tar.gz
@@ -9,7 +10,17 @@ SOURCE_DIR=/all-containers-data
 DESTINATION_DIR=/backups
 ARCHIVE_FILEPATH="$DESTINATION_DIR/$ARCHIVE_FILENAME"
 
-tar --exclude='**/cloud-backup/backups*' -cpzf $ARCHIVE_FILEPATH $SOURCE_DIR
+# Bundle everything except excluded data
+# - Exclude cloud-backup/backups/ that's where we create backups
+# - Exclude /torrent-client/data/incomplete/ where we keep pending downloads
+# - Exclude media-server/data/ where we keep downloaded files
+# - Exclude media-server/transcode/ where PMS keeps transcoding caches
+tar \
+	--exclude='**/cloud-backup/backups/*' \
+	--exclude='**/torrent-client/data/incomplete/*' \
+	--exclude='**/media-server/data/*' \
+	--exclude='**/media-server/transcode/*' \
+	-cpzf $ARCHIVE_FILEPATH $SOURCE_DIR
 echo "Backed up $ARCHIVE_FILEPATH to $SOURCE_DIR"
 
 # Delete backups older than 10 days
