@@ -1,29 +1,37 @@
 version: '3'
 services:
+  #======================= Home Assistant =====================#
+  # Hosts home-assistant instance
+  #============================================================#
   home-assistant:
     container_name: home-assistant
     image: homeassistant/raspberrypi4-homeassistant:stable
+    restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./home-assistant/config/:/config
-    restart: always
     network_mode: host
 
+  #======================== Cron service ======================#
   # Schedules cron jobs on different docker containers or host
+  #============================================================#
   cron:
     container_name: cron
     build: https://github.com/mcuadros/ofelia.git
+    restart: always
     command: daemon --docker
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
+  #=================== Backup & cloud sync ====================#
   # Creates backups and syncs them to a cloud service
+  #============================================================#
   cloud-backup:
     container_name: cloud-backup
     image: rclone/rclone:latest
-    command: rcd --rc-web-gui --rc-addr :5572
     restart: always
+    command: rcd --rc-web-gui --rc-addr :5572
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./cloud-backup/config/:/config/rclone
@@ -41,15 +49,18 @@ services:
       ofelia.job-exec.cloud-sync.schedule: "0 0 3 * * *" 
       ofelia.job-exec.cloud-sync.command: "rclone sync /backups cloud:/Home-Assistance-Backups"
 
+  #===================== Torrent client =======================#
   # Runs tranmission torrent client through an OpenVPN tunnel
+  #============================================================#
   torrent-client:
     container_name: torrent-client
     image: haugene/transmission-openvpn:latest-armhf
+    restart: unless-stopped
     cap_add:
       - NET_ADMIN
-    restart: always
     ports:
-      - '9091:9091'
+      - 9091:9091
+      - 8888:8888
     dns:
       - 8.8.8.8
       - 8.8.4.4
@@ -61,3 +72,29 @@ services:
     env_file:
       - torrent-client/.env
     network_mode: host
+
+  #====================== Media server ========================#
+  # Runs Plex media server in docker. TODO: Setup to use 
+  # graphic card for hardware accelarated transcoding.
+  #============================================================#
+  media-server:
+    container_name: media-server
+    image: plexinc/pms-docker:latest
+    restart: unless-stopped
+    ports:
+      - 32400:32400/tcp
+      - 3005:3005/tcp
+      - 8324:8324/tcp
+      - 32469:32469/tcp
+      - 1900:1900/udp
+      - 32410:32410/udp
+      - 32412:32412/udp
+      - 32413:32413/udp
+      - 32414:32414/udp
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./media-server/config:/config
+      - ./media-server/transcode:/transcode
+      - ./media-server/data:/data
+    env_file:
+      - media-server/.env
