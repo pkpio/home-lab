@@ -110,6 +110,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./torrent-client/data:/data
+      - ./media-server/data:/internal-hd
     devices:
       - /dev/net/tun
     env_file:
