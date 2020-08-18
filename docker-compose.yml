@@ -5,7 +5,7 @@ services:
   #============================================================#
   home-assistant:
     container_name: home-assistant
-    image: homeassistant/raspberrypi4-homeassistant:stable
+    image: homeassistant/home-assistant:stable
     restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -66,7 +66,7 @@ services:
   #============================================================#
   cron:
     container_name: cron
-    build: https://github.com/mcuadros/ofelia.git
+    image: mcuadros/ofelia:latest
     restart: always
     command: daemon --docker
     volumes:
@@ -105,7 +105,7 @@ services:
   #============================================================#
   torrent-client:
     container_name: torrent-client
-    image: haugene/transmission-openvpn:latest-armhf
+    image: haugene/transmission-openvpn:latest
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
