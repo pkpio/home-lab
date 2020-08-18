@@ -21,7 +21,7 @@ tar \
 	--exclude='**/media-server/data/*' \
 	--exclude='**/media-server/transcode/*' \
 	-cpzf $ARCHIVE_FILEPATH $SOURCE_DIR
-echo "Backed up $ARCHIVE_FILEPATH to $SOURCE_DIR"
+echo "Backed up $SOURCE_DIR to $ARCHIVE_FILEPATH"
 
 # Delete backups older than 10 days
 find $DESTINATION_DIR -name 'all-containers-data-*.tar.gz' -mtime +10 -exec rm {} \;
