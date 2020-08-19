@@ -16,22 +16,21 @@ services:
   #====================== Zigbee dongle =======================#
   # Runs deconz to support conbee ii usb zigbee dongle
   #============================================================#
-  #!!!!!!!!!! Add this back on migrating the USB dongle !!!!!!!!!
-  # zigbee-app:
-  #   container_name: zigbee-app
-  #   image: marthoc/deconz:latest
-  #   restart: always
-  #   ports:
-  #     - 40850:40850/tcp
-  #     - 8081:8081/tcp
-  #     - 5900:5900/tcp
-  #   volumes:
-  #     - /etc/localtime:/etc/localtime:ro
-  #     - ./zigbee-app/config:/root/.local/share/dresden-elektronik/deCONZ
-  #   devices:
-  #     - /dev/ttyACM0
-  #   env_file:
-  #     - zigbee-app/.env
+  zigbee-app:
+    container_name: zigbee-app
+    image: marthoc/deconz:latest
+    restart: always
+    ports:
+      - 8080:8080
+      - 8443:8443
+      - 5900:5900
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./zigbee-app/config:/root/.local/share/dresden-elektronik/deCONZ
+    devices:
+      - /dev/ttyACM0
+    env_file:
+      - zigbee-app/.env
 
 
   #====================== Media server ========================#
@@ -63,6 +62,7 @@ services:
     pid: host
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - /media/external-hd:/external-hd:ro
     environment:
       - "GLANCES_OPT=-w"
     labels:
