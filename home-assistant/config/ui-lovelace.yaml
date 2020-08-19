@@ -2,3 +2,4 @@ title: 51 Hutton
 
 views:
 - !include /config/lovelace/views/view_home.yaml
+# - !include /config/lovelace/views/view_host_monitor.yaml
