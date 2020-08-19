@@ -1,0 +1,18 @@
+#=================================================
+# Automations to notify about printer
+#=================================================
+- alias: Notify when printer ink is low
+  trigger:
+    platform: numeric_state
+    entity_id: 
+      - sensor.canon_ts3100_series_black
+      - sensor.canon_ts3100_series_color
+    below: 50
+  action:
+  - service: notify.notify
+    data_template:
+      title: Printer ink running low!
+      message: >-
+        Black: {{ states('sensor.canon_ts3100_series_black') }}%, Color: {{ states('sensor.canon_ts3100_series_color') }}%
+      data:
+        image: https://i.ibb.co/sJhyZz6/toner-low.jpg
