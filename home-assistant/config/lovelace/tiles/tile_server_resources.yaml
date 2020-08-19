@@ -1,0 +1,56 @@
+type: vertical-stack
+title: Resources
+cards:
+- type: gauge
+  entity: sensor.homeassistant_cpu_used
+  max: 100
+  min: 0
+  severity:
+    green: 0
+    yellow: 25
+    red: 50
+  name: CPU
+
+- type: horizontal-stack
+  cards:
+  - type: gauge
+    entity: sensor.homeassistant_ram_used
+    max: 15400
+    min: 0
+    severity:
+      green: 0
+      yellow: 5000
+      red: 10000
+    name: Memory
+
+  - type: gauge
+    entity: sensor.homeassistant_swap_used
+    max: 1907
+    min: 0
+    severity:
+      green: 0
+      yellow: 700
+      red: 1200
+    name: Swap
+
+- type: horizontal-stack
+  cards:
+  - type: gauge
+    entity: sensor.homeassistant_etc_hostname_used
+    max: 109
+    min: 0
+    severity:
+      green: 0
+      yellow: 50
+      red: 80
+    name: Internal HD
+
+  - type: gauge
+    entity: sensor.homeassistant_external_hd_used
+    max: 1820
+    min: 0
+    severity:
+      green: 0
+      yellow: 1000
+      red: 1500
+    name: External HD

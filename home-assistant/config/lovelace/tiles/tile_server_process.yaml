@@ -1,0 +1,13 @@
+type: vertical-stack
+title: Process
+cards:
+- type: glance
+  entities:
+  - entity: sensor.homeassistant_total
+    name: Total
+  - entity: sensor.homeassistant_running
+    name: Running
+  - entity: sensor.homeassistant_sleeping
+    name: Sleeping
+  - entity: sensor.homeassistant_thread
+    name: Threads

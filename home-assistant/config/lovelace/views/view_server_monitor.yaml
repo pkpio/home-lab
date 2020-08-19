@@ -1,0 +1,10 @@
+title: Server Monitoring
+icon: mdi:server
+path: server-monitoring
+panel: true
+cards:
+- type: custom:layout-card
+  cards:
+  - !include /config/lovelace/tiles/tile_server_resources.yaml
+  - !include /config/lovelace/tiles/tile_server_temperature.yaml
+  - !include /config/lovelace/tiles/tile_server_process.yaml

@@ -1,1 +1,12 @@
-  use_include_order: True
+use_include_order: true
+include:
+  domains:
+  - light
+  - vacuum
+  - media_player
+  - switch
+  - sensor
+  - binary_sensor
+  - input_boolean
+  - input_select
+  - input_number

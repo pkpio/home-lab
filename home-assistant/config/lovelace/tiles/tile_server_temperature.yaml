@@ -1,0 +1,48 @@
+type: vertical-stack
+title: Temperature
+cards:
+- type: 'custom:mini-graph-card'
+  name: CPU - Core 0
+  aggregate_func: max
+  animate: true
+  color_thresholds:
+    - color: '#3482fd'
+      value: 30
+    - color: '#69b932'
+      value: 40
+    - color: '#fdcf57'
+      value: 50
+    - color: '#e85342'
+      value: 60
+  color_thresholds_transition: hard
+  decimals: 0
+  entities:
+    - entity: sensor.homeassistant_core_0_temp
+      name: Core 0
+  hours_to_show: 24
+  icon: 'mdi:thermometer'
+  line_width: 3
+  points_per_hour: 1
+
+- type: 'custom:mini-graph-card'
+  name: CPU - Core 1
+  aggregate_func: max
+  animate: true
+  color_thresholds:
+    - color: '#3482fd'
+      value: 30
+    - color: '#69b932'
+      value: 40
+    - color: '#fdcf57'
+      value: 50
+    - color: '#e85342'
+      value: 60
+  color_thresholds_transition: hard
+  decimals: 0
+  entities:
+    - entity: sensor.homeassistant_core_1_temp
+      name: Core 0
+  hours_to_show: 24
+  icon: 'mdi:thermometer'
+  line_width: 3
+  points_per_hour: 1
