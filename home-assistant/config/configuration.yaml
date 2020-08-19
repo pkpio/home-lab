@@ -109,12 +109,3 @@ transmission:
   name: Torrent client
   username: !secret transmission_username
   password: !secret transmission_password
-
-speedtestdotnet:
-    server_id: !secret speedtest_serverid
-    scan_interval:
-        minutes: 60
-    monitored_conditions:
-        - ping
-        - download
-        - upload
