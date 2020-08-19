@@ -98,3 +98,14 @@ notify:
 - platform: nfandroidtv
   name: Lounge TV
   host: !secret android_tv_host
+
+glances:
+- name: homeassistant
+  host: !secret home_assistant_host
+
+transmission:
+  host: !secret home_assistant_host
+  port: 9091
+  name: Torrent client
+  username: !secret transmission_username
+  password: !secret transmission_password
