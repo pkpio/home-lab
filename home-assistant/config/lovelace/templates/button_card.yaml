@@ -7,16 +7,20 @@ cover_title_button:
   template: cover_button
   tap_action:
     action: more-info
+  show_icon: false
+  show_state: true
+  show_name: true
   styles:
     card:
-    - font-size: 24px
-    - font-weight: bold
+    - font-size: 16px
 
 cover_control_button:
   template: cover_button
   variables:
     action_service: cover.open_cover
+  show_icon: true
   show_state: false
+  show_name: false
   styles:
     card:
     - width: 80px
