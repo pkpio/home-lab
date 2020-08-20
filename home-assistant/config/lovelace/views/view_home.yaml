@@ -1,4 +1,6 @@
 title: Home
+icon: mdi:home-heart
+path: home
 
 badges:
 - entity: sun.sun

@@ -1,0 +1,8 @@
+title: COVID 19
+icon: mdi:biohazard
+path: server-monitoring
+panel: true
+cards:
+- type: iframe
+  url: 'https://public.flourish.studio/visualisation/1561577/embed?auto=1'
+  aspect_ratio: 90%
