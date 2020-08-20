@@ -1,6 +1,6 @@
 title: COVID 19
 icon: mdi:biohazard
-path: server-monitoring
+path: covid-19
 panel: true
 cards:
 - type: iframe
