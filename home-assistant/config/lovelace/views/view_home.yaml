@@ -4,11 +4,21 @@ path: home
 
 badges:
 - entity: sun.sun
+
 - entity: person.praveen
 - entity: person.mar
 
+- entity: sensor.living_room_environment
+  name: Living room
+- entity: sensor.bedroom_environment
+  name: Bedroom
+- entity: sensor.hallway_environment
+  name: Hallway
+- entity: sensor.guestroom_environment
+  name: Guest room
+
 cards:
-- !include /config/lovelace/tiles/tile_living_room_lights.yaml
-- !include /config/lovelace/tiles/tile_living_room_curtains.yaml
-- !include /config/lovelace/tiles/tile_living_room_media.yaml
+- !include /config/lovelace/tiles/tile_all_room_lights.yaml
+- !include /config/lovelace/tiles/tile_all_curtains.yaml
+- !include /config/lovelace/tiles/tile_all_media_players.yaml
 - !include /config/lovelace/tiles/tile_robovac.yaml

@@ -1,0 +1,19 @@
+title: Lights
+type: entities
+entities:
+- entity: light.living_room_lights
+  name: Living room
+- entity: light.lounge_lights
+  name: Lounge
+- entity: light.kitchen_lights
+  name: Kitchen
+- entity: light.cooktop_light
+  name: Cooktop
+- entity: light.dining_lights
+  name: Dining
+- entity: light.balcony_light
+  name: Balcony
+- entity: light.bedroom_lights
+  name: Bedroom
+- entity: light.hallway_lights
+  name: Hallway

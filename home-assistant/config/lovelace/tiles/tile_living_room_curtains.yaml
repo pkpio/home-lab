@@ -1,5 +1,0 @@
-title: Curtains
-type: entities
-entities:
-  - entity: cover.balcony_curtain
-  - entity: cover.study_curtain

@@ -1,0 +1,15 @@
+title: Media
+type: entities
+entities:
+- entity: media_player.lounge_android_tv
+  name: Lounge TV
+- entity: media_player.lounge_tv_chromecast
+  name: Lounge Chromecast
+- entity: media_player.kitchen_display
+  name: Kitchen
+- entity: media_player.hallway_speaker
+  name: Dining
+- entity: media_player.bedroom_speakers
+  name: Bedroom
+- entity: media_player.ensuite_speaker
+  name: Ensuite

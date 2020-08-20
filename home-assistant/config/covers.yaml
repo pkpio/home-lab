@@ -1,0 +1,7 @@
+# Grouping curtains
+
+- platform: group
+  name: Living room curtains
+  entities:
+  - cover.study_curtain
+  - cover.balcony_curtain

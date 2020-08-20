@@ -1,8 +1,10 @@
 mode: yaml
 resources:
-- url: /hacsfiles/vacuum-card/vacuum-card.js
+- url: /hacsfiles/custom-header/custom-header.js
   type: module
 - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
+  type: module
+- url: /hacsfiles/vacuum-card/vacuum-card.js
   type: module
 - url: /hacsfiles/button-card/button-card.js
   type: module
@@ -13,4 +15,8 @@ resources:
 - url: /hacsfiles/lovelace-layout-card/layout-card.js
   type: module
 - url: /hacsfiles/lovelace-card-mod/card-mod.js
+  type: module
+- url: /hacsfiles/lovelace-auto-entities/auto-entities.js
+  type: module
+- url: /hacsfiles/lovelace-swipe-navigation/swipe-navigation.js
   type: module

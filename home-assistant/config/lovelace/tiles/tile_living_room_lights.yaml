@@ -1,9 +1,0 @@
-title: Lights
-type: entities
-entities:
-  - entity: light.living_room_lights
-  - entity: light.lounge_lights
-  - entity: light.kitchen_lights
-  - entity: light.cooktop_light
-  - entity: light.dining_lights
-  - entity: light.balcony_light
