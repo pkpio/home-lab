@@ -1,0 +1,46 @@
+type: vertical-stack
+title: Torrent client
+cards:
+- type: history-graph
+  entities:
+  - entity: sensor.torrent_client_status
+  hours_to_show: 12
+  refresh_interval: 0
+
+- type: glance
+  entities:
+  - entity: sensor.torrent_client_total_torrents
+    icon: 'mdi:download-multiple'
+    name: Total
+  - entity: sensor.torrent_client_active_torrents
+    icon: 'mdi:play-speed'
+    name: Active
+  - entity: sensor.torrent_client_paused_torrents
+    icon: 'mdi:check-circle-outline'
+    name: Completed
+
+- type: glance
+  entities:
+  - entity: sensor.torrent_client_down_speed
+    icon: 'mdi:arrow-down-bold'
+    name: Down
+  - entity: sensor.torrent_client_up_speed
+    icon: 'mdi:arrow-up-bold'
+    name: Up
+
+- type: glance
+  entities:
+  - entity: switch.torrent_client_switch
+    icon: 'mdi:power'
+    name: Status
+    tap_action:
+      action: toggle
+    hold_action:
+      action: more-info
+  - entity: switch.torrent_client_turtle_mode
+    icon: 'mdi:turtle'
+    name: Slow mode
+    tap_action:
+      action: toggle
+    hold_action:
+      action: more-info

@@ -8,3 +8,4 @@ cards:
   - !include /config/lovelace/tiles/tile_server_resources.yaml
   - !include /config/lovelace/tiles/tile_server_temperature.yaml
   - !include /config/lovelace/tiles/tile_server_process.yaml
+  - !include /config/lovelace/tiles/tile_server_torrent_client.yaml
