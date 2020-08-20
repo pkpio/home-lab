@@ -2,7 +2,6 @@ filter:
   # Disconnect Hue in Google assistant to avoid duplicate lights
   # I see HA as better than Hue because it won't pollute with so many scenes in Google home
   include_domains:
-  - cover
   - vacuum
 
   include_entities:
@@ -22,6 +21,12 @@ filter:
 
   - light.electronics_storage_light
   - light.shoe_storage_light
+
+  # Curtains
+  - cover.bedroom_curtain
+  - cover.study_curtain
+  - cover.balcony_curtain
+  - cover.living_room_curtains
 
   # All media players in the home are google cast enabled. They will appear in the google assistant
   exclude_domains:
@@ -67,6 +72,10 @@ entity_config:
     room: Storage
 
   ##### Covers #####
+  cover.living_room_curtains:
+    room: Living room
+  cover.study_curtain:
+    room: Living room
   cover.balcony_curtain:
     room: Living room
 
