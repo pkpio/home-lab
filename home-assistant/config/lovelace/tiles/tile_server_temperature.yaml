@@ -3,7 +3,7 @@ title: Temperature
 cards:
 - type: 'custom:mini-graph-card'
   name: CPU - Core 0
-  aggregate_func: max
+  aggregate_func: avg
   animate: true
   color_thresholds:
     - color: '#3482fd'
@@ -26,7 +26,7 @@ cards:
 
 - type: 'custom:mini-graph-card'
   name: CPU - Core 1
-  aggregate_func: max
+  aggregate_func: avg
   animate: true
   color_thresholds:
     - color: '#3482fd'
