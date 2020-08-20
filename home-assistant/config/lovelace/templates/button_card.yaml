@@ -11,8 +11,11 @@ cover_title_button:
   show_state: true
   show_name: true
   styles:
-    card:
+    name:
     - font-size: 16px
+    label:
+    - font-size: 12px
+    - color: blue
 
 cover_control_button:
   template: cover_button
@@ -24,7 +27,6 @@ cover_control_button:
   styles:
     card:
     - width: 80px
-    - font-size: 12px
   tap_action:
     action: call-service
     service: '[[[ return variables.action_service ]]]'
