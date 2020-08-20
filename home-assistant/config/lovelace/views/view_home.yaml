@@ -18,7 +18,7 @@ badges:
   name: Guest room
 
 cards:
-- !include /config/lovelace/tiles/tile_all_room_lights.yaml
+- !include /config/lovelace/tiles/tile_all_lights.yaml
 - !include /config/lovelace/tiles/tile_all_curtains.yaml
 - !include /config/lovelace/tiles/tile_all_media_players.yaml
 - !include /config/lovelace/tiles/tile_robovac.yaml
