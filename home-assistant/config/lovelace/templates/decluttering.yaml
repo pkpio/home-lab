@@ -5,13 +5,13 @@ curtain_controls:
   card:
     type: horizontal-stack
     cards:
-    - type: markdown
-      content: >
-        <br/>
-        '### [[name]]'
+    - type: custom:button-card
+      template: cover_title_button
+      name: '[[name]]'
+      entity: '[[entity_id]]'
 
     - type: custom:button-card
-      template: curtain_control_button
+      template: cover_control_button
       name: Open
       entity: '[[entity_id]]'
       variables:
@@ -19,7 +19,7 @@ curtain_controls:
       icon: mdi:code-tags
 
     - type: custom:button-card
-      template: curtain_control_button
+      template: cover_control_button
       name: Stop
       entity: '[[entity_id]]'
       variables:
@@ -27,7 +27,7 @@ curtain_controls:
       icon: mdi:stop-circle-outline
 
     - type: custom:button-card
-      template: curtain_control_button
+      template: cover_control_button
       name: Close
       entity: '[[entity_id]]'
       variables:

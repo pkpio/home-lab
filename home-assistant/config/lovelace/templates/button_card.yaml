@@ -1,13 +1,26 @@
-curtain_control_button:
+cover_button:
+  styles:
+    card:
+    - height: 80px
+
+cover_title_button:
+  template: cover_button
+  tap_action:
+    action: more-info
+  styles:
+    card:
+    - font-size: 24px
+    - font-weight: bold
+
+cover_control_button:
+  template: cover_button
   variables:
     action_service: cover.open_cover
   show_state: false
   styles:
     card:
-      - height: 80px
-      - width: 80px
-      - font-size: 12px
-      - font-weight: bold
+    - width: 80px
+    - font-size: 12px
   tap_action:
     action: call-service
     service: '[[[ return variables.action_service ]]]'
