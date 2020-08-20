@@ -1,6 +1,7 @@
 title: Home Control Center
 
-decluttering_templates: !include /config/lovelace/templates/curtain_controls.yaml
+button_card_templates: !include /config/lovelace/templates/button_card.yaml
+decluttering_templates: !include /config/lovelace/templates/decluttering.yaml
 
 views:
 - !include /config/lovelace/views/view_home.yaml

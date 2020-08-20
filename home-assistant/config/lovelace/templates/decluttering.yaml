@@ -1,0 +1,33 @@
+curtain_controls:
+  default:
+    - name: Curtain
+    - entity_id: cover.balcony_curtain
+  card:
+    type: horizontal-stack
+    cards:
+    - type: markdown
+      content: '### [[name]]'
+
+    - type: custom:button-card
+      template: curtain_control_button
+      name: Open
+      entity: '[[entity_id]]'
+      variables:
+        action_service: cover.open_cover
+      icon: 'mdi:code-tags'
+
+    - type: custom:button-card
+      template: curtain_control_button
+      name: Stop
+      entity: '[[entity_id]]'
+      variables:
+        action_service: cover.stop_cover
+      icon: 'mdi:code-tags'
+
+    - type: custom:button-card
+      template: curtain_control_button
+      name: Close
+      entity: '[[entity_id]]'
+      variables:
+        action_service: cover.close_cover
+      icon: mdi:arrow-collapse-horizontal
