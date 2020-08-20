@@ -6,7 +6,9 @@ curtain_controls:
     type: horizontal-stack
     cards:
     - type: markdown
-      content: '### [[name]]'
+      content: >
+        <br/>
+        '### [[name]]'
 
     - type: custom:button-card
       template: curtain_control_button
@@ -14,7 +16,7 @@ curtain_controls:
       entity: '[[entity_id]]'
       variables:
         action_service: cover.open_cover
-      icon: 'mdi:code-tags'
+      icon: mdi:code-tags
 
     - type: custom:button-card
       template: curtain_control_button
@@ -22,7 +24,7 @@ curtain_controls:
       entity: '[[entity_id]]'
       variables:
         action_service: cover.stop_cover
-      icon: 'mdi:code-tags'
+      icon: mdi:stop-circle-outline
 
     - type: custom:button-card
       template: curtain_control_button
