@@ -3,7 +3,8 @@ curtain_controls:
     - name: Curtain
     - entity_id: cover.balcony_curtain
   card:
-    type: horizontal-stack
+    type: custom:vertical-stack-in-card
+    horizontal: true
     cards:
     - type: custom:button-card
       template: cover_title_button

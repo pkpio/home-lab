@@ -1,4 +1,4 @@
-type: vertical-stack
+type: custom:vertical-stack-in-card
 title: Resources
 cards:
 - type: gauge
@@ -11,7 +11,8 @@ cards:
     red: 50
   name: CPU
 
-- type: horizontal-stack
+- type: custom:vertical-stack-in-card
+  horizontal: true
   cards:
   - type: gauge
     entity: sensor.homeassistant_ram_used
@@ -33,7 +34,8 @@ cards:
       red: 1200
     name: Swap
 
-- type: horizontal-stack
+- type: custom:vertical-stack-in-card
+  horizontal: true
   cards:
   - type: gauge
     entity: sensor.homeassistant_etc_hostname_used

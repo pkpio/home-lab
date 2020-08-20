@@ -1,4 +1,4 @@
-type: vertical-stack
+type: custom:vertical-stack-in-card
 title: Curtains
 cards:
 - type: custom:decluttering-card
