@@ -1,4 +1,4 @@
-title: 51 Hutton
+title: Home Control Center
 
 views:
 - !include /config/lovelace/views/view_home.yaml
