@@ -1,11 +1,17 @@
-title: Curtains
-type: entities
-entities:
-- entity: cover.living_room_curtains
+# title: Curtains
+# type: entities
+# entities:
+# - entity: cover.living_room_curtains
+#   name: Living room
+# - entity: cover.balcony_curtain
+#   name: Balcony
+# - entity: cover.study_curtain
+#   name: Study
+# - entity: cover.bedroom_curtain
+#   name: Bedroom
+
+type: custom:decluttering-card
+template: curtain_controls
+variables:
+  entity_id: cover.living_room_curtains
   name: Living room
-- entity: cover.balcony_curtain
-  name: Balcony
-- entity: cover.study_curtain
-  name: Study
-- entity: cover.bedroom_curtain
-  name: Bedroom

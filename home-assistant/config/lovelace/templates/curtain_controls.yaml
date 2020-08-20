@@ -1,0 +1,57 @@
+curtain_controls:
+  default:
+  - name: Curtain
+  - entity_id: cover.balcony_curtain
+  card:
+    type: horizontal-stack
+    cards:
+    - type: markdown
+      content: '### [[[ return variables.name ]]]'
+
+    - type: button
+      name: Open
+      entity: '[[[ return variables.entity_id ]]]'
+      tap_action:
+        action: call-service
+        service: cover.open_cover
+        service_data:
+          entity_id: '[[[ return variables.entity_id ]]]'
+      hold_action:
+        action: more-info
+      show_icon: true
+      show_name: true
+      show_state: false
+      icon: 'mdi:code-tags'
+      icon_height: 30px
+
+    - type: button
+      name: Stop
+      entity: '[[[ return variables.entity_id ]]]'
+      tap_action:
+        action: call-service
+        service: cover.stop_cover
+        service_data:
+          entity_id: '[[[ return variables.entity_id ]]]'
+      hold_action:
+        action: more-info
+      show_icon: true
+      show_name: true
+      show_state: false
+      icon: 'mdi:stop-circle-outline'
+      icon_height: 30px
+
+    - type: button
+      name: Close
+      entity: '[[[ return variables.entity_id ]]]'
+      tap_action:
+        action: call-service
+        service: cover.close_cover
+        service_data:
+          entity_id: '[[[ return variables.entity_id ]]]'
+      hold_action:
+        action: more-info
+      show_icon: true
+      show_name: true
+      show_state: false
+      icon: 'mdi:arrow-collapse-horizontal'
+      icon_height: 30px
