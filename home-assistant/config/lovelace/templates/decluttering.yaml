@@ -16,6 +16,7 @@ curtain_controls:
       entity: '[[entity_id]]'
       variables:
         action_service: cover.open_cover
+        entity: '[[entity_id]]'
       icon: mdi:code-tags
 
     - type: custom:button-card
@@ -24,6 +25,7 @@ curtain_controls:
       entity: '[[entity_id]]'
       variables:
         action_service: cover.stop_cover
+        entity: '[[entity_id]]'
       icon: mdi:stop-circle-outline
 
     - type: custom:button-card
@@ -32,4 +34,5 @@ curtain_controls:
       entity: '[[entity_id]]'
       variables:
         action_service: cover.close_cover
+        entity: '[[entity_id]]'
       icon: mdi:arrow-collapse-horizontal
