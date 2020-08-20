@@ -1,4 +1,4 @@
-type: vertical-stack
+type: custom:vertical-stack-in-card
 title: Torrent client
 cards:
 - type: history-graph
