@@ -44,10 +44,28 @@ media_player:
     - entity_id: media_player.kitchen_display
     - icon: mdi:speaker
   card:
-    type: 'custom:mini-media-player'
+    type: custom:mini-media-player
     entity: '[[entity]]'
     icon: '[[icon]]'
     artwork: cover
     name: '[[name]]'
     hide:
       power: true
+
+battery_listing:
+  default:
+    - title: Battery levels
+    - include_filter: "sensor.*_activity_battery_level"
+  card:
+  type: custom:auto-entities
+    card:
+      type: custom:battery-state-card
+      title: '[[title]]'
+      sort_by_level: asc
+      color_gradient:
+        - "#ff0000" # red
+        - "#ffff00" # yellow
+        - "#00ff00" # green
+    filter:
+      include:
+      - entity_id: '[[include_filter]]'
