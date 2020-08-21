@@ -48,6 +48,6 @@ media_player:
     entity: '[[entity]]'
     icon: '[[icon]]'
     artwork: cover
-    name: '[[entity]]'
+    name: '[[name]]'
     hide:
       power: true
