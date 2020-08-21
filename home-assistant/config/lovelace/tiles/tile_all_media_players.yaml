@@ -7,12 +7,6 @@ cards:
   artwork: cover
   name: TV
 
-- type: 'custom:mini-media-player'
-  entity: media_player.lounge_tv_chromecast
-  icon: 'mdi:google-chrome'
-  artwork: cover
-  name: Chromecast Ultra
-
 - type: 'custom:vertical-stack-in-card'
   horizontal: true
   cards:
@@ -48,3 +42,9 @@ cards:
     name: Ensuite
     hide:
       power: true
+
+- type: 'custom:mini-media-player'
+  entity: media_player.lounge_tv_chromecast
+  icon: 'mdi:google-chrome'
+  artwork: cover
+  name: Chromecast Ultra

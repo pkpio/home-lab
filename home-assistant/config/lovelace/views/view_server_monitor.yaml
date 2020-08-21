@@ -2,6 +2,7 @@ title: Server Monitoring
 icon: mdi:server
 path: server-monitoring
 panel: true
+
 cards:
 - type: custom:layout-card
   cards:
