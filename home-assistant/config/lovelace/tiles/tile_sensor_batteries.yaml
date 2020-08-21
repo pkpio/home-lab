@@ -4,17 +4,20 @@ cards:
 - type: custom:decluttering-card
   template: battery_listing
   variables:
-  - title: motion
+  - title: Motion
   - include_filter: "sensor.*_activity_battery_level"
+  - rename: Activity
 
 - type: custom:decluttering-card
   template: battery_listing
   variables:
-  - title: environment
+  - title: Environment
   - include_filter: "sensor.*_environment_battery_level"
+  - rename: environment
 
 - type: custom:decluttering-card
   template: battery_listing
   variables:
-  - title: door
+  - title: Door
   - include_filter: "sensor.*_door_battery_level"
+  - rename: door
