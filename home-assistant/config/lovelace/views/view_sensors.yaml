@@ -1,0 +1,9 @@
+title: Sensor Monitor
+icon: mdi:eye
+path: sensor-monitor
+panel: true
+
+cards:
+- type: custom:layout-card
+  cards:
+  - !include /config/lovelace/tiles/tile_sensor_batteries.yaml

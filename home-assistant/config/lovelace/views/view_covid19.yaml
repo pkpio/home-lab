@@ -2,6 +2,7 @@ title: COVID 19
 icon: mdi:biohazard
 path: covid-19
 panel: true
+
 cards:
 - type: iframe
   url: 'https://public.flourish.studio/visualisation/1561577/embed?auto=1'
