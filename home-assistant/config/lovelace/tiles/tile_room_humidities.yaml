@@ -1,0 +1,26 @@
+type: custom:vertical-stack-in-card
+title: Room Humidities
+cards:
+- type: custom:decluttering-card
+  template: room_temperature_graph
+  variables:
+  - name: Living room
+  - entity: sensor.living_room_environment_2
+
+- type: custom:decluttering-card
+  template: room_temperature_graph
+  variables:
+  - name: Bedroom
+  - entity: sensor.bedroom_environment_2
+
+- type: custom:decluttering-card
+  template: room_temperature_graph
+  variables:
+  - name: Guest room
+  - entity: sensor.guestroom_environment_2
+
+- type: custom:decluttering-card
+  template: room_temperature_graph
+  variables:
+  - name: Hallway
+  - entity: sensor.hallway_environment_2

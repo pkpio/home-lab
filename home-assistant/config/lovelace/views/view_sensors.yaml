@@ -6,4 +6,6 @@ panel: true
 cards:
 - type: custom:layout-card
   cards:
+  - !include /config/lovelace/tiles/tile_room_temperatures.yaml
+  - !include /config/lovelace/tiles/tile_room_humidities.yaml
   - !include /config/lovelace/tiles/tile_sensor_batteries.yaml

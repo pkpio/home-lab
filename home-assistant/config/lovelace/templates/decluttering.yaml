@@ -1,7 +1,7 @@
 curtain_controls:
   default:
-    - name: Curtain
-    - entity: cover.balcony_curtain
+  - name: Curtain
+  - entity: ''
   card:
     type: custom:vertical-stack-in-card
     horizontal: true
@@ -40,9 +40,9 @@ curtain_controls:
 
 media_player:
   default:
-    - name: Kitchen
-    - entity_id: media_player.kitchen_display
-    - icon: mdi:speaker
+  - name: Speaker
+  - entity_id: ''
+  - icon: mdi:speaker
   card:
     type: custom:mini-media-player
     entity: '[[entity]]'
@@ -54,10 +54,10 @@ media_player:
 
 battery_listing:
   default:
-    - title: Battery levels
-    - include_filter: "sensor.*_activity_battery_level"
-    - rename: ''
-    - rename2: ''
+  - title: Battery levels
+  - include_filter: "sensor.*_battery_level"
+  - rename: ''
+  - rename2: ''
   card:
     type: custom:auto-entities
     card:
@@ -80,3 +80,92 @@ battery_listing:
     filter:
       include:
       - entity_id: '[[include_filter]]'
+
+sensor_graph:
+  default:
+  - name: Sensor Graph
+  - entity: ''
+  - icon: 'mdi:chart-bell-curve'
+  - color_0: '#00a9f4' # blue shade
+  - color_1: '#69b932' # green shade
+  - color_2: '#fdcf57' # yellow shade
+  - color_3: '#e85342' # red shade
+  - threshold_0: 0
+  - threshold_1: 20
+  - threshold_2: 40
+  - threshold_3: 60
+  card:
+    type: 'custom:mini-graph-card'
+    name: '[[name]]'
+    aggregate_func: avg
+    animate: true
+    color_thresholds:
+    - color: '[[color_0]]'
+      value: '[[threshold_0]]'
+    - color: '[[color_1]]'
+      value: '[[threshold_1]]'
+    - color: '[[color_2]]'
+      value: '[[threshold_2]]'
+    - color: '[[color_3]]'
+      value: '[[threshold_3]]'
+    color_thresholds_transition: hard
+    decimals: 0
+    entities:
+    - entity: '[[entity]]'
+      name: '[[name]]'
+    hours_to_show: 24
+    icon: '[[icon]]'
+    line_width: 3
+    points_per_hour: 1
+
+cpu_temperature_graph:
+  default:
+  - name: CPU Temperature
+  - entity: ''
+  card:
+    type: custom:decluttering-card
+    template: sensor_graph
+    variables:
+    - name: '[[name]]'
+    - entity: '[[entity]]'
+    - icon: 'mdi:thermometer-lines'
+    - threshold_0: 30
+    - threshold_1: 40
+    - threshold_2: 50
+    - threshold_3: 60
+
+room_temperature_graph:
+  default:
+  - name: Room Temperature
+  - entity: ''
+  card:
+    type: custom:decluttering-card
+    template: sensor_graph
+    variables:
+    - name: '[[name]]'
+    - entity: '[[entity]]'
+    - icon: 'mdi:thermometer'
+    - threshold_0: 10
+    - threshold_1: 20
+    - threshold_2: 25
+    - threshold_3: 30
+
+room_humidity_graph:
+  default:
+  - name: Room Humidity
+  - entity: ''
+  card:
+    type: custom:decluttering-card
+    template: sensor_graph
+    variables:
+    - name: '[[name]]'
+    - entity: '[[entity]]'
+    - icon: 'mdi:water-percent'
+    - threshold_0: 20
+    - threshold_1: 30
+    - threshold_2: 40
+    - threshold_3: 50 
+    - color_0: '#e85342' # red shade
+    - color_1: '#fdcf57' # yellow shade
+    - color_2: '#69b932' # green shade
+    - color_3: '#00a9f4' # blue shade
