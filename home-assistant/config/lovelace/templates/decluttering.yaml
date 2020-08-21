@@ -108,7 +108,7 @@ sensor_graph:
       value: '[[threshold_2]]'
     - color: '[[color_3]]'
       value: '[[threshold_3]]'
-    color_thresholds_transition: hard
+    color_thresholds_transition: smooth
     decimals: 0
     entities:
     - entity: '[[entity]]'
