@@ -8,40 +8,6 @@ cards:
   - name: TV
   - icon: 'mdi:television'
 
-- type: 'custom:vertical-stack-in-card'
-  horizontal: true
-  cards:
-  - type: custom:decluttering-card
-    template: media_player
-    variables:
-    - entity: media_player.kitchen_display
-    - name: Kitchen
-    - icon: 'mdi:monitor-dashboard'
-
-  - type: custom:decluttering-card
-    template: media_player
-    variables:
-    - entity: media_player.hallway_speaker
-    - name: Dining
-    - icon: 'mdi:silverware-variant'
-
-- type: 'custom:vertical-stack-in-card'
-  horizontal: true
-  cards:
-  - type: custom:decluttering-card
-    template: media_player
-    variables:
-    - entity: media_player.bedroom_speakers
-    - name: Bedroom
-    - icon: 'mdi:bed'
-
-  - type: custom:decluttering-card
-    template: media_player
-    variables:
-    - entity: media_player.ensuite_speaker
-    - name: Ensuite
-    - icon: 'mdi:shower-head'
-
 - type: custom:decluttering-card
   template: media_player
   variables:
@@ -49,3 +15,30 @@ cards:
   - name: Chromecast Ultra
   - icon: 'mdi:google-chrome'
 
+- type: custom:decluttering-card
+  template: media_player
+  variables:
+  - entity: media_player.kitchen_display
+  - name: Kitchen
+  - icon: 'mdi:monitor-dashboard'
+
+- type: custom:decluttering-card
+  template: media_player
+  variables:
+  - entity: media_player.hallway_speaker
+  - name: Dining
+  - icon: 'mdi:silverware-variant'
+
+- type: custom:decluttering-card
+  template: media_player
+  variables:
+  - entity: media_player.bedroom_speakers
+  - name: Bedroom
+  - icon: 'mdi:bed'
+
+- type: custom:decluttering-card
+  template: media_player
+  variables:
+  - entity: media_player.ensuite_speaker
+  - name: Ensuite
+  - icon: 'mdi:shower-head'
