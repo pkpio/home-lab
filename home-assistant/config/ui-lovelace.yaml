@@ -5,6 +5,6 @@ decluttering_templates: !include /config/lovelace/templates/decluttering.yaml
 
 views:
 - !include /config/lovelace/views/view_home.yaml
-- !include /config/lovelace/views/view_server_monitor.yaml
 - !include /config/lovelace/views/view_sensors.yaml
+- !include /config/lovelace/views/view_server_monitor.yaml
 - !include /config/lovelace/views/view_covid19.yaml

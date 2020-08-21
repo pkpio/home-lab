@@ -130,9 +130,9 @@ cpu_temperature_graph:
     - entity: '[[entity]]'
     - icon: 'mdi:thermometer-lines'
     - threshold_0: 35
-    - threshold_1: 45
-    - threshold_2: 55
-    - threshold_3: 70
+    - threshold_1: 48
+    - threshold_2: 56
+    - threshold_3: 65
 
 room_temperature_graph:
   default:
