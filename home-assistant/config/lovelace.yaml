@@ -8,8 +8,6 @@ resources:
   type: module
 - url: /hacsfiles/button-card/button-card.js
   type: module
-- url: /hacsfiles/bar-card/bar-card.js
-  type: module
 - url: /hacsfiles/battery-state-card/battery-state-card.js
   type: module
 - url: /hacsfiles/lovelace-layout-card/layout-card.js
@@ -25,5 +23,7 @@ resources:
 - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
   type: module
 - url: /hacsfiles/mini-media-player/mini-media-player-bundle.js
+  type: module
+- url: /hacsfiles/flex-horseshoe-card/flex-horseshoe-card.js
   type: module
 
