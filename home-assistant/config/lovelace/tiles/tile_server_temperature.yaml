@@ -1,8 +1,8 @@
 type: custom:vertical-stack-in-card
-title: Temperature
+title: CPU Temperature
 cards:
 - type: 'custom:mini-graph-card'
-  name: CPU - Core 0
+  name: Core 1
   aggregate_func: avg
   animate: true
   color_thresholds:
@@ -25,7 +25,7 @@ cards:
   points_per_hour: 1
 
 - type: 'custom:mini-graph-card'
-  name: CPU - Core 1
+  name: Core 2
   aggregate_func: avg
   animate: true
   color_thresholds:

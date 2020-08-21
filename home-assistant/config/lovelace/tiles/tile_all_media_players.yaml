@@ -1,15 +1,50 @@
 title: Media
-type: entities
-entities:
-- entity: media_player.lounge_android_tv
-  name: Lounge TV
-- entity: media_player.lounge_tv_chromecast
-  name: Lounge Chromecast
-- entity: media_player.kitchen_display
-  name: Kitchen
-- entity: media_player.hallway_speaker
-  name: Dining
-- entity: media_player.bedroom_speakers
-  name: Bedroom
-- entity: media_player.ensuite_speaker
-  name: Ensuite
+type: 'custom:vertical-stack-in-card'
+cards:
+- type: 'custom:mini-media-player'
+  entity: media_player.lounge_android_tv
+  icon: 'mdi:television'
+  artwork: cover
+  name: TV
+
+- type: 'custom:mini-media-player'
+  entity: media_player.lounge_tv_chromecast
+  icon: 'mdi:google-chrome'
+  artwork: cover
+  name: Chromecast Ultra
+
+- type: 'custom:vertical-stack-in-card'
+  horizontal: true
+  cards:
+  - type: 'custom:mini-media-player'
+    entity: media_player.kitchen_display
+    icon: 'mdi:monitor-dashboard'
+    artwork: cover
+    name: Kitchen
+    hide:
+      power: true
+  - type: 'custom:mini-media-player'
+    entity: media_player.hallway_speaker
+    icon: 'mdi:silverware-variant'
+    artwork: cover
+    name: Dining
+    hide:
+      power: true
+
+- type: 'custom:vertical-stack-in-card'
+  horizontal: true
+  cards:
+  - type: 'custom:mini-media-player'
+    entity: media_player.bedroom_speakers
+    icon: 'mdi:bed'
+    artwork: cover
+    name: Bedroom
+    hide:
+      power: true
+  - type: 'custom:mini-media-player'
+    entity: media_player.ensuite_speaker
+    icon: 'mdi:shower-head'
+    artwork: cover
+    name: Ensuite
+    hide:
+      power: true
