@@ -1,7 +1,7 @@
 curtain_controls:
   default:
     - name: Curtain
-    - entity_id: cover.balcony_curtain
+    - entity: cover.balcony_curtain
   card:
     type: custom:vertical-stack-in-card
     horizontal: true
@@ -9,31 +9,45 @@ curtain_controls:
     - type: custom:button-card
       template: cover_title_button
       name: '[[name]]'
-      entity: '[[entity_id]]'
+      entity: '[[entity]]'
 
     - type: custom:button-card
       template: cover_control_button
       name: Open
-      entity: '[[entity_id]]'
+      entity: '[[entity]]'
       variables:
         action_service: cover.open_cover
-        entity: '[[entity_id]]'
+        entity: '[[entity]]'
       icon: mdi:code-tags
 
     - type: custom:button-card
       template: cover_control_button
       name: Stop
-      entity: '[[entity_id]]'
+      entity: '[[entity]]'
       variables:
         action_service: cover.stop_cover
-        entity: '[[entity_id]]'
+        entity: '[[entity]]'
       icon: mdi:stop-circle-outline
 
     - type: custom:button-card
       template: cover_control_button
       name: Close
-      entity: '[[entity_id]]'
+      entity: '[[entity]]'
       variables:
         action_service: cover.close_cover
-        entity: '[[entity_id]]'
+        entity: '[[entity]]'
       icon: mdi:arrow-collapse-horizontal
+
+media_player:
+  default:
+    - name: Kitchen
+    - entity_id: media_player.kitchen_display
+    - icon: mdi:speaker
+  card:
+    type: 'custom:mini-media-player'
+    entity: '[[entity]]'
+    icon: '[[icon]]'
+    artwork: cover
+    name: '[[entity]]'
+    hide:
+      power: true

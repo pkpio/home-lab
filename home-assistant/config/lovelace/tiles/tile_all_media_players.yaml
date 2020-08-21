@@ -1,50 +1,51 @@
 title: Media
 type: 'custom:vertical-stack-in-card'
 cards:
-- type: 'custom:mini-media-player'
-  entity: media_player.lounge_android_tv
-  icon: 'mdi:television'
-  artwork: cover
-  name: TV
+- type: custom:decluttering-card
+  template: media_player
+  variables:
+  - entity: media_player.lounge_android_tv
+  - name: TV
+  - icon: 'mdi:television'
 
 - type: 'custom:vertical-stack-in-card'
   horizontal: true
   cards:
-  - type: 'custom:mini-media-player'
-    entity: media_player.kitchen_display
-    icon: 'mdi:monitor-dashboard'
-    artwork: cover
-    name: Kitchen
-    hide:
-      power: true
-  - type: 'custom:mini-media-player'
-    entity: media_player.hallway_speaker
-    icon: 'mdi:silverware-variant'
-    artwork: cover
-    name: Dining
-    hide:
-      power: true
+  - type: custom:decluttering-card
+    template: media_player
+    variables:
+    - entity: media_player.kitchen_display
+    - name: Kitchen
+    - icon: 'mdi:monitor-dashboard'
+
+  - type: custom:decluttering-card
+    template: media_player
+    variables:
+    - entity: media_player.hallway_speaker
+    - name: Dining
+    - icon: 'mdi:silverware-variant'
 
 - type: 'custom:vertical-stack-in-card'
   horizontal: true
   cards:
-  - type: 'custom:mini-media-player'
-    entity: media_player.bedroom_speakers
-    icon: 'mdi:bed'
-    artwork: cover
-    name: Bedroom
-    hide:
-      power: true
-  - type: 'custom:mini-media-player'
-    entity: media_player.ensuite_speaker
-    icon: 'mdi:shower-head'
-    artwork: cover
-    name: Ensuite
-    hide:
-      power: true
+  - type: custom:decluttering-card
+    template: media_player
+    variables:
+    - entity: media_player.bedroom_speakers
+    - name: Bedroom
+    - icon: 'mdi:bed'
 
-- type: 'custom:mini-media-player'
-  entity: media_player.lounge_tv_chromecast
-  icon: 'mdi:google-chrome'
-  artwork: cover
-  name: Chromecast Ultra
+  - type: custom:decluttering-card
+    template: media_player
+    variables:
+    - entity: media_player.ensuite_speaker
+    - name: Ensuite
+    - icon: 'mdi:shower-head'
+
+- type: custom:decluttering-card
+  template: media_player
+  variables:
+  - entity: media_player.lounge_tv_chromecast
+  - name: Chromecast Ultra
+  - icon: 'mdi:google-chrome'
+

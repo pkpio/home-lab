@@ -4,23 +4,23 @@ cards:
 - type: custom:decluttering-card
   template: curtain_controls
   variables:
-  - entity_id: cover.living_room_curtains
+  - entity: cover.living_room_curtains
   - name: Living room
 
 - type: custom:decluttering-card
   template: curtain_controls
   variables:
-  - entity_id: cover.balcony_curtain
+  - entity: cover.balcony_curtain
   - name: Balcony
 
 - type: custom:decluttering-card
   template: curtain_controls
   variables:
-  - entity_id: cover.study_curtain
+  - entity: cover.study_curtain
   - name: Study
 
 - type: custom:decluttering-card
   template: curtain_controls
   variables:
-  - entity_id: cover.bedroom_curtain
+  - entity: cover.bedroom_curtain
   - name: Bedroom
