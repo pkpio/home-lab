@@ -63,7 +63,7 @@ battery_listing:
       title: '[[title]]'
       sort_by_level: asc
       bulk_rename:
-      - from: 'Battery level'
+      - from: 'Battery Level'
         to: ''
       - from: '[[title]]'
         to: ''
