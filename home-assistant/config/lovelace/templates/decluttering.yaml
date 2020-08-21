@@ -57,6 +57,7 @@ battery_listing:
     - title: Battery levels
     - include_filter: "sensor.*_activity_battery_level"
     - rename: ''
+    - rename2: ''
   card:
     type: custom:auto-entities
     card:
@@ -69,6 +70,8 @@ battery_listing:
       - from: '[[title]]'
         to: ''
       - from: '[[rename]]'
+        to: ''
+      - from: '[[rename2]]'
         to: ''
       color_gradient:
       - "#ff0000" # red
