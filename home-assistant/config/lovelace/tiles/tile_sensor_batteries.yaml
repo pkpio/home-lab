@@ -1,21 +1,20 @@
-title: Media
+title: Sensor battery levels
 type: 'custom:vertical-stack-in-card'
-horizontal: true
 cards:
 - type: custom:decluttering-card
   template: battery_listing
   variables:
-  - title: Motion sensors
+  - title: Motion
   - include_filter: "sensor.*_activity_battery_level"
 
 - type: custom:decluttering-card
   template: battery_listing
   variables:
-  - title: Environment sensors
+  - title: Environment
   - include_filter: "sensor.*_environment_battery_level"
 
 - type: custom:decluttering-card
   template: battery_listing
   variables:
-  - title: Door sensors
+  - title: Door
   - include_filter: "sensor.*_door_battery_level"
