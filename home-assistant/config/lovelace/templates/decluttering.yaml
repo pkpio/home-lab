@@ -57,7 +57,7 @@ battery_listing:
     - title: Battery levels
     - include_filter: "sensor.*_activity_battery_level"
   card:
-  type: custom:auto-entities
+    type: custom:auto-entities
     card:
       type: custom:battery-state-card
       title: '[[title]]'
