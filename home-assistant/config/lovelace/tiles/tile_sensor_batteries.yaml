@@ -6,7 +6,7 @@ cards:
   variables:
   - title: Motion
   - include_filter: "sensor.*_activity_battery_level"
-  - rename: Activity
+  - rename: "/\\s(Activity|activity)\\s/"
 
 - type: custom:decluttering-card
   template: battery_listing
