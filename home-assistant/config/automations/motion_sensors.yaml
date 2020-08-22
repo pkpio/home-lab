@@ -149,7 +149,7 @@
   mode: queued
   trigger:
   - platform: state
-    entity_id: binary_sensor.living_room_activity
+    entity_id: binary_sensor.living_room_entrance_activity
     to: 'on'
   - platform: state
     entity_id: binary_sensor.kitchen_activity
@@ -175,7 +175,7 @@
   mode: queued
   trigger:
   - platform: state
-    entity_id: binary_sensor.living_room_activity
+    entity_id: binary_sensor.living_room_entrance_activity
     to: 'off'
     for:
       minutes: 20
@@ -186,7 +186,7 @@
       minutes: 20
   condition:
   - condition: state
-    entity_id: binary_sensor.living_room_activity
+    entity_id: binary_sensor.living_room_entrance_activity
     state: 'off'
   - condition: state
     entity_id: binary_sensor.kitchen_activity
