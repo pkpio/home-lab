@@ -19,7 +19,7 @@ lights_on_smart:
       entity_id: "{{ entity_id }}"
       brightness: >-
         {% if is_state(entity_id, 'on') and state_attr(entity_id, 'brightness') | int > states('input_number.contextual_start_brightness') | int %}
-          {{ state_attr(light, 'brightness') | int }}
+          {{ state_attr(entity_id, 'brightness') | int }}
         {% else %}
           {{ states('input_number.contextual_start_brightness') | int }}
         {% endif %}
