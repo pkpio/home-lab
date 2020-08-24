@@ -96,14 +96,12 @@
   condition:
   - condition: template
     value_template: '{{ state_attr("media_player.lounge_android_tv", "source") in state_attr("media_player.lounge_android_tv", "source_list") }}'
-  - condition: or
-    conditions:
-    - condition: sun
-      after: sunrise
-      after_offset: "01:00:00"
-    - condition: sun
-      before: sunset
-      before_offset: "-01:00:00"
+  - condition: sun
+    after: sunrise
+    after_offset: "01:00:00"
+  - condition: sun
+    before: sunset
+    before_offset: "-01:00:00"
   action:
     service: cover.close_cover
     data:
@@ -131,14 +129,12 @@
     for:
       minutes: 2
   condition:
-  - condition: or
-    conditions:
-    - condition: sun
-      after: sunrise
-      after_offset: "01:00:00"
-    - condition: sun
-      before: sunset
-      before_offset: "-01:00:00"
+  - condition: sun
+    after: sunrise
+    after_offset: "01:00:00"
+  - condition: sun
+    before: sunset
+    before_offset: "-01:00:00"
   action:
     service: cover.open_cover
     data:
