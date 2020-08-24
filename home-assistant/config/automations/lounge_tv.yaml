@@ -9,9 +9,11 @@
 #### Lounge TV playing turns off lights ####
 - alias: TV playing turns off lounge lights
   trigger:
-  - platform: state
+    platform: state
     entity_id: media_player.lounge_android_tv
     to: 'playing'
+    for:
+      minutes: 1
   condition:
     condition: template
     value_template: '{{ state_attr("media_player.lounge_android_tv", "source") in state_attr("media_player.lounge_android_tv", "source_list") }}'
@@ -29,14 +31,20 @@
     entity_id: media_player.lounge_android_tv
     from: 'playing'
     to: 'paused'
+    for:
+      minutes: 2
   - platform: state
     entity_id: media_player.lounge_android_tv
     from: 'playing'
     to: 'idle'
+    for:
+      minutes: 2
   - platform: state
     entity_id: media_player.lounge_android_tv
     from: 'playing'
     to: 'off'
+    for:
+      minutes: 1
   condition:
   - condition: numeric_state
     entity_id: sensor.lounge_activity
@@ -76,3 +84,62 @@
         fontsize: medium
         color: red
         duration: 30
+
+#### Lounge TV playing closes curtains ####
+- alias: TV playing closes curtains during day
+  trigger:
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    to: 'playing'
+    for:
+      minutes: 1
+  condition:
+  - condition: template
+    value_template: '{{ state_attr("media_player.lounge_android_tv", "source") in state_attr("media_player.lounge_android_tv", "source_list") }}'
+  - condition: or
+    conditions:
+    - condition: sun
+      after: sunrise
+      after_offset: "01:00:00"
+    - condition: sun
+      before: sunset
+      before_offset: "-01:00:00"
+  action:
+    service: cover.close_cover
+    data:
+      entity_id: cover.living_room_curtains
+
+#### Lounge TV stopped opens curtains ####
+- alias: TV pause or idle opens curtains during day
+  trigger:
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    from: 'playing'
+    to: 'paused'
+    for:
+      minutes: 3
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    from: 'playing'
+    to: 'idle'
+    for:
+      minutes: 3
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    from: 'playing'
+    to: 'off'
+    for:
+      minutes: 2
+  condition:
+  - condition: or
+    conditions:
+    - condition: sun
+      after: sunrise
+      after_offset: "01:00:00"
+    - condition: sun
+      before: sunset
+      before_offset: "-01:00:00"
+  action:
+    service: cover.open_cover
+    data:
+      entity_id: cover.living_room_curtains
