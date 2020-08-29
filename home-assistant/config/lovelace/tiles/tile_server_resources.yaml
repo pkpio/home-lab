@@ -30,20 +30,20 @@ cards:
   cards:
   - type: gauge
     entity: sensor.homeassistant_etc_hostname_used
-    max: 109
+    max: 916
     min: 0
     severity:
       green: 0
-      yellow: 50
-      red: 80
+      yellow: 700
+      red: 800
     name: Internal HD
 
   - type: gauge
     entity: sensor.homeassistant_external_hd_used
-    max: 1820
+    max: 3700
     min: 0
     severity:
       green: 0
-      yellow: 1000
-      red: 1500
+      yellow: 2700
+      red: 3500
     name: External HD
