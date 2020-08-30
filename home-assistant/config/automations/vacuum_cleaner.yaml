@@ -105,7 +105,7 @@
   action:
   - service: python_script.vacuum_clean_room
     data_template:
-      room_phrase: "lounge, kitchen and dining"
+      room_phrase: "lounge, kitchen, dining and hallway"
   - service: input_boolean.turn_on
     data:
       entity_id: input_boolean.vacuum_automation_ran_today
