@@ -13,7 +13,7 @@
     entity_id: media_player.lounge_android_tv
     to: 'playing'
     for:
-      minutes: 1
+      seconds: 20
   condition:
     condition: template
     value_template: '{{ state_attr("media_player.lounge_android_tv", "source") in state_attr("media_player.lounge_android_tv", "source_list") }}'
@@ -32,19 +32,19 @@
     from: 'playing'
     to: 'paused'
     for:
-      minutes: 2
+      seconds: 45
   - platform: state
     entity_id: media_player.lounge_android_tv
     from: 'playing'
     to: 'idle'
     for:
-      minutes: 2
+      seconds: 45
   - platform: state
     entity_id: media_player.lounge_android_tv
     from: 'playing'
     to: 'off'
     for:
-      minutes: 1
+      seconds: 45
   condition:
   - condition: numeric_state
     entity_id: sensor.lounge_activity
@@ -92,7 +92,7 @@
     entity_id: media_player.lounge_android_tv
     to: 'playing'
     for:
-      minutes: 1
+      seconds: 20
   condition:
   - condition: template
     value_template: '{{ state_attr("media_player.lounge_android_tv", "source") in state_attr("media_player.lounge_android_tv", "source_list") }}'
@@ -115,19 +115,19 @@
     from: 'playing'
     to: 'paused'
     for:
-      minutes: 3
+      minutes: 2
   - platform: state
     entity_id: media_player.lounge_android_tv
     from: 'playing'
     to: 'idle'
     for:
-      minutes: 3
+      minutes: 2
   - platform: state
     entity_id: media_player.lounge_android_tv
     from: 'playing'
     to: 'off'
     for:
-      minutes: 2
+      minutes: 1
   condition:
   - condition: sun
     after: sunrise
