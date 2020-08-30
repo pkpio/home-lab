@@ -52,6 +52,29 @@ services:
     network_mode: host
 
 
+  #======================== Local sync =========================#
+  # Local sync moves data from Internal to External HD. Has a 
+  # cron task setup using the cron-service to do this periodically.
+  #=============================================================#
+  local-sync:
+    container_name: local-sync
+    image: eeacms/rsync:latest
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./media-server/data:/data/internal-hd
+      - /media/external-hd:/data/external-hd
+    labels:
+      ofelia.enabled: "true"
+
+      # Sync every Sunday at 4 am
+      ofelia.job-exec.archive-docker-volume.schedule: "0 4 * * 0" 
+      ofelia.job-exec.archive-docker-volume.command: >
+        rsync -arvP --remove-source-files \
+          --exclude="downloads" \ 
+          /data/internal-hd /data/external-hd
+
+
   #====================== Monitoring ========================#
   # Runs Glances to monitor the resources of the Host
   #============================================================#
@@ -65,17 +88,14 @@ services:
       - /media/external-hd:/external-hd:ro
     environment:
       - "GLANCES_OPT=-w"
-    labels:
-      - "traefik.port=61208"
-      - "traefik.frontend.rule=Host:glances.docker.localhost"
     network_mode: host
 
 
   #======================== Cron service ======================#
   # Schedules cron jobs on different docker containers or host
   #============================================================#
-  cron:
-    container_name: cron
+  cron-service:
+    container_name: cron-service
     image: mcuadros/ofelia:latest
     restart: always
     command: daemon --docker
