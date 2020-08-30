@@ -68,9 +68,13 @@ services:
     labels:
       ofelia.enabled: "true"
 
-      # Sync every Sunday at 4 am
-      ofelia.job-exec.local-data-sync.schedule: "0 0 4 * * 0" 
-      ofelia.job-exec.local-data-sync.command: "rsync -arvP --remove-source-files --exclude='downloads' /data/internal-hd /data/external-hd"
+      # Move data from internal to external HD - every Sunday at 3 am
+      ofelia.job-exec.local-data-move.schedule: "0 0 3 * * 0" 
+      ofelia.job-exec.local-data-move.command: "rsync -arvP --remove-source-files --exclude='downloads' /data/internal-hd /data/external-hd"
+      
+      # Cleanup empty dirs left after move - every Sunday at 5 am
+      ofelia.job-exec.cleanup-local-data-move.schedule: "0 0 5 * * 0" 
+      ofelia.job-exec.cleanup-local-data-move.command: "find /data/internal-hd -mindepth 2 -type d -empty -delete"
 
 
   #====================== Monitoring ========================#
