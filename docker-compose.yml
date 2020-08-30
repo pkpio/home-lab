@@ -69,11 +69,8 @@ services:
       ofelia.enabled: "true"
 
       # Sync every Sunday at 4 am
-      ofelia.job-exec.local-data-sync.schedule: "0 4 * * 0" 
-      ofelia.job-exec.local-data-sync.command: >
-        rsync -arvP --remove-source-files \
-          --exclude="downloads" \ 
-          /data/internal-hd /data/external-hd
+      ofelia.job-exec.local-data-sync.schedule: "0 0 4 * * 0" 
+      ofelia.job-exec.local-data-sync.command: "rsync -arvP --remove-source-files --exclude='downloads' /data/internal-hd /data/external-hd"
 
 
   #====================== Monitoring ========================#
