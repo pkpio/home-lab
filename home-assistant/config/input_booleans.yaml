@@ -1,19 +1,15 @@
 praveen_home:
   name: Indicates Praveen is home
   icon: mdi:face-profile
-  initial: on
 
 mar_home:
   name: Indicates Mar is home
   icon: mdi:face
-  initial: on
 
 vacuum_automation_ran_today:
   name: Indicates if vacuum automation has run today
   icon: mdi:robot-vacuum-variant
-  initial: off
 
 lounge_motion_sensing:
   name: Indicates if lounge motion sensing is active
   icon: mdi:robot-vacuum-variant
-  initial: on
