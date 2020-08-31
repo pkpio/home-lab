@@ -1,0 +1,38 @@
+# Automation to control Lounge motion sensing with TV
+# - Disable motion sensing when TV starts playing
+# - Enable motion sensing when TV finishes playing
+# This is so that lights are controlled fully by the TV between playing
+
+#### Lounge TV playing turns off motion sensing ####
+- alias: TV playing turns off motion sensing
+  trigger:
+    platform: state
+    entity_id: media_player.lounge_android_tv
+    to: 'playing'
+  condition:
+    condition: template
+    value_template: '{{ state_attr("media_player.lounge_android_tv", "source") in state_attr("media_player.lounge_android_tv", "source_list") }}'
+  action:
+    service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.lounge_motion_sensing
+
+#### Lounge TV pause / idle / off turns on motion sensing ####
+- alias: TV pause or idle turns on motion sensing
+  trigger:
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    from: 'playing'
+    to: 'paused'
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    from: 'playing'
+    to: 'idle'
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    from: 'playing'
+    to: 'off'
+  action:
+    service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.lounge_motion_sensing

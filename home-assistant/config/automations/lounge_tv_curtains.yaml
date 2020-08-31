@@ -1,0 +1,77 @@
+# Automation to control curtains with TV
+# - Close curtains when TV starts playing during day
+# - Open curtains when TV finishes playing during day
+#
+
+#### Lounge TV playing closes curtains ####
+- alias: TV playing closes curtains during day
+  trigger:
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    to: 'playing'
+    for:
+      minutes: 1
+  condition:
+  - condition: template
+    value_template: '{{ state_attr("media_player.lounge_android_tv", "source") in state_attr("media_player.lounge_android_tv", "source_list") }}'
+  - condition: sun
+    after: sunrise
+    after_offset: "01:00:00"
+  - condition: sun
+    before: sunset
+    before_offset: "-01:00:00"
+  action:
+    service: cover.close_cover
+    data:
+      entity_id: cover.living_room_curtains
+
+#### Lounge TV stopped opens curtains ####
+- alias: TV pause or idle opens curtains during day
+  trigger:
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    from: 'playing'
+    to: 'paused'
+    for:
+      minutes: 2
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    from: 'playing'
+    to: 'idle'
+    for:
+      minutes: 2
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    from: 'playing'
+    to: 'off'
+    for:
+      minutes: 1
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    from: 'paused'
+    to: 'idle'
+    for:
+      minutes: 1
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    from: 'paused'
+    to: 'off'
+    for:
+      minutes: 1
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    from: 'idle'
+    to: 'off'
+    for:
+      minutes: 1
+  condition:
+  - condition: sun
+    after: sunrise
+    after_offset: "01:00:00"
+  - condition: sun
+    before: sunset
+    before_offset: "-01:00:00"
+  action:
+    service: cover.open_cover
+    data:
+      entity_id: cover.living_room_curtains

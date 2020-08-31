@@ -1,0 +1,75 @@
+# Automation to control lights with TV
+# - Lights off when something starts playing on the TV
+# - Turn back lights on when playing ends
+#
+
+#### Lounge TV playing turns off lights ####
+- alias: TV playing turns off lounge lights
+  trigger:
+    platform: state
+    entity_id: media_player.lounge_android_tv
+    to: 'playing'
+    for:
+      minutes: 1
+  condition:
+    condition: template
+    value_template: '{{ state_attr("media_player.lounge_android_tv", "source") in state_attr("media_player.lounge_android_tv", "source_list") }}'
+  action:
+    service: light.turn_off
+    entity_id: light.lounge_lights
+
+#### Lounge TV pause / idle turns on lights if it's dark ####
+- alias: TV pause or idle turns on lounge lights
+  trigger:
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    from: 'playing'
+    to: 'paused'
+    for:
+      minutes: 2
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    from: 'playing'
+    to: 'idle'
+    for:
+      minutes: 2
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    from: 'playing'
+    to: 'off'
+    for:
+      minutes: 1
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    from: 'paused'
+    to: 'idle'
+    for:
+      minutes: 1
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    from: 'paused'
+    to: 'off'
+    for:
+      minutes: 1
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    from: 'idle'
+    to: 'off'
+    for:
+      minutes: 1
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.lounge_activity
+    below: 18
+  - condition: or
+    conditions:
+    - condition: sun
+      after: sunset
+      after_offset: "-01:00:00"
+    - condition: sun
+      before: sunrise
+      before_offset: "01:00:00"
+  action:
+    service: script.lights_on_smart
+    data:
+      entity_id: light.lounge_lights

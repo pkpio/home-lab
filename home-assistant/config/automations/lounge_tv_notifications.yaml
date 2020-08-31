@@ -1,0 +1,22 @@
+# Automation to control notifications with TV
+#
+
+#### Notify when attempting to play TV before 8 AM ####
+- alias: Notice on using Lounge TV during sleeping hours
+  trigger:
+    platform: state
+    entity_id: media_player.lounge_android_tv
+    to: 'playing'
+  condition:
+  - condition: time
+    before: '08:00:00'
+  action:
+    service: notify.lounge_tv
+    data:
+      title: Courtesy notice!
+      message: "Please avoid using TV during sleeping hours. Between 12:00 and 08:00 AM."
+      data:
+        transparency: 25%
+        fontsize: medium
+        color: red
+        duration: 30
