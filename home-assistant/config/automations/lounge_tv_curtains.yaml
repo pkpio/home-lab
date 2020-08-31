@@ -10,7 +10,7 @@
     entity_id: media_player.lounge_android_tv
     to: 'playing'
     for:
-      minutes: 1
+      seconds: 20
   condition:
   - condition: template
     value_template: '{{ state_attr("media_player.lounge_android_tv", "source") in state_attr("media_player.lounge_android_tv", "source_list") }}'
@@ -33,37 +33,37 @@
     from: 'playing'
     to: 'paused'
     for:
-      minutes: 2
+      seconds: 45
   - platform: state
     entity_id: media_player.lounge_android_tv
     from: 'playing'
     to: 'idle'
     for:
-      minutes: 2
+      seconds: 45
   - platform: state
     entity_id: media_player.lounge_android_tv
     from: 'playing'
     to: 'off'
     for:
-      minutes: 1
+      seconds: 45
   - platform: state
     entity_id: media_player.lounge_android_tv
     from: 'paused'
     to: 'idle'
     for:
-      minutes: 1
+      seconds: 45
   - platform: state
     entity_id: media_player.lounge_android_tv
     from: 'paused'
     to: 'off'
     for:
-      minutes: 1
+      seconds: 45
   - platform: state
     entity_id: media_player.lounge_android_tv
     from: 'idle'
     to: 'off'
     for:
-      minutes: 1
+      seconds: 45
   condition:
   - condition: sun
     after: sunrise
