@@ -50,7 +50,8 @@ services:
     env_file:
       - media-server/.env
     network_mode: host
-
+    devices:
+      - /dev/dri:/dev/dri
 
   #======================== Local sync =========================#
   # Local sync moves data from Internal to External HD. Has a 
