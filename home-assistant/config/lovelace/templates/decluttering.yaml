@@ -145,10 +145,10 @@ room_temperature_graph:
     - name: '[[name]]'
     - entity: '[[entity]]'
     - icon: 'mdi:thermometer'
-    - threshold_0: 10
-    - threshold_1: 20
-    - threshold_2: 25
-    - threshold_3: 30
+    - threshold_0: 20
+    - threshold_1: 25
+    - threshold_2: 30
+    - threshold_3: 36
 
 room_humidity_graph:
   default:

@@ -21,7 +21,7 @@ tar \
 	--exclude='**/torrent-client/data/incomplete/*' \
 	--exclude='**/media-server/data/*' \
 	--exclude='**/media-server/transcode/*' \
-	--exclude='**/Plex Media Server/Cache/*'
+	--exclude='**/Plex Media Server/Cache/*' \
 	-cpzf $ARCHIVE_FILEPATH $SOURCE_DIR
 echo "Backed up $SOURCE_DIR to $ARCHIVE_FILEPATH"
 
