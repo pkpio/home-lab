@@ -155,3 +155,22 @@ services:
       - torrent-client/.env
     network_mode: host
 
+
+  #======================== FTP Server =========================#
+  # Runs FTP server to access some files from local devices. This 
+  # is mostly to simply organising files without having to SSH.
+  #=============================================================#
+  ftp-server:
+    container_name: ftp-server
+    image: stilliard/pure-ftpd:latest
+    restart: unless-stopped
+    ports:
+      - 21:21
+      - 30000-30009:30000-30009
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./media-server/data/downloads:/data/unorganised
+      - ./media-server/data/Movies:/data/organised/Movies
+      - ./media-server/data/TV:/data/organised/TV
+    env_file:
+      - ftp-server/.env
