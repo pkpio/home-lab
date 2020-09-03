@@ -21,9 +21,9 @@ services:
     image: marthoc/deconz:latest
     restart: always
     ports:
-      - 8080:8080
-      - 8443:8443
-      - 5900:5900
+      - "8080:8080"
+      - "8443:8443"
+      - "5900:5900"
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./zigbee-app/config:/root/.local/share/dresden-elektronik/deCONZ
@@ -52,6 +52,13 @@ services:
     network_mode: host
     devices:
       - /dev/dri:/dev/dri
+    labels:
+      ofelia.enabled: "true"
+
+      # Cleanup empty dirs left after move - every Sunday at 5 am
+      # Cannot run this on local-sync container due to find tool not supporting -empty option
+      ofelia.job-exec.cleanup-local-data-move.schedule: "0 0 5 * * 0"
+      ofelia.job-exec.cleanup-local-data-move.command: "find /data/internal-hd -mindepth 2 -type d -empty -delete"
 
   #======================== Local sync =========================#
   # Local sync moves data from Internal to External HD. Has a 
@@ -71,11 +78,7 @@ services:
 
       # Move data from internal to external HD - every Sunday at 3 am
       ofelia.job-exec.local-data-move.schedule: "0 0 3 * * 0" 
-      ofelia.job-exec.local-data-move.command: "rsync -arvP --remove-source-files --exclude='downloads' /data/internal-hd /data/external-hd"
-      
-      # Cleanup empty dirs left after move - every Sunday at 5 am
-      ofelia.job-exec.cleanup-local-data-move.schedule: "0 0 5 * * 0" 
-      ofelia.job-exec.cleanup-local-data-move.command: "find /data/internal-hd -mindepth 2 -type d -empty -delete"
+      ofelia.job-exec.local-data-move.command: "rsync -arvP --remove-source-files --exclude='downloads' /data/internal-hd/ /data/external-hd/"
 
 
   #====================== Monitoring ========================#
@@ -155,22 +158,3 @@ services:
       - torrent-client/.env
     network_mode: host
 
-
-  #======================== FTP Server =========================#
-  # Runs FTP server to access some files from local devices. This 
-  # is mostly to simply organising files without having to SSH.
-  #=============================================================#
-  ftp-server:
-    container_name: ftp-server
-    image: stilliard/pure-ftpd:latest
-    restart: unless-stopped
-    ports:
-      - 21:21
-      - 30000-30009:30000-30009
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ./media-server/data/downloads:/data/unorganised
-      - ./media-server/data/Movies:/data/organised/Movies
-      - ./media-server/data/TV:/data/organised/TV
-    env_file:
-      - ftp-server/.env
