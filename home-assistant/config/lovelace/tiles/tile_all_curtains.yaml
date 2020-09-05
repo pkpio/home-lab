@@ -16,6 +16,12 @@ cards:
 - type: custom:decluttering-card
   template: curtain_controls
   variables:
+  - entity: cover.dining_curtain
+  - name: Dining
+
+- type: custom:decluttering-card
+  template: curtain_controls
+  variables:
   - entity: cover.study_curtain
   - name: Study
 
