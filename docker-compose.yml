@@ -33,6 +33,20 @@ services:
       - zigbee-app/.env
 
 
+  #=========================== MQTT ===========================#
+  # Runs a mosquitto mqtt broker
+  #============================================================#
+  mqtt-broker:
+    container_name: mqtt-broker
+    image: eclipse-mosquitto:latest
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./mqtt:/mosquitto
+
+
   #====================== Media server ========================#
   # Runs Plex media server in docker. TODO: Setup to use 
   # graphic card for hardware accelarated transcoding.
