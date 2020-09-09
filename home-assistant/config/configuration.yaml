@@ -110,3 +110,8 @@ transmission:
   name: Torrent client
   username: !secret transmission_username
   password: !secret transmission_password
+
+mqtt:
+  broker: !secret home_assistant_host
+  discovery: true
+  discovery_prefix: homeassistant
