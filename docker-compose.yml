@@ -44,7 +44,7 @@ services:
       - "1883:1883"
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./mqtt:/mosquitto
+      - ./mqtt-broker/:/mosquitto/
 
 
   #====================== Media server ========================#
