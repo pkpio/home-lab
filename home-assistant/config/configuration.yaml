@@ -42,6 +42,7 @@ zone: !include zones.yaml
 frontend: !include frontend.yaml
 
 person: !include persons.yaml
+plant: !include plants.yaml
 mobile_app:
 cloud:
   google_actions: !include google_actions.yaml

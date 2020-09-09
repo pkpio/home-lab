@@ -1,0 +1,127 @@
+sago_palm:
+  sensors:
+    moisture: sensor.miflora_sago_palm_moisture
+    battery: sensor.miflora_sago_palm_battery
+    temperature: sensor.miflora_sago_palm_temperature
+    conductivity: sensor.miflora_sago_palm_conductivity
+    brightness: sensor.miflora_sago_palm_light
+  min_moisture: 15
+  max_moisture: 60
+  min_conductivity: 350
+  max_conductivity: 2000
+  min_brightness: 3500
+  max_brightness: 65000
+  min_temperature: 6
+  max_temperature: 32
+
+spineless_yucca:
+  sensors:
+    moisture: sensor.miflora_spineless_yucca_moisture
+    battery: sensor.miflora_spineless_yucca_battery
+    temperature: sensor.miflora_spineless_yucca_temperature
+    conductivity: sensor.miflora_spineless_yucca_conductivity
+    brightness: sensor.miflora_spineless_yucca_light
+  min_moisture: 15
+  max_moisture: 60
+  min_conductivity: 350
+  max_conductivity: 2000
+  min_brightness: 1500
+  max_brightness: 20000
+  min_temperature: 8
+  max_temperature: 32
+
+rubber_plant:
+  sensors:
+    moisture: sensor.miflora_rubber_plant_moisture
+    battery: sensor.miflora_rubber_plant_battery
+    temperature: sensor.miflora_rubber_plant_temperature
+    conductivity: sensor.miflora_rubber_plant_conductivity
+    brightness: sensor.miflora_rubber_plant_light
+  min_moisture: 15
+  max_moisture: 60
+  min_conductivity: 350
+  max_conductivity: 2000
+  min_brightness: 1000
+  max_brightness: 30000
+  min_temperature: 10
+  max_temperature: 35
+
+swiss_cheese:
+  sensors:
+    moisture: sensor.miflora_swiss_cheese_moisture
+    battery: sensor.miflora_swiss_cheese_battery
+    temperature: sensor.miflora_swiss_cheese_temperature
+    conductivity: sensor.miflora_swiss_cheese_conductivity
+    brightness: sensor.miflora_swiss_cheese_light
+  min_moisture: 15
+  max_moisture: 60
+  min_conductivity: 350
+  max_conductivity: 2000
+  min_brightness: 800
+  max_brightness: 15000
+  min_temperature: 12
+  max_temperature: 32
+
+cat_palm:
+  sensors:
+    moisture: sensor.miflora_cat_palm_moisture
+    battery: sensor.miflora_cat_palm_battery
+    temperature: sensor.miflora_cat_palm_temperature
+    conductivity: sensor.miflora_cat_palm_conductivity
+    brightness: sensor.miflora_cat_palm_light
+  min_moisture: 15
+  max_moisture: 60
+  min_conductivity: 350
+  max_conductivity: 2000
+  min_brightness: 800
+  max_brightness: 22000
+  min_temperature: 10
+  max_temperature: 32
+
+spider_plant:
+  sensors:
+    moisture: sensor.miflora_spider_plant_moisture
+    battery: sensor.miflora_spider_plant_battery
+    temperature: sensor.miflora_spider_plant_temperature
+    conductivity: sensor.miflora_spider_plant_conductivity
+    brightness: sensor.miflora_spider_plant_light
+  min_moisture: 15
+  max_moisture: 60
+  min_conductivity: 200
+  max_conductivity: 1300
+  min_brightness: 500
+  max_brightness: 30000
+  min_temperature: 10
+  max_temperature: 32
+
+dumbcane:
+  sensors:
+    moisture: sensor.miflora_dumbcane_moisture
+    battery: sensor.miflora_dumbcane_battery
+    temperature: sensor.miflora_dumbcane_temperature
+    conductivity: sensor.miflora_dumbcane_conductivity
+    brightness: sensor.miflora_dumbcane_light
+  min_moisture: 15
+  max_moisture: 60
+  min_conductivity: 200
+  max_conductivity: 1500
+  min_brightness: 1500
+  max_brightness: 25000
+  min_temperature: 12
+  max_temperature: 32
+
+dragon_tree:
+  sensors:
+    moisture: sensor.miflora_dragon_tree_moisture
+    battery: sensor.miflora_dragon_tree_battery
+    temperature: sensor.miflora_dragon_tree_temperature
+    conductivity: sensor.miflora_dragon_tree_conductivity
+    brightness: sensor.miflora_dragon_tree_light
+  min_moisture: 15
+  max_moisture: 60
+  min_conductivity: 200
+  max_conductivity: 1500
+  min_brightness: 2000
+  max_brightness: 50000
+  min_temperature: 10
+  max_temperature: 35
