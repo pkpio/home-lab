@@ -3,3 +3,28 @@ person.praveen:
   entity_picture: "/local/images/praveen.jpg"
 person.mar:
   entity_picture: "/local/images/mar.jpg"
+
+# Plants
+plant.sago_palm:
+  entity_picture: "/local/images/plants/sago_palm.jpg"
+
+plant.spineless_yucca:
+  entity_picture: "/local/images/plants/spineless_yucca.jpg"
+
+plant.rubber_plant:
+  entity_picture: "/local/images/plants/rubber_plant.jpg"
+
+plant.swiss_cheese:
+  entity_picture: "/local/images/plants/swiss_cheese.jpg"
+
+plant.cat_palm:
+  entity_picture: "/local/images/plants/cat_palm.jpg"
+
+plant.spider_plant:
+  entity_picture: "/local/images/plants/spider_plant.jpg"
+
+plant.dumbcane:
+  entity_picture: "/local/images/plants/dumbcane.jpg"
+
+plant.dragon_tree:
+  entity_picture: "/local/images/plants/dragon_tree.jpg"
