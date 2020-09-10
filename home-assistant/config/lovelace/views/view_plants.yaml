@@ -1,7 +1,6 @@
 title: Plants Monitoring
 icon: mdi:leaf
 path: plant-monitoring
-panel: true
 
 cards:
 - type: plant-status
