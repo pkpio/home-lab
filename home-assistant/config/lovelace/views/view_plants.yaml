@@ -36,8 +36,3 @@ cards:
   template: plant_status_full_picture
   variables:
   - entity: plant.dumbcane
-
-- type: custom:decluttering-card
-  template: plant_status_full_picture
-  variables:
-  - entity: plant.dumbcane

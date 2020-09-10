@@ -178,5 +178,5 @@ plant_status_full_picture:
     entity: '[[entity]]'
     style: |
       .has-plant-image .banner {
-        padding-top: 100%;
+        padding-top: 100% !important;
       }
