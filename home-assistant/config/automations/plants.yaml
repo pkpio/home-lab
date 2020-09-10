@@ -24,7 +24,7 @@
     data_template:
       title: Plants need water
       message: >-
-        Water these plants: {{ state_attr("sensor.plant_problems", "water")  }}
+        Water these plants: {{ state_attr("sensor.plants_problems", "water")  }}
       data:
         image: https://ryhom.com/wp-content/uploads/2019/09/Watering-A-Garden.jpg
 
@@ -39,6 +39,6 @@
     data_template:
       title: Plants need fertilizer
       message: >-
-        Fertilize these plants: {{ state_attr("sensor.plant_problems", "fertilize")  }}
+        Fertilize these plants: {{ state_attr("sensor.plants_problems", "fertilize")  }}
       data:
         image: https://www.bpr.org/sites/wcqs/files/styles/medium/public/201704/twitter_0.jpg
