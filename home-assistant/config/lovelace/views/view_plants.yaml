@@ -4,9 +4,13 @@ path: plant-monitoring
 cards:
 - type: glance
   entities:
-  - sensor.water_plants_number
-  - sensor.fertilize_plants_number
-  - sensor.problem_plants
+  - entity: sensor.water_plants_number
+    name: Need watering
+  - entity: sensor.fertilize_plants_number
+    name: Need fertilizer
+  - entity: sensor.plant_problems
+    name: Plant problems
+
 
 - type: custom:decluttering-card
   template: plant_status_full_picture
