@@ -15,3 +15,6 @@ vacuum_clean_room:
     room_phrase:
       description: A text phrase of the room / rooms to clean
       example: "Kitchen and Dining"
+
+plant_problems:
+  description: Updates the list of plants that need attention

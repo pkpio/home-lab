@@ -1,0 +1,14 @@
+- alias: 'Update Plant Problems'
+  trigger:
+  - platform: state
+    entity_id:
+    - plant.sago_palm
+    - plant.spineless_yucca
+    - plant.rubber_plant
+    - plant.swiss_cheese
+    - plant.cat_palm
+    - plant.spider_plant
+    - plant.dumbcane
+    - plant.dragon_tree
+  action:
+  - service: python_script.plant_problems
