@@ -11,10 +11,10 @@
 #
 #  http://www.diyfuturism.com/making-houseplants-talk
 
-allproblemPlants = set()
-waterPlants = set()
-fertilizePlants = set()
-lowBatteryPlants = set()
+allproblemPlants = []
+waterPlants = []
+fertilizePlants = []
+lowBatteryPlants = []
 whichIcon = "mdi:help-circle-outline"
 
 for entity_id in hass.states.entity_ids('plant'):
@@ -32,6 +32,7 @@ for entity_id in hass.states.entity_ids('plant'):
 allproblemPlants.extend(fertilizePlants)
 allproblemPlants.extend(waterPlants)
 allproblemPlants.extend(lowBatteryPlants)
+allproblemPlants = set(allproblemPlants)
 
 # Set icon
 if allproblemPlants:
