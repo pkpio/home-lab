@@ -67,13 +67,15 @@ if waterplantsList == "":
   waterplantsList = "None"
 hass.states.set('sensor.water_plants_friendly', waterplantsList, {
     'friendly_name': 'Water Plants',
-    'icon': 'mdi:water'
+    'icon': 'mdi:water',
+    'water': waterPlants
 })
 
 hass.states.set('sensor.fertilize_plants_number', numberFertilize, {
     'unit_of_measurement': 'plants',
     'friendly_name': 'Fertilize Plants Number',
-    'icon': 'mdi:emoticon-poop'
+    'icon': 'mdi:emoticon-poop',
+    'fertilize': fertilizePlants
 })
 
 fertilizeplantsList = ', '.join(fertilizePlants)
