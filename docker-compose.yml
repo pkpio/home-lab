@@ -100,15 +100,16 @@ services:
   #============================================================#
   monitoring:
     container_name: monitoring
-    image: nicolargo/glances:latest-alpine
+    image: nicolargo/glances:latest
     restart: unless-stopped
+    ports:
+      - "61208-61209:61208-61209"
     pid: host
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /media/external-hd:/external-hd:ro
     environment:
       - "GLANCES_OPT=-w"
-    network_mode: host
 
 
   #======================== Cron service ======================#
