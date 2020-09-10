@@ -1,0 +1,29 @@
+title: Plants Monitoring
+icon: mdi:leaf
+path: plant-monitoring
+panel: true
+
+cards:
+- type: plant-status
+  entity: plant.sago_palm
+  
+- type: plant-status
+  entity: plant.spineless_yucca
+  
+- type: plant-status
+  entity: plant.rubber_plant
+  
+- type: plant-status
+  entity: plant.swiss_cheese
+  
+- type: plant-status
+  entity: plant.cat_palm
+  
+- type: plant-status
+  entity: plant.spider_plant
+  
+- type: plant-status
+  entity: plant.dumbcane
+  
+- type: plant-status
+  entity: plant.dragon_tree
