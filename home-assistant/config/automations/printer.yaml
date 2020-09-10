@@ -5,8 +5,8 @@
   trigger:
     platform: numeric_state
     entity_id: 
-      - sensor.canon_ts3100_series_black
-      - sensor.canon_ts3100_series_color
+    - sensor.canon_ts3100_series_black
+    - sensor.canon_ts3100_series_color
     below: 50
   action:
   - service: notify.notify

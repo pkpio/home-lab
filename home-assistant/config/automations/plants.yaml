@@ -1,6 +1,6 @@
 - alias: 'Update Plant Problems'
   trigger:
-  - platform: state
+    platform: state
     entity_id:
     - plant.sago_palm
     - plant.spineless_yucca
@@ -12,3 +12,33 @@
     - plant.dragon_tree
   action:
   - service: python_script.plant_problems
+
+- alias: Notify when any plant needs water
+  trigger:
+    platform: numeric_state
+    entity_id: 
+    - sensor.plants_water_low
+    above: 0
+  action:
+  - service: notify.notify
+    data_template:
+      title: Plants need water
+      message: >-
+        Water these plants: {{ state_attr("sensor.plant_problems", "water")  }}
+      data:
+        image: https://ryhom.com/wp-content/uploads/2019/09/Watering-A-Garden.jpg
+
+- alias: Notify when any plant needs fertilizer
+  trigger:
+    platform: numeric_state
+    entity_id: 
+    - sensor.plants_fertilizer_low
+    above: 0
+  action:
+  - service: notify.notify
+    data_template:
+      title: Plants need fertilizer
+      message: >-
+        Fertilize these plants: {{ state_attr("sensor.plant_problems", "fertilize")  }}
+      data:
+        image: https://www.bpr.org/sites/wcqs/files/styles/medium/public/201704/twitter_0.jpg
