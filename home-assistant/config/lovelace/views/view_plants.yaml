@@ -3,26 +3,42 @@ icon: mdi:leaf
 path: plant-monitoring
 
 cards:
-- type: plant-status
-  entity: plant.sago_palm
-  
-- type: plant-status
-  entity: plant.spineless_yucca
-  
-- type: plant-status
-  entity: plant.rubber_plant
-  
-- type: plant-status
-  entity: plant.swiss_cheese
-  
-- type: plant-status
-  entity: plant.cat_palm
-  
-- type: plant-status
-  entity: plant.spider_plant
-  
-- type: plant-status
-  entity: plant.dumbcane
-  
-- type: plant-status
-  entity: plant.dragon_tree
+- type: custom:decluttering-card
+  template: plant_status_full_picture
+  variables:
+    entity: plant.sago_palm
+
+- type: custom:decluttering-card
+  template: plant_status_full_picture
+  variables:
+    entity: plant.spineless_yucca
+
+- type: custom:decluttering-card
+  template: plant_status_full_picture
+  variables:
+    entity: plant.rubber_plant
+
+- type: custom:decluttering-card
+  template: plant_status_full_picture
+  variables:
+    entity: plant.swiss_cheese
+
+- type: custom:decluttering-card
+  template: plant_status_full_picture
+  variables:
+    entity: plant.cat_palm
+
+- type: custom:decluttering-card
+  template: plant_status_full_picture
+  variables:
+    entity: plant.spider_plant
+
+- type: custom:decluttering-card
+  template: plant_status_full_picture
+  variables:
+    entity: plant.dumbcane
+
+- type: custom:decluttering-card
+  template: plant_status_full_picture
+  variables:
+    entity: plant.dumbcane

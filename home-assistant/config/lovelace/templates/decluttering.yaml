@@ -169,3 +169,14 @@ room_humidity_graph:
     - color_1: '#fdcf57' # yellow shade
     - color_2: '#69b932' # green shade
     - color_3: '#00a9f4' # blue shade
+
+plant_status_full_picture:
+  default:
+  - entity: ''
+  card:
+    type: plant-status
+    entity: '[[entity]]'
+    style: |
+      .has-plant-image .banner {
+        padding-top: 100%;
+      }
