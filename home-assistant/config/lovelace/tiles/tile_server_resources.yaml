@@ -6,7 +6,7 @@ cards:
   horizontal: true
   cards:
   - type: gauge
-    entity: sensor.homeassistant_cpu_used
+    entity: sensor.home_lab_cpu_used
     max: 100
     min: 0
     severity:
@@ -16,7 +16,7 @@ cards:
     name: CPU
 
   - type: gauge
-    entity: sensor.homeassistant_ram_used
+    entity: sensor.home_lab_ram_used
     max: 15400
     min: 0
     severity:
@@ -29,7 +29,7 @@ cards:
   horizontal: true
   cards:
   - type: gauge
-    entity: sensor.homeassistant_etc_hostname_used
+    entity: sensor.home_lab_etc_hostname_used
     max: 916
     min: 0
     severity:
@@ -39,7 +39,7 @@ cards:
     name: Internal HD
 
   - type: gauge
-    entity: sensor.homeassistant_external_hd_used
+    entity: sensor.home_lab_external_hd_used
     max: 3700
     min: 0
     severity:

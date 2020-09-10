@@ -3,11 +3,11 @@ title: Process
 cards:
 - type: glance
   entities:
-  - entity: sensor.homeassistant_total
+  - entity: sensor.home_lab_total
     name: Total
-  - entity: sensor.homeassistant_running
+  - entity: sensor.home_lab_running
     name: Running
-  - entity: sensor.homeassistant_sleeping
+  - entity: sensor.home_lab_sleeping
     name: Sleeping
-  - entity: sensor.homeassistant_thread
+  - entity: sensor.home_lab_thread
     name: Threads
