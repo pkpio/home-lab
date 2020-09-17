@@ -16,5 +16,8 @@ def clear_notification(tag):
 for entity_id in hass.states.entity_ids('plant'):
   state = hass.states.get(entity_id)
   clear_notification(
-    tag = plant_state.attributes.get('sensors')['moisture']
+    tag = state.attributes.get('sensors')['moisture']
+  )
+  clear_notification(
+    tag = state.attributes.get('sensors')['conductivity']
   )
