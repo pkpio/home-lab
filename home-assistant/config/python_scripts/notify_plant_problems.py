@@ -1,7 +1,7 @@
 # Sends seperate notifications for each plant that needs care
 # the notification will include the plant picture 
 
-def send_notification(title, message, ledColor, image, tag):
+def send_notification(title, message, ledColor, image, imortance, tag, channel):
   hass.services.call(
     "notify", 
     "notify", 
@@ -9,8 +9,8 @@ def send_notification(title, message, ledColor, image, tag):
       "title": title, 
       "message": message,
       "data": {
-        "channel": "Plant",
-        "importance": "low",
+        "channel": channel,
+        "importance": imortance,
         "ledColor": ledColor,
         "clickAction": "/lovelace/plant-monitoring",
         "image": image,
@@ -31,7 +31,9 @@ for entity_id in hass.states.entity_ids('plant'):
         message = "Feed me fertilizer please",
         ledColor = "yellow",
         image = state.attributes.get('entity_picture'),
-        tag = state.attributes.get('sensors')['conductivity']
+        imortance = "min",
+        tag = state.attributes.get('sensors')['conductivity'],
+        channel = "Plant fertilizer"
       )
     if "moisture low" in problem:
       send_notification(
@@ -39,5 +41,7 @@ for entity_id in hass.states.entity_ids('plant'):
         message = "Water me please",
         ledColor = "blue",
         image = state.attributes.get('entity_picture'),
-        tag = state.attributes.get('sensors')['moisture']
+        imortance = "low",
+        tag = state.attributes.get('sensors')['moisture'],
+        channel = "Plant water"
       )
