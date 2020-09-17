@@ -1,44 +1,15 @@
-- alias: 'Update Plant Problems'
+- alias: Update plant problems
   trigger:
-    platform: state
-    entity_id:
-    - plant.sago_palm
-    - plant.spineless_yucca
-    - plant.rubber_plant
-    - plant.swiss_cheese
-    - plant.cat_palm
-    - plant.spider_plant
-    - plant.dumbcane
-    - plant.dragon_tree
+    platform: time_pattern
+    minutes: "/5" # Every 5 mins
   action:
-  - service: python_script.plant_problems
+    service: python_script.plant_problems
 
-- alias: Notify when any plant needs water
+- alias: Notify about plant problems
   trigger:
-    platform: numeric_state
-    entity_id: 
-    - sensor.plants_water_low
-    above: 0
+    platform: time
+    at: 
+    - "05:00:00" # At 5:00 AM
+    - "17:00:00" # At 5:00 PM
   action:
-  - service: notify.notify
-    data_template:
-      title: Plants need water
-      message: >-
-        Water these plants: {{ state_attr("sensor.plants_problems", "water")  }}
-      data:
-        image: https://ryhom.com/wp-content/uploads/2019/09/Watering-A-Garden.jpg
-
-- alias: Notify when any plant needs fertilizer
-  trigger:
-    platform: numeric_state
-    entity_id: 
-    - sensor.plants_fertilizer_low
-    above: 0
-  action:
-  - service: notify.notify
-    data_template:
-      title: Plants need fertilizer
-      message: >-
-        Fertilize these plants: {{ state_attr("sensor.plants_problems", "fertilize")  }}
-      data:
-        image: https://www.bpr.org/sites/wcqs/files/styles/medium/public/201704/twitter_0.jpg
+    service: python_script.notify_plant_problems

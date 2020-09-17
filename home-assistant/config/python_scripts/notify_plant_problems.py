@@ -1,6 +1,25 @@
 # Sends seperate notifications for each plant that needs care
 # the notification will include the plant picture 
 
+def send_notification(title, message, ledColor, image, tag):
+  hass.services.call(
+    "notify", 
+    "notify", 
+    {
+      "title": title, 
+      "message": message,
+      "data": {
+        "channel": "Plant",
+        "importance": "low",
+        "ledColor": ledColor,
+        "clickAction": "/lovelace/plant-monitoring",
+        "image": image,
+        "tag": tag
+      }
+    }, 
+    False
+  )
+
 waterPlants = []
 fertilizePlants = []
 
@@ -15,30 +34,20 @@ for entity_id in hass.states.entity_ids('plant'):
 
 # Notify about each plant that needs water
 for plant_state in waterPlants:
-  hass.services.call(
-    "notify", 
-    "notify", 
-    {
-      "title": plant_state.attributes.get('friendly_name') + " needs 💧💧", 
-      "message": "Water me!",
-      "data": {
-        "image": plant_state.attributes.get('entity_picture')
-      }
-    }, 
-    False
+  send_notification(
+    title = plant_state.attributes.get('friendly_name') + " needs 💧💧💧",
+    message = "Water me please",
+    ledColor = "blue",
+    image = plant_state.attributes.get('entity_picture'),
+    tag = plant_state.attributes.get('sensors')['moisture']
   )
 
 # Notify about each plant that needs fertilizer
 for plant_state in fertilizePlants:
-  hass.services.call(
-    "notify", 
-    "notify", 
-    {
-      "title": plant_state.attributes.get('friendly_name') + " needs 💩💩", 
-      "message": "Feed me!",
-      "data": {
-        "image": plant_state.attributes.get('entity_picture')
-      }
-    }, 
-    False
+  send_notification(
+    title = plant_state.attributes.get('friendly_name') + " needs 💩💩💩",
+    message = "Feed me fertilizer please",
+    ledColor = "yellow",
+    image = plant_state.attributes.get('entity_picture'),
+    tag = plant_state.attributes.get('sensors')['conductivity']
   )
