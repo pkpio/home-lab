@@ -21,3 +21,6 @@ plant_problems:
 
 notify_plant_problems:
   description: Sends notifications for each plant that need attention
+
+clear_plant_notifications:
+  description: Clears notifications about all plant problems

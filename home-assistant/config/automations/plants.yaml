@@ -5,11 +5,18 @@
   action:
     service: python_script.plant_problems
 
+- alias: Clear plant problem notifications
+  trigger:
+    platform: time
+    at: 
+    - "01:00:00" # At 1:00 AM
+  action:
+    service: python_script.clear_plant_notifications
+
 - alias: Notify about plant problems
   trigger:
     platform: time
     at: 
-    - "05:00:00" # At 5:00 AM
-    - "17:00:00" # At 5:00 PM
+    - "06:00:00" # At 6:00 AM
   action:
     service: python_script.notify_plant_problems
