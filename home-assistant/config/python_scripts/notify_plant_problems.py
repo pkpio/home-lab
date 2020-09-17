@@ -20,17 +20,39 @@ def send_notification(title, message, ledColor, image, tag):
     False
   )
 
+def clear_notification(tag):
+  hass.services.call(
+    "notify", 
+    "notify", 
+    {
+      "message": "clear_notification",
+      "data": {
+        "tag": tag
+      }
+    }, 
+    False
+  )
+
+
+allPlants = []
 waterPlants = []
 fertilizePlants = []
 
 for entity_id in hass.states.entity_ids('plant'):
   state = hass.states.get(entity_id)
+  allPlants.append(state)
+
   if state.state == 'problem':
     problem = state.attributes.get('problem') or 'none'
     if "conductivity low" in problem:
       fertilizePlants.append(state)
     if "moisture low" in problem:
       waterPlants.append(state)
+
+# Clear all existing notifications
+for plant_state in allPlants:
+  clear_notification(tag = plant_state.attributes.get('sensors')['moisture'])
+  clear_notification(tag = plant_state.attributes.get('sensors')['conductivity'])
 
 # Notify about each plant that needs water
 for plant_state in waterPlants:
