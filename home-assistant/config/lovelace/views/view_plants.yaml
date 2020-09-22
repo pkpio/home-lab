@@ -76,3 +76,8 @@ cards:
   variables:
   - entity: plant.dining_right
 
+- type: custom:decluttering-card
+  template: plant_status_full_picture
+  variables:
+  - entity: plant.graptoveria
+

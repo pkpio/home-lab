@@ -56,3 +56,7 @@ plant.dining_middle:
 plant.dining_right:
   friendly_name: Dining Right
   entity_picture: "/local/images/plants/dining_right.jpg"
+
+plant.graptoveria:
+  friendly_name: Graptoveria
+  entity_picture: "/local/images/plants/graptoveria.jpg"
