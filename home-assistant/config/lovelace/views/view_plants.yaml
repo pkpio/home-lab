@@ -50,3 +50,29 @@ cards:
   template: plant_status_full_picture
   variables:
   - entity: plant.dragon_tree
+
+- type: custom:decluttering-card
+  template: plant_status_full_picture
+  variables:
+  - entity: plant.chilli_plant
+
+- type: custom:decluttering-card
+  template: plant_status_full_picture
+  variables:
+  - entity: plant.cherry_tomato
+
+- type: custom:decluttering-card
+  template: plant_status_full_picture
+  variables:
+  - entity: plant.dining_left
+
+- type: custom:decluttering-card
+  template: plant_status_full_picture
+  variables:
+  - entity: plant.dining_middle
+
+- type: custom:decluttering-card
+  template: plant_status_full_picture
+  variables:
+  - entity: plant.dining_right
+

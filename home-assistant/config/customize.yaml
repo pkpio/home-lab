@@ -36,3 +36,23 @@ plant.dumbcane:
 plant.dragon_tree:
   friendly_name: Dragon Tree
   entity_picture: "/local/images/plants/dragon_tree.jpg"
+
+plant.chilli_plant:
+  friendly_name: Chilli Plant
+  entity_picture: "/local/images/plants/chilli_plant.jpg"
+
+plant.cherry_tomato:
+  friendly_name: Cherry Tomato
+  entity_picture: "/local/images/plants/cherry_tomato.jpg"
+
+plant.dining_left:
+  friendly_name: Dining Left
+  entity_picture: "/local/images/plants/dining_left.jpg"
+
+plant.dining_middle:
+  friendly_name: Chilli Plant
+  entity_picture: "/local/images/plants/dining_middle.jpg"
+
+plant.dining_right:
+  friendly_name: Dining Right
+  entity_picture: "/local/images/plants/dining_right.jpg"
