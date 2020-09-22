@@ -125,3 +125,83 @@ dragon_tree:
   max_brightness: 50000
   min_temperature: 10
   max_temperature: 35
+
+chilli_plant:
+  sensors:
+    moisture: sensor.miflora_chilli_plant_moisture
+    battery: sensor.miflora_chilli_plant_battery
+    temperature: sensor.miflora_chilli_plant_temperature
+    conductivity: sensor.miflora_chilli_plant_conductivity
+    brightness: sensor.miflora_chilli_plant_light
+  min_moisture: 15
+  max_moisture: 60
+  min_conductivity: 150
+  max_conductivity: 2000
+  min_brightness: 3000
+  max_brightness: 95000
+  min_temperature: 10
+  max_temperature: 35
+
+cherry_tomato:
+  sensors:
+    moisture: sensor.miflora_cherry_tomato_moisture
+    battery: sensor.miflora_cherry_tomato_battery
+    temperature: sensor.miflora_cherry_tomato_temperature
+    conductivity: sensor.miflora_cherry_tomato_conductivity
+    brightness: sensor.miflora_cherry_tomato_light
+  min_moisture: 20
+  max_moisture: 65
+  min_conductivity: 350
+  max_conductivity: 2000
+  min_brightness: 3500
+  max_brightness: 130000
+  min_temperature: 10
+  max_temperature: 32
+
+dining_left:
+  sensors:
+    moisture: sensor.miflora_dining_left_moisture
+    battery: sensor.miflora_dining_left_battery
+    temperature: sensor.miflora_dining_left_temperature
+    conductivity: sensor.miflora_dining_left_conductivity
+    brightness: sensor.miflora_dining_left_light
+  min_moisture: 7
+  max_moisture: 50
+  min_conductivity: 100
+  max_conductivity: 1000
+  min_brightness: 3000
+  max_brightness: 100000
+  min_temperature: 5
+  max_temperature: 35
+
+dining_middle:
+  sensors:
+    moisture: sensor.miflora_dining_middle_moisture
+    battery: sensor.miflora_dining_middle_battery
+    temperature: sensor.miflora_dining_middle_temperature
+    conductivity: sensor.miflora_dining_middle_conductivity
+    brightness: sensor.miflora_dining_middle_light
+  min_moisture: 7
+  max_moisture: 50
+  min_conductivity: 300
+  max_conductivity: 1000
+  min_brightness: 1500
+  max_brightness: 35000
+  min_temperature: 8
+  max_temperature: 35
+
+dining_right:
+  sensors:
+    moisture: sensor.miflora_dining_right_moisture
+    battery: sensor.miflora_dining_right_battery
+    temperature: sensor.miflora_dining_right_temperature
+    conductivity: sensor.miflora_dining_right_conductivity
+    brightness: sensor.miflora_dining_right_light
+  min_moisture: 7
+  max_moisture: 50
+  min_conductivity: 300
+  max_conductivity: 1000
+  min_brightness: 3000
+  max_brightness: 80000
+  min_temperature: 5
+  max_temperature: 35
