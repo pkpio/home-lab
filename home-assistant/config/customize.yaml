@@ -50,7 +50,7 @@ plant.dining_left:
   entity_picture: "/local/images/plants/dining_left.jpg"
 
 plant.dining_middle:
-  friendly_name: Chilli Plant
+  friendly_name: Dining Middle
   entity_picture: "/local/images/plants/dining_middle.jpg"
 
 plant.dining_right:
