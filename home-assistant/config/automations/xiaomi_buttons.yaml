@@ -23,7 +23,7 @@
   action:
   - service: script.xiaomi_button
     data_template:
-      entity_id: light.cooktop_light
+      entity_id: light.cooktop_lights
       event: "{{ trigger.event.data.event }}"
 
 #### Ensuite button ####

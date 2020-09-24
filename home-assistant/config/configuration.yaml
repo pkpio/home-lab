@@ -76,7 +76,10 @@ sonoff:
       name: Balcony light
     1000c1872c:
       device_class: light
-      name: Cooktop lights
+      name: Microwave light
+    1000b7ee2a:
+      device_class: light
+      name: Cooking lights
 
 hacs:
   token: !secret github_personal_token
