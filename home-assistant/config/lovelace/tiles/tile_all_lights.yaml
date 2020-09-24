@@ -7,7 +7,7 @@ entities:
   name: Lounge
 - entity: light.kitchen_lights
   name: Kitchen
-- entity: light.cooktop_light
+- entity: light.cooktop_lights
   name: Cooktop
 - entity: light.dining_lights
   name: Dining
