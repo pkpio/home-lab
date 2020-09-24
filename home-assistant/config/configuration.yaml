@@ -107,6 +107,10 @@ notify:
 glances:
 - name: Home Lab
   host: !secret home_assistant_host
+- name: Plant Monitor 1
+  host: !secret plant_monitor_1_host
+- name: Plant Monitor 2
+  host: !secret plant_monitor_2_host
 
 transmission:
   host: !secret home_assistant_host
