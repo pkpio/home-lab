@@ -41,7 +41,7 @@ cards:
   - entity: sensor.plant_monitor_2_cpu_thermal_1_temp
 
 - type: glance
-  columns: 4
+  columns: 3
   entities:
   - entity: sensor.plant_monitor_2_total
     name: Total
@@ -55,5 +55,3 @@ cards:
     name: Active
   - entity: sensor.plant_monitor_2_containers_cpu_used
     name: CPU
-  - entity: sensor.plant_monitor_2_containers_ram_used
-    name: RAM
