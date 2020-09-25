@@ -1,20 +1,19 @@
 type: custom:vertical-stack-in-card
 title: Plant Monitor 2
 cards:
+- type: gauge
+  entity: sensor.plant_monitor_2_cpu_used
+  max: 100
+  min: 0
+  severity:
+    green: 0
+    yellow: 25
+    red: 50
+  name: CPU
 
 - type: custom:vertical-stack-in-card
   horizontal: true
   cards:
-  - type: gauge
-    entity: sensor.plant_monitor_2_cpu_used
-    max: 100
-    min: 0
-    severity:
-      green: 0
-      yellow: 25
-      red: 50
-    name: CPU
-
   - type: gauge
     entity: sensor.plant_monitor_2_ram_used
     max: 4000
@@ -25,15 +24,15 @@ cards:
       red: 3000
     name: Memory
 
-- type: gauge
-  entity: sensor.plant_monitor_2_etc_hostname_used
-  max: 14.7
-  min: 0
-  severity:
-    green: 0
-    yellow: 6
-    red: 10
-  name: Internal HD
+  - type: gauge
+    entity: sensor.plant_monitor_2_etc_hostname_used
+    max: 14.7
+    min: 0
+    severity:
+      green: 0
+      yellow: 6
+      red: 10
+    name: Internal HD
 
 - type: custom:decluttering-card
   template: cpu_temperature_graph
