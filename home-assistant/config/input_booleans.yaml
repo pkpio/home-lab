@@ -13,3 +13,11 @@ vacuum_automation_ran_today:
 lounge_motion_sensing:
   name: Indicates if lounge motion sensing is active
   icon: mdi:robot-vacuum-variant
+
+plant_water_notifications:
+  name: Indicates if plant water notifications should be sent
+  icon: mdi:water
+
+plant_fertilize_notifications:
+  name: Indicates if plant fertilize notifications should be sent
+  icon: mdi:emoticon-poop

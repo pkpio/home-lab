@@ -1,7 +1,6 @@
 type: custom:vertical-stack-in-card
 title: Home Lab
 cards:
-
 - type: custom:vertical-stack-in-card
   horizontal: true
   cards:

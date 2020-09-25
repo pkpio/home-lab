@@ -2,14 +2,31 @@ title: Plants Monitoring
 icon: mdi:leaf
 path: plant-monitoring
 cards:
-- type: glance
-  entities:
-  - entity: sensor.plants_problems
-    name: Total problems
-  - entity: sensor.plants_water_low
-    name: Need watering
-  - entity: sensor.plants_fertilizer_low
-    name: Need fertilizer
+- type: 'custom:vertical-stack-in-card'
+  cards:
+  - type: glance
+    entities:
+    - entity: sensor.plants_problems
+      name: Total problems
+    - entity: sensor.plants_water_low
+      name: Need watering
+    - entity: sensor.plants_fertilizer_low
+      name: Need fertilizer
+
+  - type: glance
+    entities:
+    - entity: input_boolean.plant_water_notifications
+      name: Water notifications
+      tap_action:
+        action: toggle
+      hold_action:
+        action: more-info
+    - entity: input_boolean.plant_fertilize_notifications
+      name: Fertilize notifications
+      tap_action:
+        action: toggle
+      hold_action:
+        action: more-info
 
 - type: custom:decluttering-card
   template: plant_status_full_picture
