@@ -25,21 +25,18 @@ cards:
       red: 3000
     name: Memory
 
-- type: custom:vertical-stack-in-card
-  horizontal: true
-  cards:
-  - type: gauge
-    entity: sensor.plant_monitor_1_etc_hostname_used
-    max: 224.8
-    min: 0
-    severity:
-      green: 0
-      yellow: 120
-      red: 200
-    name: Internal HD
+- type: gauge
+  entity: sensor.plant_monitor_1_etc_hostname_used
+  max: 224.8
+  min: 0
+  severity:
+    green: 0
+    yellow: 120
+    red: 200
+  name: Internal HD
 
-  - type: custom:decluttering-card
-    template: cpu_temperature_graph
-    variables:
-    - name: CPU temperature
-    - entity: sensor.plant_monitor_1_cpu_thermal_1_temp
+- type: custom:decluttering-card
+  template: cpu_temperature_graph
+  variables:
+  - name: CPU temperature
+  - entity: sensor.plant_monitor_1_cpu_thermal_1_temp
