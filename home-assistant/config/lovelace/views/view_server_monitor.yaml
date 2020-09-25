@@ -11,3 +11,5 @@ cards:
   - !include /config/lovelace/tiles/tile_server_process.yaml
   - !include /config/lovelace/tiles/tile_server_docker_containers.yaml
   - !include /config/lovelace/tiles/tile_server_torrent_client.yaml
+  - !include /config/lovelace/tiles/tile_plant_monitor_1.yaml
+  - !include /config/lovelace/tiles/tile_plant_monitor_2.yaml
