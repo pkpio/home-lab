@@ -1,5 +1,5 @@
 type: custom:vertical-stack-in-card
-title: Resources
+title: Home Lab
 cards:
 
 - type: custom:vertical-stack-in-card
@@ -47,3 +47,33 @@ cards:
       yellow: 2700
       red: 3500
     name: External HD
+
+- type: custom:decluttering-card
+  template: cpu_temperature_graph
+  variables:
+  - name: Temperature - Core 0
+  - entity: sensor.home_lab_core_0_temp
+
+- type: custom:decluttering-card
+  template: cpu_temperature_graph
+  variables:
+  - name: Temperature - Core 1
+  - entity: sensor.home_lab_core_1_temp
+
+- type: glance
+  columns: 4
+  entities:
+  - entity: sensor.home_lab_total
+    name: Total
+  - entity: sensor.home_lab_running
+    name: Running
+  - entity: sensor.home_lab_sleeping
+    name: Sleeping
+  - entity: sensor.home_lab_thread
+    name: Threads
+  - entity: sensor.home_lab_containers_active
+    name: Active
+  - entity: sensor.home_lab_containers_cpu_used
+    name: CPU
+  - entity: sensor.home_lab_containers_ram_used
+    name: RAM

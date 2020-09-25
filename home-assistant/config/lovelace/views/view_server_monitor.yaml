@@ -6,10 +6,7 @@ panel: true
 cards:
 - type: custom:layout-card
   cards:
-  - !include /config/lovelace/tiles/tile_server_resources.yaml
-  - !include /config/lovelace/tiles/tile_server_temperature.yaml
-  - !include /config/lovelace/tiles/tile_server_process.yaml
-  - !include /config/lovelace/tiles/tile_server_docker_containers.yaml
-  - !include /config/lovelace/tiles/tile_server_torrent_client.yaml
+  - !include /config/lovelace/tiles/tile_home_lab.yaml
   - !include /config/lovelace/tiles/tile_plant_monitor_1.yaml
   - !include /config/lovelace/tiles/tile_plant_monitor_2.yaml
+  - !include /config/lovelace/tiles/tile_torrent_client.yaml
