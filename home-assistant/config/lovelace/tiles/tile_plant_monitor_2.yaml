@@ -13,7 +13,7 @@ cards:
       yellow: 25
       red: 50
     name: CPU
-  
+
   - type: gauge
     entity: sensor.plant_monitor_2_ram_used
     max: 4000
@@ -39,3 +39,21 @@ cards:
   variables:
   - name: CPU temperature
   - entity: sensor.plant_monitor_2_cpu_thermal_1_temp
+
+- type: glance
+  columns: 4
+  entities:
+  - entity: sensor.plant_monitor_2_total
+    name: Total
+  - entity: sensor.plant_monitor_2_running
+    name: Running
+  - entity: sensor.plant_monitor_2_sleeping
+    name: Sleeping
+  - entity: sensor.plant_monitor_2_thread
+    name: Threads
+  - entity: sensor.plant_monitor_2_containers_active
+    name: Active
+  - entity: sensor.plant_monitor_2_containers_cpu_used
+    name: CPU
+  - entity: sensor.plant_monitor_2_containers_ram_used
+    name: RAM
