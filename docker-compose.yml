@@ -7,14 +7,11 @@ services:
     container_name: home-assistant
     image: homeassistant/home-assistant:stable
     restart: always
+    network_mode: host
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./home-assistant/config/:/config
-    ports:
-      - "8123:8123"
     depends_on:
-      - database
-    links:
       - database
 
 
@@ -27,7 +24,7 @@ services:
     restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./database/data/:/var/lib/mysql
+      - ./database/data:/var/lib/mysql
     ports:
       - "3306:3306"
     env_file:
