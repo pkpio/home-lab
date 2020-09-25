@@ -11,6 +11,22 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ./home-assistant/config/:/config
     network_mode: host
+    depends_on:
+      - database
+    links:
+      - database
+
+  #========================== Database ========================#
+  # MariaDB database for home assistant
+  #============================================================#
+  database:
+    container_name: database
+    image: mariadb/server:latest
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - database/.env
 
 
   #====================== Zigbee dongle =======================#

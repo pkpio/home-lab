@@ -17,6 +17,7 @@ homeassistant:
 
 # Data saving policy
 recorder:
+  db_url: !secret database_url
   purge_keep_days: 10
 
 # Text to speech
