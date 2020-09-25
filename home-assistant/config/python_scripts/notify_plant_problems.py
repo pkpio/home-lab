@@ -21,15 +21,15 @@ def send_notification(title, message, ledColor, image, imortance, tag, channel):
   )
 
 # State of notifications
-water_notifications_enabled = hass.states.get("input_boolean.plant_water_notifications").state
-fertilize_notifications_enabled = hass.states.get("input_boolean.plant_fertilize_notifications").state
+water_notifications = hass.states.get("input_boolean.plant_water_notifications").state
+fertilize_notifications = hass.states.get("input_boolean.plant_fertilize_notifications").state
 
 for entity_id in hass.states.entity_ids('plant'):
   state = hass.states.get(entity_id)
 
   if state.state == 'problem':
     problem = state.attributes.get('problem') or 'none'
-    if "conductivity low" in problem and fertilize_notifications_enabled:
+    if "conductivity low" in problem and fertilize_notifications == 'on':
       send_notification(
         title = state.attributes.get('friendly_name') + " needs 💩💩💩",
         message = "Feed me fertilizer please",
@@ -39,7 +39,7 @@ for entity_id in hass.states.entity_ids('plant'):
         tag = state.attributes.get('sensors')['conductivity'],
         channel = "Plant fertilizer"
       )
-    if "moisture low" in problem and water_notifications_enabled:
+    if "moisture low" in problem and water_notifications == 'on':
       send_notification(
         title = state.attributes.get('friendly_name') + " needs 💧💧💧",
         message = "Water me please",
