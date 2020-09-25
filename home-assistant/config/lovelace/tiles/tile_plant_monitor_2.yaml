@@ -41,17 +41,10 @@ cards:
   - entity: sensor.plant_monitor_2_cpu_thermal_1_temp
 
 - type: glance
-  columns: 3
   entities:
   - entity: sensor.plant_monitor_2_total
-    name: Total
-  - entity: sensor.plant_monitor_2_running
-    name: Running
-  - entity: sensor.plant_monitor_2_sleeping
-    name: Sleeping
+    name: Processes
   - entity: sensor.plant_monitor_2_thread
     name: Threads
   - entity: sensor.plant_monitor_2_containers_active
-    name: Active
-  - entity: sensor.plant_monitor_2_containers_cpu_used
-    name: CPU
+    name: Containers

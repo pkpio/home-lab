@@ -61,19 +61,10 @@ cards:
   - entity: sensor.home_lab_core_1_temp
 
 - type: glance
-  columns: 4
   entities:
   - entity: sensor.home_lab_total
-    name: Total
-  - entity: sensor.home_lab_running
-    name: Running
-  - entity: sensor.home_lab_sleeping
-    name: Sleeping
+    name: Processes
   - entity: sensor.home_lab_thread
     name: Threads
   - entity: sensor.home_lab_containers_active
-    name: Active
-  - entity: sensor.home_lab_containers_cpu_used
-    name: CPU
-  - entity: sensor.home_lab_containers_ram_used
-    name: RAM
+    name: Containers
