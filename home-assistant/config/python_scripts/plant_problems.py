@@ -4,10 +4,11 @@
 # Make a list of all plants that need to be water and fertilized and combine into readable lists.
 #
 # Creates:
+# sensor.plants_total
+# sensor.plants_problem
 # sensor.plants_water_low
 # sensor.plants_fertilizer_low
 # sensor.plants_battery_low
-# sensor.plants_problems
 #
 #  http://www.diyfuturism.com/making-houseplants-talk
 
@@ -17,7 +18,9 @@ fertilizePlants = []
 lowBatteryPlants = []
 whichIcon = "mdi:help-circle-outline"
 
-for entity_id in hass.states.entity_ids('plant'):
+plant_entities = hass.states.entity_ids('plant')
+
+for entity_id in plant_entities:
   state = hass.states.get(entity_id)
   if state.state == 'problem':
     problem = state.attributes.get('problem') or 'none'
@@ -41,9 +44,15 @@ else:
   whichIcon = "mdi:check-circle-outline"
 
 # Set states
-hass.states.set('sensor.plants_problems', len(allproblemPlants), {
+hass.states.set('sensor.plants_total', len(plant_entities), {
     'unit_of_measurement': 'plants',
-    'friendly_name': 'Problem Plants',
+    'friendly_name': 'Total Plants',
+    'icon': 'mdi:leaf'
+})
+
+hass.states.set('sensor.plants_problem', len(allproblemPlants), {
+    'unit_of_measurement': 'plants',
+    'friendly_name': 'Plants with issues',
     'icon': whichIcon,
     'problem_plants': allproblemPlants,
     'water': waterPlants,
@@ -56,21 +65,21 @@ hass.states.set('sensor.plants_problems', len(allproblemPlants), {
 
 hass.states.set('sensor.plants_water_low', len(waterPlants), {
     'unit_of_measurement': 'plants',
-    'friendly_name': 'Water plants count',
+    'friendly_name': 'Plants that need water',
     'icon': 'mdi:water',
     'plants': waterPlants
 })
 
 hass.states.set('sensor.plants_fertilizer_low', len(fertilizePlants), {
     'unit_of_measurement': 'plants',
-    'friendly_name': 'Fertilize plants count',
+    'friendly_name': 'Plants that need fertilizer',
     'icon': 'mdi:emoticon-poop',
     'plants': fertilizePlants
 })
 
 hass.states.set('sensor.plants_battery_low', len(fertilizePlants), {
     'unit_of_measurement': 'plants',
-    'friendly_name': 'Battery low plants',
+    'friendly_name': 'Plant sensors with low Battery',
     'icon': 'mdi:battery-alert',
     'plants': lowBatteryPlants
 })

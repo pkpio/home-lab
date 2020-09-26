@@ -4,14 +4,18 @@ path: plant-monitoring
 cards:
 - type: 'custom:vertical-stack-in-card'
   cards:
-  - type: glance
+  - type: entities
     entities:
-    - entity: sensor.plants_problems
-      name: Total problems
+    - entity: sensor.plants_total
+      name: Total
+    - entity: sensor.plants_problem
+      name: With some issue
     - entity: sensor.plants_water_low
-      name: Need watering
+      name: Needs water
     - entity: sensor.plants_fertilizer_low
-      name: Need fertilizer
+      name: Needs fertilizer
+    - entity: sensor.plants_battery_low
+      name: Needs battery change
 
   - type: glance
     entities:

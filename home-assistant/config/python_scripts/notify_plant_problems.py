@@ -32,7 +32,9 @@ for entity_id in hass.states.entity_ids('plant'):
     if "conductivity low" in problem and fertilize_notifications == 'on':
       send_notification(
         title = state.attributes.get('friendly_name') + " needs 💩💩💩",
-        message = "Feed me fertilizer please",
+        message = "Fertilizer level at {} {}".format(
+                    state.attributes.get('conductivity'), 
+                    state.attributes.get('unit_of_measurement_dict')['conductivity']),
         ledColor = "yellow",
         image = state.attributes.get('entity_picture'),
         imortance = "min",
@@ -42,7 +44,9 @@ for entity_id in hass.states.entity_ids('plant'):
     if "moisture low" in problem and water_notifications == 'on':
       send_notification(
         title = state.attributes.get('friendly_name') + " needs 💧💧💧",
-        message = "Water me please",
+        message = "Water level at {} {}".format(
+                    state.attributes.get('moisture'), 
+                    state.attributes.get('unit_of_measurement_dict')['moisture']),
         ledColor = "blue",
         image = state.attributes.get('entity_picture'),
         imortance = "low",
