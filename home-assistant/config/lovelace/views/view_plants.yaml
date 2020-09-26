@@ -4,29 +4,35 @@ path: plant-monitoring
 cards:
 - type: 'custom:vertical-stack-in-card'
   cards:
-  - type: entities
+  - type: glance
+    title: Plants overview
     entities:
     - entity: sensor.plants_total
       name: Total
     - entity: sensor.plants_problem
-      name: Needs attention
-    - entity: sensor.plants_water_low
-      name: Needs water
-    - entity: sensor.plants_fertilizer_low
-      name: Needs fertilizer
-    - entity: sensor.plants_battery_low
-      name: Needs battery change
+      name: Issues
 
   - type: glance
+    title: Issues
+    entities:
+    - entity: sensor.plants_water_low
+      name: Water
+    - entity: sensor.plants_fertilizer_low
+      name: Fertilizer
+    - entity: sensor.plants_battery_low
+      name: Battery low
+
+  - type: glance
+    title: Notifications
     entities:
     - entity: input_boolean.plant_water_notifications
-      name: Water notifications
+      name: Water
       tap_action:
         action: toggle
       hold_action:
         action: more-info
     - entity: input_boolean.plant_fertilize_notifications
-      name: Fertilize notifications
+      name: Fertilize
       tap_action:
         action: toggle
       hold_action:
