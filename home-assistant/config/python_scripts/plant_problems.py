@@ -16,7 +16,6 @@ allproblemPlants = []
 waterPlants = []
 fertilizePlants = []
 lowBatteryPlants = []
-whichIcon = "mdi:help-circle-outline"
 
 plant_entities = hass.states.entity_ids('plant')
 
@@ -37,11 +36,9 @@ allproblemPlants.extend(waterPlants)
 allproblemPlants.extend(lowBatteryPlants)
 allproblemPlants = set(allproblemPlants)
 
-# Set icon
-if allproblemPlants:
-  whichIcon = "mdi:alert-circle-outline"
-else:
-  whichIcon = "mdi:check-circle-outline"
+# Set icons
+problemIcon = "mdi:alert-circle-outline" if allproblemPlants else "mdi:check-circle-outline"
+batteryIcon = "mdi:battery-alert" if lowBatteryPlants else "mdi:battery"
 
 # Set states
 hass.states.set('sensor.plants_total', len(plant_entities), {
@@ -53,7 +50,7 @@ hass.states.set('sensor.plants_total', len(plant_entities), {
 hass.states.set('sensor.plants_problem', len(allproblemPlants), {
     'unit_of_measurement': 'plants',
     'friendly_name': 'Plants with issues',
-    'icon': whichIcon,
+    'icon': problemIcon,
     'problem_plants': allproblemPlants,
     'water': waterPlants,
     'water_number': len(waterPlants),
@@ -77,10 +74,10 @@ hass.states.set('sensor.plants_fertilizer_low', len(fertilizePlants), {
     'plants': fertilizePlants
 })
 
-hass.states.set('sensor.plants_battery_low', len(fertilizePlants), {
+hass.states.set('sensor.plants_battery_low', len(lowBatteryPlants), {
     'unit_of_measurement': 'plants',
     'friendly_name': 'Plant sensors with low Battery',
-    'icon': 'mdi:battery-alert',
+    'icon': batteryIcon,
     'plants': lowBatteryPlants
 })
 

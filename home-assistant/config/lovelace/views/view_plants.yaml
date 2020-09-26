@@ -9,7 +9,7 @@ cards:
     - entity: sensor.plants_total
       name: Total
     - entity: sensor.plants_problem
-      name: With some issue
+      name: Needs attention
     - entity: sensor.plants_water_low
       name: Needs water
     - entity: sensor.plants_fertilizer_low
