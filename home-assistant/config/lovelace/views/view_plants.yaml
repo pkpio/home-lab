@@ -18,7 +18,7 @@ cards:
     - entity: sensor.plants_water_low
       name: Water
     - entity: sensor.plants_fertilizer_low
-      name: Fertilizer
+      name: Fertilize
     - entity: sensor.plants_battery_low
       name: Battery low
 
