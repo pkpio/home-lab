@@ -156,7 +156,7 @@ services:
       - ./cloud-backup/config:/config/rclone
       - ./cloud-backup/script:/script
       - ./cloud-backup/backups:/backups
-      - ./:/all-containers-data:ro
+      - ./:/home-lab:ro
     labels:
       ofelia.enabled: "true"
 

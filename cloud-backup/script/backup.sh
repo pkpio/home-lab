@@ -4,9 +4,9 @@
 # restore in the event of a failure or migration. 
 
 TIME=`date +%b-%d-%y`
-ARCHIVE_FILENAME=all-containers-data-$TIME.tar.gz
+ARCHIVE_FILENAME=home-lab-$TIME.tar.gz
 
-SOURCE_DIR=/all-containers-data
+SOURCE_DIR=/home-lab
 DESTINATION_DIR=/backups
 ARCHIVE_FILEPATH="$DESTINATION_DIR/$ARCHIVE_FILENAME"
 
@@ -26,5 +26,5 @@ tar \
 echo "Backed up $SOURCE_DIR to $ARCHIVE_FILEPATH"
 
 # Delete backups older than 10 days
-find $DESTINATION_DIR -name 'all-containers-data-*.tar.gz' -mtime +10 -exec rm {} \;
+find $DESTINATION_DIR -name 'home-lab-*.tar.gz' -mtime +10 -exec rm {} \;
 echo "Deleted backups older than 10 days"
