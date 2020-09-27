@@ -19,7 +19,7 @@ jobs:
     - name: Start Home Assistant
       run: |
         docker run -d --name="home-assistant" \
-          -v home-assistant/config:/config \
+          -v $(pwd)/home-assistant/config:/config \
           -v /etc/localtime:/etc/localtime:ro \
           --net=host \
           homeassistant/home-assistant:stable
