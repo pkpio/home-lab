@@ -15,7 +15,8 @@ Lot's of connect hardware that accumulated over time on a need by basis.
 - Philips Hue White B22
 - Philips Ambilight pus8204 TV
 - Xbox One S
-- Sonoff Basic Switch
+- Sonoff BasicR2 Switch
+- Sonoff TX1C Switch
 - Aqara Motion Sensors
 - Aqara Contact Sensors
 - Aqara Environment Sensors
