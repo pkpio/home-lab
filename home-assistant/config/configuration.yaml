@@ -36,6 +36,7 @@ input_select: !include input_selects.yaml
 input_number: !include input_numbers.yaml
 input_boolean: !include input_booleans.yaml
 timer: !include timers.yaml
+sensor: !include_dir_merge_list sensors
 
 group: !include groups.yaml
 scene: !include scenes.yaml
