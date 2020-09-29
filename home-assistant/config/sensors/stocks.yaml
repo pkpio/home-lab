@@ -1,0 +1,23 @@
+- platform: yahoofinance
+  symbols:
+  - AMD
+  - GOOGL
+  - AMZN
+  - APPL
+  - BKNG
+  - BEP
+  - KO
+  - EZJ.L
+  - FB
+  - FIT
+  - INTC
+  - ECAR.L
+  - INRG.L
+  - ITM.L
+  - MSFT
+  - NTLX
+  - NVDA
+  - QCOM
+  - TSLA
+  - W
+  - ZM

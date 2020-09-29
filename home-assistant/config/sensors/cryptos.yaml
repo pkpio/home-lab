@@ -1,0 +1,8 @@
+- platform: cryptoinfo
+  cryptocurrency_name: "bitcoin"
+  currency_name: "gbp"
+
+- platform: cryptoinfo
+  cryptocurrency_name: "ethereum"
+  currency_name: "gbp"
+
