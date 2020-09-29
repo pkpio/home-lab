@@ -2,112 +2,115 @@ title: Plants Monitoring
 icon: mdi:leaf
 path: plant-monitoring
 cards:
-- type: glance
-  title: Overview
-  entities:
-  - entity: sensor.plants_total
-    name: Total
-  - entity: sensor.plants_problem
-    name: Issues
+- type: custom:layout-card
+  layout: horizontal
+  cards:
+  - type: glance
+    title: Overview
+    entities:
+    - entity: sensor.plants_total
+      name: Total
+    - entity: sensor.plants_problem
+      name: Issues
 
-- type: glance
-  title: Issues
-  entities:
-  - entity: sensor.plants_water_low
-    name: Water
-  - entity: sensor.plants_fertilizer_low
-    name: Fertilize
-  - entity: sensor.plants_battery_low
-    name: Battery low
+  - type: glance
+    title: Issues
+    entities:
+    - entity: sensor.plants_water_low
+      name: Water
+    - entity: sensor.plants_fertilizer_low
+      name: Fertilize
+    - entity: sensor.plants_battery_low
+      name: Battery low
 
-- type: glance
-  title: Notifications
-  entities:
-  - entity: input_boolean.plant_water_notifications
-    name: Water
-    tap_action:
-      action: toggle
-    hold_action:
-      action: more-info
-  - entity: input_boolean.plant_fertilize_notifications
-    name: Fertilize
-    tap_action:
-      action: toggle
-    hold_action:
-      action: more-info
+  - type: glance
+    title: Notifications
+    entities:
+    - entity: input_boolean.plant_water_notifications
+      name: Water
+      tap_action:
+        action: toggle
+      hold_action:
+        action: more-info
+    - entity: input_boolean.plant_fertilize_notifications
+      name: Fertilize
+      tap_action:
+        action: toggle
+      hold_action:
+        action: more-info
 
-- type: custom:decluttering-card
-  template: plant_status_full_picture
-  variables:
-  - entity: plant.sago_palm
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.sago_palm
 
-- type: custom:decluttering-card
-  template: plant_status_full_picture
-  variables:
-  - entity: plant.spineless_yucca
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.spineless_yucca
 
-- type: custom:decluttering-card
-  template: plant_status_full_picture
-  variables:
-  - entity: plant.rubber_plant
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.rubber_plant
 
-- type: custom:decluttering-card
-  template: plant_status_full_picture
-  variables:
-  - entity: plant.swiss_cheese
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.swiss_cheese
 
-- type: custom:decluttering-card
-  template: plant_status_full_picture
-  variables:
-  - entity: plant.cat_palm
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.cat_palm
 
-- type: custom:decluttering-card
-  template: plant_status_full_picture
-  variables:
-  - entity: plant.spider_plant
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.spider_plant
 
-- type: custom:decluttering-card
-  template: plant_status_full_picture
-  variables:
-  - entity: plant.dumbcane
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.dumbcane
 
-- type: custom:decluttering-card
-  template: plant_status_full_picture
-  variables:
-  - entity: plant.dragon_tree
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.dragon_tree
 
-- type: custom:decluttering-card
-  template: plant_status_full_picture
-  variables:
-  - entity: plant.chilli_plant
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.chilli_plant
 
-- type: custom:decluttering-card
-  template: plant_status_full_picture
-  variables:
-  - entity: plant.cherry_tomato
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.cherry_tomato
 
-- type: custom:decluttering-card
-  template: plant_status_full_picture
-  variables:
-  - entity: plant.dining_left
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.dining_left
 
-- type: custom:decluttering-card
-  template: plant_status_full_picture
-  variables:
-  - entity: plant.dining_middle
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.dining_middle
 
-- type: custom:decluttering-card
-  template: plant_status_full_picture
-  variables:
-  - entity: plant.dining_right
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.dining_right
 
-- type: custom:decluttering-card
-  template: plant_status_full_picture
-  variables:
-  - entity: plant.money_plant
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.money_plant
 
-- type: custom:decluttering-card
-  template: plant_status_full_picture
-  variables:
-  - entity: plant.graptoveria
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.graptoveria
 
