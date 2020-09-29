@@ -149,6 +149,8 @@ class YahooFinanceSensor(Entity):
         symbol_data = data[self._symbol]
         if symbol_data is None:
             return
+        if symbol_data["shortName"] is None:
+            return
 
         self._short_name = symbol_data["shortName"]
         self._state = symbol_data["regularMarketPrice"]
