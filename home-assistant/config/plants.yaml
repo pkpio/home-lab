@@ -237,3 +237,51 @@ graptoveria:
   max_brightness: 90000
   min_temperature: 6
   max_temperature: 35
+
+moonstone:
+  sensors:
+    moisture: sensor.miflora_moonstone_moisture
+    battery: sensor.miflora_moonstone_battery
+    temperature: sensor.miflora_moonstone_temperature
+    conductivity: sensor.miflora_moonstone_conductivity
+    brightness: sensor.miflora_moonstone_light
+  min_moisture: 7
+  max_moisture: 50
+  min_conductivity: 300
+  max_conductivity: 1000
+  min_brightness: 3500
+  max_brightness: 80000
+  min_temperature: 5
+  max_temperature: 35
+
+pigs_ear:
+  sensors:
+    moisture: sensor.miflora_pigs_ear_moisture
+    battery: sensor.miflora_pigs_ear_battery
+    temperature: sensor.miflora_pigs_ear_temperature
+    conductivity: sensor.miflora_pigs_ear_conductivity
+    brightness: sensor.miflora_pigs_ear_light
+  min_moisture: 7
+  max_moisture: 50
+  min_conductivity: 300
+  max_conductivity: 1000
+  min_brightness: 3000
+  max_brightness: 70000
+  min_temperature: 10
+  max_temperature: 35
+
+three_oclock:
+  sensors:
+    moisture: sensor.miflora_three_oclock_moisture
+    battery: sensor.miflora_three_oclock_battery
+    temperature: sensor.miflora_three_oclock_temperature
+    conductivity: sensor.miflora_three_oclock_conductivity
+    brightness: sensor.miflora_three_oclock_light
+  min_moisture: 7
+  max_moisture: 50
+  min_conductivity: 300
+  max_conductivity: 1000
+  min_brightness: 3500
+  max_brightness: 50000
+  min_temperature: 5
+  max_temperature: 35

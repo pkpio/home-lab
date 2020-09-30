@@ -64,3 +64,15 @@ plant.money_plant:
 plant.graptoveria:
   friendly_name: Graptoveria
   entity_picture: "/local/images/plants/graptoveria.jpg"
+
+plant.moonstone:
+  friendly_name: Moonstone
+  entity_picture: "/local/images/plants/moonstone.jpg"
+
+plant.pigs_ear:
+  friendly_name: Pigs's ear
+  entity_picture: "/local/images/plants/pigs_ear.jpg"
+
+plant.three_oclock:
+  friendly_name: Three O'Clock
+  entity_picture: "/local/images/plants/three_oclock.jpg"

@@ -116,3 +116,17 @@ cards:
     variables:
     - entity: plant.graptoveria
 
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.moonstone
+
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.pigs_ear
+
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.three_oclock
