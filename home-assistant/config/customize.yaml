@@ -70,7 +70,7 @@ plant.moonstone:
   entity_picture: "/local/images/plants/moonstone.jpg"
 
 plant.pigs_ear:
-  friendly_name: Pigs's ear
+  friendly_name: Pig's ear
   entity_picture: "/local/images/plants/pigs_ear.jpg"
 
 plant.three_oclock:
