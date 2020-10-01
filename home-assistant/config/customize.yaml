@@ -76,3 +76,27 @@ plant.pigs_ear:
 plant.three_oclock:
   friendly_name: Three O'Clock
   entity_picture: "/local/images/plants/three_oclock.jpg"
+
+plant.japanese_cypress:
+  friendly_name: Japanese Cypress
+  entity_picture: "/local/images/plants/japanese_cypress.jpg"
+
+plant.aleo_vera:
+  friendly_name: Aleo Vera
+  entity_picture: "/local/images/plants/aleo_vera.jpg"
+
+plant.mini_roses:
+  friendly_name: Mini Roses
+  entity_picture: "/local/images/plants/mini_roses.jpg"
+
+plant.basil_cinnamon:
+  friendly_name: Basil Cinnamon
+  entity_picture: "/local/images/plants/basil_cinnamon.jpg"
+
+plant.parsley_coriander:
+  friendly_name: Parsley Coriander
+  entity_picture: "/local/images/plants/parsley_coriander.jpg"
+
+plant.lavender:
+  friendly_name: Parsley Coriander
+  entity_picture: "/local/images/plants/lavender.jpg"

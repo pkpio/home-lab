@@ -130,3 +130,33 @@ cards:
     template: plant_status_full_picture
     variables:
     - entity: plant.three_oclock
+
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.japanese_cypress
+
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.aleo_vera
+
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.mini_roses
+
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.basil_cinnamon
+
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.parsley_coriander
+
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.lavender

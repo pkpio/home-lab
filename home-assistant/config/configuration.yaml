@@ -44,7 +44,7 @@ zone: !include zones.yaml
 frontend: !include frontend.yaml
 
 person: !include persons.yaml
-plant: !include plants.yaml
+plant: !include_dir_merge_named plants
 mobile_app:
 cloud:
   google_actions: !include google_actions.yaml
