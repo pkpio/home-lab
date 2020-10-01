@@ -160,3 +160,28 @@ cards:
     template: plant_status_full_picture
     variables:
     - entity: plant.lavender
+
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.cockscomb
+
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.cockscomb_mixed
+
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.english_ivy_left
+
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.ivy_geranium
+
+  - type: custom:decluttering-card
+    template: plant_status_full_picture
+    variables:
+    - entity: plant.cobweb_hens_and_chicks

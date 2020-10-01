@@ -125,3 +125,83 @@ aleo_vera:
   max_brightness: 70000
   min_temperature: 8
   max_temperature: 35
+
+cockscomb:
+  sensors:
+    moisture: sensor.miflora_cockscomb_moisture
+    battery: sensor.miflora_cockscomb_battery
+    temperature: sensor.miflora_cockscomb_temperature
+    conductivity: sensor.miflora_cockscomb_conductivity
+    brightness: sensor.miflora_cockscomb_light
+  min_moisture: 15
+  max_moisture: 60
+  min_conductivity: 350
+  max_conductivity: 2000
+  min_brightness: 4000
+  max_brightness: 50000
+  min_temperature: 5
+  max_temperature: 35
+
+cockscomb_mixed:
+  sensors:
+    moisture: sensor.miflora_cockscomb_mixed_moisture
+    battery: sensor.miflora_cockscomb_mixed_battery
+    temperature: sensor.miflora_cockscomb_mixed_temperature
+    conductivity: sensor.miflora_cockscomb_mixed_conductivity
+    brightness: sensor.miflora_cockscomb_mixed_light
+  min_moisture: 15
+  max_moisture: 60
+  min_conductivity: 350
+  max_conductivity: 2000
+  min_brightness: 4000
+  max_brightness: 50000
+  min_temperature: 5
+  max_temperature: 35
+
+english_ivy_left:
+  sensors:
+    moisture: sensor.miflora_english_ivy_left_moisture
+    battery: sensor.miflora_english_ivy_left_battery
+    temperature: sensor.miflora_english_ivy_left_temperature
+    conductivity: sensor.miflora_english_ivy_left_conductivity
+    brightness: sensor.miflora_english_ivy_left_light
+  min_moisture: 15
+  max_moisture: 60
+  min_conductivity: 350
+  max_conductivity: 2000
+  min_brightness: 500
+  max_brightness: 30000
+  min_temperature: 9
+  max_temperature: 35
+
+ivy_geranium:
+  sensors:
+    moisture: sensor.miflora_ivy_geranium_moisture
+    battery: sensor.miflora_ivy_geranium_battery
+    temperature: sensor.miflora_ivy_geranium_temperature
+    conductivity: sensor.miflora_ivy_geranium_conductivity
+    brightness: sensor.miflora_ivy_geranium_light
+  min_moisture: 15
+  max_moisture: 60
+  min_conductivity: 350
+  max_conductivity: 2000
+  min_brightness: 3000
+  max_brightness: 60000
+  min_temperature: 8
+  max_temperature: 32
+
+cobweb_hens_and_chicks:
+  sensors:
+    moisture: sensor.miflora_cobweb_hens_and_chicks_moisture
+    battery: sensor.miflora_cobweb_hens_and_chicks_battery
+    temperature: sensor.miflora_cobweb_hens_and_chicks_temperature
+    conductivity: sensor.miflora_cobweb_hens_and_chicks_conductivity
+    brightness: sensor.miflora_cobweb_hens_and_chicks_light
+  min_moisture: 7
+  max_moisture: 50
+  min_conductivity: 300
+  max_conductivity: 1000
+  min_brightness: 4000
+  max_brightness: 90000
+  min_temperature: 6
+  max_temperature: 35

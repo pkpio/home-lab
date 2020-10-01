@@ -100,3 +100,23 @@ plant.parsley_coriander:
 plant.lavender:
   friendly_name: Parsley Coriander
   entity_picture: "/local/images/plants/lavender.jpg"
+
+plant.cockscomb:
+  friendly_name: Cockscomb
+  entity_picture: "/local/images/plants/cockscomb.jpg"
+
+plant.cockscomb_mixed:
+  friendly_name: Cockscomb Mixed
+  entity_picture: "/local/images/plants/cockscomb_mixed.jpg"
+
+plant.english_ivy_left:
+  friendly_name: English Ivy Left
+  entity_picture: "/local/images/plants/english_ivy_left.jpg"
+
+plant.ivy_geranium:
+  friendly_name: Ivy Geranium
+  entity_picture: "/local/images/plants/ivy_geranium.jpg"
+
+plant.cobweb_hens_and_chicks:
+  friendly_name: Cobweb Hens & Chicks
+  entity_picture: "/local/images/plants/cobweb_hens_and_chicks.jpg"
