@@ -114,7 +114,7 @@ cards:
   - type: custom:decluttering-card
     template: plant_status_full_picture
     variables:
-    - entity: plant.graptoveria
+    - entity: plant.debbie
 
   - type: custom:decluttering-card
     template: plant_status_full_picture

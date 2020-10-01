@@ -222,13 +222,13 @@ money_plant:
   min_temperature: 10
   max_temperature: 32
 
-graptoveria:
+debbie:
   sensors:
-    moisture: sensor.miflora_graptoveria_moisture
-    battery: sensor.miflora_graptoveria_battery
-    temperature: sensor.miflora_graptoveria_temperature
-    conductivity: sensor.miflora_graptoveria_conductivity
-    brightness: sensor.miflora_graptoveria_light
+    moisture: sensor.miflora_debbie_moisture
+    battery: sensor.miflora_debbie_battery
+    temperature: sensor.miflora_debbie_temperature
+    conductivity: sensor.miflora_debbie_conductivity
+    brightness: sensor.miflora_debbie_light
   min_moisture: 7
   max_moisture: 50
   min_conductivity: 300

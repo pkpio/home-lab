@@ -61,9 +61,9 @@ plant.money_plant:
   friendly_name: Money Plant
   entity_picture: "/local/images/plants/money_plant.jpg"
 
-plant.graptoveria:
-  friendly_name: Graptoveria
-  entity_picture: "/local/images/plants/graptoveria.jpg"
+plant.debbie:
+  friendly_name: Debbie
+  entity_picture: "/local/images/plants/debbie.jpg"
 
 plant.moonstone:
   friendly_name: Moonstone
