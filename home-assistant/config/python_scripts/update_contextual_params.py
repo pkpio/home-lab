@@ -1,40 +1,41 @@
 # Updates the initial brightness value of the lights based on time of the day
+# Color temp between 153 to 500 (blue to yellow light)
 brightnessPoints = {
 	"00:30": {
-		"startBrightness": 120,
-		"finalBrightness": 180,
+		"startBrightness": 100,
+		"finalBrightness": 150,
 		"transitionTime": 45,
-		"colorTemperature": 6500
+		"colorTemperature": 400
 	},
 	"08:00": {
 		"startBrightness": 140,
 		"finalBrightness": 200,
 		"transitionTime": 15,
-		"colorTemperature": 6500
+		"colorTemperature": 300
 	},
 	"17:00": {
 		"startBrightness": 170,
 		"finalBrightness": 220,
 		"transitionTime": 10,
-		"colorTemperature": 6500
+		"colorTemperature": 200
 	},
 	"19:00": {
 		"startBrightness": 190,
 		"finalBrightness": 230,
 		"transitionTime": 10,
-		"colorTemperature": 6500
+		"colorTemperature": 153
 	},
 	"22:30": {
 		"startBrightness": 210,
 		"finalBrightness": 255,
 		"transitionTime": 15,
-		"colorTemperature": 6500
+		"colorTemperature": 200
 	},
 	"23:30": {
-		"startBrightness": 180,
-		"finalBrightness": 230,
+		"startBrightness": 160,
+		"finalBrightness": 200,
 		"transitionTime": 20,
-		"colorTemperature": 6500
+		"colorTemperature": 300
 	}
 }
 

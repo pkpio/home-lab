@@ -18,7 +18,7 @@ contextual_transition_time:
   step: 1
 
 contextual_color_temperature:
-  name: Lights color temperature in Kelvin
-  min: 2000
-  max: 6500
+  name: Lights color temperature
+  min: 153
+  max: 500
   step: 1

@@ -23,7 +23,7 @@ lights_on_smart:
         {% else %}
           {{ states('input_number.contextual_start_brightness') | int }}
         {% endif %}
-      kelvin: "{{ states('input_number.contextual_color_temperature') | int }}"
+      color_temp: "{{ states('input_number.contextual_color_temperature') | int }}"
       transition: 2
   - delay:
       seconds: 2
