@@ -5,6 +5,7 @@ panel: true
 
 cards:
 - type: custom:layout-card
+  layout: horizontal
   cards:
   - !include /config/lovelace/tiles/tile_home_lab.yaml
   - !include /config/lovelace/tiles/tile_plant_monitor_1.yaml

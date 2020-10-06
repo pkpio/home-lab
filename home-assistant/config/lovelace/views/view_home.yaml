@@ -18,6 +18,22 @@ badges:
   name: Guest room
 
 cards:
+- type: glance
+  title: Smart lighting
+  entities:
+  - entity: input_boolean.contextual_lights
+    name: Time based
+    tap_action:
+      action: toggle
+    hold_action:
+      action: more-info
+  - entity: input_boolean.motion_lighting
+    name: Motion sense
+    tap_action:
+      action: toggle
+    hold_action:
+      action: more-info
+
 - !include /config/lovelace/tiles/tile_all_lights.yaml
 - !include /config/lovelace/tiles/tile_all_curtains.yaml
 - !include /config/lovelace/tiles/tile_all_media_players.yaml

@@ -21,3 +21,11 @@ plant_water_notifications:
 plant_fertilize_notifications:
   name: Indicates if plant fertilize notifications should be sent
   icon: mdi:emoticon-poop
+
+contextual_lights:
+  name: If lights should use time based color and brightness levels
+  icon: mdi:lightbulb-on
+
+motion_lighting:
+  name: If lights should react to motion sensing (only living room lights off will be disabled) 
+  icon: mdi:lightbulb-on
