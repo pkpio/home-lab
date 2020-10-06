@@ -15,7 +15,7 @@ lights_on_smart:
       example: light.corridor_lights
   sequence:
   - service_template: >
-      {% if is_state(input_boolean.contextual_lights, 'on') %}
+      {% if is_state('input_boolean.contextual_lights', 'on') %}
         script.lights_on_smart_with_context
       {% else %}
         script.lights_on_smart_no_context
