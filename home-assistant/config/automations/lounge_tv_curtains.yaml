@@ -23,7 +23,7 @@
   action:
     service: cover.close_cover
     data:
-      entity_id: cover.living_room_curtains
+      entity_id: cover.balcony_curtain
 
 #### Lounge TV stopped opens curtains ####
 - alias: TV pause or idle opens curtains during day
@@ -74,4 +74,4 @@
   action:
     service: cover.open_cover
     data:
-      entity_id: cover.living_room_curtains
+      entity_id: cover.balcony_curtain
