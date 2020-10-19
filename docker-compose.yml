@@ -191,3 +191,18 @@ services:
       - torrent-client/.env
     network_mode: host
 
+
+  #================== Local SpeedTest server ==================#
+  # Runs iperf3 tool in server mode for LAN speed testing
+  #============================================================#
+  lan-speed-test:
+    container_name: lan-speed-test
+    image: networkstatic/iperf3:latest
+    restart: unless-stopped
+    command: -s
+    ports:
+      - "5201:5201"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+
+
