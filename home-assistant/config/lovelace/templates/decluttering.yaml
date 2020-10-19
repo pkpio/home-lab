@@ -56,8 +56,14 @@ battery_listing:
   default:
   - title: Battery levels
   - include_filter: "sensor.*_battery_level"
-  - rename: ''
-  - rename2: ''
+  - renameFrom: 'Battery level'
+  - renameTo: ''
+  - renameFrom2: 'Battery'
+  - renameTo2: ''
+  - renameFrom3: 'Battery'
+  - renameTo3: ''
+  - renameFrom4: 'battery'
+  - renameTo4: ''
   card:
     type: custom:auto-entities
     card:
@@ -65,14 +71,14 @@ battery_listing:
       title: '[[title]]'
       sort_by_level: asc
       bulk_rename:
-      - from: 'Battery Level'
-        to: ''
-      - from: '[[title]]'
-        to: ''
-      - from: '[[rename]]'
-        to: ''
-      - from: '[[rename2]]'
-        to: ''
+      - from: '[[renameFrom]]'
+        to: '[[renameTo]]'
+      - from: '[[renameFrom2]]'
+        to: '[[renameTo2]]'
+      - from: '[[renameFrom3]]'
+        to: '[[renameTo3]]'
+      - from: '[[renameFrom4]]'
+        to: '[[renameTo4]]'
       color_gradient:
       - "#ff0000" # red
       - "#ffff00" # yellow
