@@ -6,8 +6,8 @@ cards:
   variables:
   - title: Motion
   - include_filter: "sensor.*_activity_battery_level"
-  - renameFrom: Activity
-  - renameFrom2: activity
+  - renameFrom: activity
+  - renameFrom2: Battery Level
   - renameFrom3: Motion
 
 - type: custom:decluttering-card
@@ -15,16 +15,16 @@ cards:
   variables:
   - title: Environment
   - include_filter: "sensor.*_environment_battery_level"
-  - renameFrom: Environment
-  - renameFrom2: environment
+  - renameFrom: environment
+  - renameFrom2: Battery Level
 
 - type: custom:decluttering-card
   template: battery_listing
   variables:
   - title: Door
   - include_filter: "sensor.*_door_battery_level"
-  - renameFrom: Door
-  - renameFrom2: door
+  - renameFrom: door
+  - renameFrom2: Battery Level
 
 - type: custom:decluttering-card
   template: battery_listing
@@ -32,6 +32,8 @@ cards:
   - title: Plant
   - include_filter: "sensor.miflora_*_battery"
   - renameFrom: MiFlora_
-  - renameFrom2: _
-  - renameTo2: " "
-  - renameFrom3: Battery
+  - renameFrom2: Battery
+  - renameFrom3: _
+  - renameTo3: " "
+  - renameFrom4: _
+  - renameTo4: " "
