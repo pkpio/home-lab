@@ -190,10 +190,10 @@ crypto_graph:
     entities:
     - entity: '[[entity]]'
       name: '[[name]]'
-    hours_to_show: 240
+    hours_to_show: 168
+    group_by: date
     icon: '[[icon]]'
     line_width: 3
-    points_per_hour: 0.1
 
 stock_graph:
   default:
@@ -205,10 +205,10 @@ stock_graph:
     decimals: 1
     entities:
     - entity: '[[entity]]'
-    hours_to_show: 240
+    hours_to_show: 168
+    group_by: date
     icon: mdi:chart-line
     line_width: 3
-    points_per_hour: 0.1
 
 plant_status_full_picture:
   default:

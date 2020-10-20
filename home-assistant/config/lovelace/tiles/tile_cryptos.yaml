@@ -14,3 +14,38 @@ cards:
   - name: Ethereum
   - entity: sensor.cryptoinfo_ethereum_usd
   - icon: 'mdi:ethereum'
+
+- type: custom:decluttering-card
+  template: crypto_graph
+  variables:
+  - name: Ethereum
+  - entity: sensor.cryptoinfo_cel_usd
+  - icon: 'mdi:ethereum'
+
+- type: custom:decluttering-card
+  template: crypto_graph
+  variables:
+  - name: Ethereum
+  - entity: sensor.cryptoinfo_dot_usd
+  - icon: 'mdi:ethereum'
+
+- type: custom:decluttering-card
+  template: crypto_graph
+  variables:
+  - name: Ethereum
+  - entity: sensor.cryptoinfo_yfi_usd
+  - icon: 'mdi:ethereum'
+
+- type: custom:decluttering-card
+  template: crypto_graph
+  variables:
+  - name: Ethereum
+  - entity: sensor.cryptoinfo_matic_usd
+  - icon: 'mdi:ethereum'
+
+- type: custom:decluttering-card
+  template: crypto_graph
+  variables:
+  - name: Ethereum
+  - entity: sensor.cryptoinfo_xrp_usd
+  - icon: 'mdi:ethereum'

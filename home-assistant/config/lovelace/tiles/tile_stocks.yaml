@@ -1,7 +1,22 @@
 type: custom:vertical-stack-in-card
 title: Stocks
 cards:
-  
+
+- type: custom:decluttering-card
+  template: stock_graph
+  variables:
+  - entity: yahoofinance.fit
+
+- type: custom:decluttering-card
+  template: stock_graph
+  variables:
+  - entity: yahoofinance.ezj_l
+
+- type: custom:decluttering-card
+  template: stock_graph
+  variables:
+  - entity: yahoofinance.googl
+
 - type: custom:decluttering-card
   template: stock_graph
   variables:
@@ -11,4 +26,79 @@ cards:
   template: stock_graph
   variables:
   - entity: yahoofinance.appl
+
+- type: custom:decluttering-card
+  template: stock_graph
+  variables:
+  - entity: yahoofinance.fb
+
+- type: custom:decluttering-card
+  template: stock_graph
+  variables:
+  - entity: yahoofinance.msft
+
+- type: custom:decluttering-card
+  template: stock_graph
+  variables:
+  - entity: yahoofinance.amd
+
+- type: custom:decluttering-card
+  template: stock_graph
+  variables:
+  - entity: yahoofinance.nvda
+
+- type: custom:decluttering-card
+  template: stock_graph
+  variables:
+  - entity: yahoofinance.intc
+
+- type: custom:decluttering-card
+  template: stock_graph
+  variables:
+  - entity: yahoofinance.qcom
+
+- type: custom:decluttering-card
+  template: stock_graph
+  variables:
+  - entity: yahoofinance.itm_l
+
+- type: custom:decluttering-card
+  template: stock_graph
+  variables:
+  - entity: yahoofinance.bep
+
+- type: custom:decluttering-card
+  template: stock_graph
+  variables:
+  - entity: yahoofinance.ecar_l
+
+- type: custom:decluttering-card
+  template: stock_graph
+  variables:
+  - entity: yahoofinance.inrg_l
+
+- type: custom:decluttering-card
+  template: stock_graph
+  variables:
+  - entity: yahoofinance.tsla
+
+- type: custom:decluttering-card
+  template: stock_graph
+  variables:
+  - entity: yahoofinance.w
+
+- type: custom:decluttering-card
+  template: stock_graph
+  variables:
+  - entity: yahoofinance.zm
+
+- type: custom:decluttering-card
+  template: stock_graph
+  variables:
+  - entity: yahoofinance.ntlx
+
+- type: custom:decluttering-card
+  template: stock_graph
+  variables:
+  - entity: yahoofinance.bkng
 
