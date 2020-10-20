@@ -1,0 +1,16 @@
+type: custom:vertical-stack-in-card
+title: Crypto coins
+cards:
+- type: custom:decluttering-card
+  template: crypto_graph
+  variables:
+  - name: Bitcoin
+  - entity: sensor.cryptoinfo_bitcoin_usd
+  - icon: 'mdi:bitcoin'
+
+- type: custom:decluttering-card
+  template: crypto_graph
+  variables:
+  - name: Ethereum
+  - entity: sensor.cryptoinfo_ethereum_usd
+  - icon: 'mdi:ethereum'

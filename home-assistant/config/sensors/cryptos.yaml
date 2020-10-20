@@ -1,8 +1,28 @@
 - platform: cryptoinfo
   cryptocurrency_name: "bitcoin"
-  currency_name: "gbp"
+  currency_name: "usd"
 
 - platform: cryptoinfo
   cryptocurrency_name: "ethereum"
-  currency_name: "gbp"
+  currency_name: "usd"
+
+- platform: cryptoinfo
+  cryptocurrency_name: "cel"
+  currency_name: "usd"
+
+- platform: cryptoinfo
+  cryptocurrency_name: "xrp"
+  currency_name: "usd"
+
+- platform: cryptoinfo
+  cryptocurrency_name: "dot"
+  currency_name: "usd"
+
+- platform: cryptoinfo
+  cryptocurrency_name: "yfi"
+  currency_name: "usd"
+
+- platform: cryptoinfo
+  cryptocurrency_name: "matic"
+  currency_name: "usd"
 

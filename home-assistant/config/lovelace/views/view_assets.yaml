@@ -1,0 +1,11 @@
+title: Assets
+icon: mdi:currency-usd
+path: asset-value-monitor
+panel: true
+
+cards:
+- type: custom:layout-card
+  layout: horizontal
+  cards:
+  - !include /config/lovelace/tiles/tile_cryptos.yaml
+  - !include /config/lovelace/tiles/tile_stocks.yaml

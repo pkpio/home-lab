@@ -176,6 +176,40 @@ room_humidity_graph:
     - color_2: '#69b932' # green shade
     - color_3: '#00a9f4' # blue shade
 
+crypto_graph:
+  default:
+  - name: Asset
+  - entity: ''
+  - icon: 'mdi:bitcoin'
+  card:
+    type: 'custom:mini-graph-card'
+    name: '[[name]]'
+    aggregate_func: avg
+    animate: true
+    decimals: 1
+    entities:
+    - entity: '[[entity]]'
+      name: '[[name]]'
+    hours_to_show: 240
+    icon: '[[icon]]'
+    line_width: 3
+    points_per_hour: 0.1
+
+stock_graph:
+  default:
+  - entity: ''
+  card:
+    type: 'custom:mini-graph-card'
+    aggregate_func: avg
+    animate: true
+    decimals: 1
+    entities:
+    - entity: '[[entity]]'
+    hours_to_show: 240
+    icon: mdi:chart-line
+    line_width: 3
+    points_per_hour: 0.1
+
 plant_status_full_picture:
   default:
   - entity: ''

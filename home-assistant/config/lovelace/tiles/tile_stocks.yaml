@@ -1,0 +1,14 @@
+type: custom:vertical-stack-in-card
+title: Stocks
+cards:
+  
+- type: custom:decluttering-card
+  template: stock_graph
+  variables:
+  - entity: yahoofinance.amzn
+
+- type: custom:decluttering-card
+  template: stock_graph
+  variables:
+  - entity: yahoofinance.appl
+
