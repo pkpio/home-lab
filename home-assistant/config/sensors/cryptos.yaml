@@ -7,22 +7,22 @@
   currency_name: "usd"
 
 - platform: cryptoinfo
-  cryptocurrency_name: "cel"
+  cryptocurrency_name: "celsius-degree-token"
   currency_name: "usd"
 
 - platform: cryptoinfo
-  cryptocurrency_name: "xrp"
+  cryptocurrency_name: "ripple"
   currency_name: "usd"
 
 - platform: cryptoinfo
-  cryptocurrency_name: "dot"
+  cryptocurrency_name: "polkadot"
   currency_name: "usd"
 
 - platform: cryptoinfo
-  cryptocurrency_name: "yfi"
+  cryptocurrency_name: "yearn-finance"
   currency_name: "usd"
 
 - platform: cryptoinfo
-  cryptocurrency_name: "matic"
+  cryptocurrency_name: "matic-network"
   currency_name: "usd"
 

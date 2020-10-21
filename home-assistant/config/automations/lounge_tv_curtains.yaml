@@ -31,12 +31,6 @@
   - platform: state
     entity_id: media_player.lounge_android_tv
     from: 'playing'
-    to: 'paused'
-    for:
-      seconds: 45
-  - platform: state
-    entity_id: media_player.lounge_android_tv
-    from: 'playing'
     to: 'idle'
     for:
       seconds: 45

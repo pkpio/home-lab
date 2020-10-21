@@ -24,12 +24,6 @@
   - platform: state
     entity_id: media_player.lounge_android_tv
     from: 'playing'
-    to: 'paused'
-    for:
-      seconds: 45
-  - platform: state
-    entity_id: media_player.lounge_android_tv
-    from: 'playing'
     to: 'idle'
     for:
       seconds: 45
@@ -37,26 +31,14 @@
     entity_id: media_player.lounge_android_tv
     from: 'playing'
     to: 'off'
-    for:
-      seconds: 45
-  - platform: state
-    entity_id: media_player.lounge_android_tv
-    from: 'paused'
-    to: 'idle'
-    for:
-      seconds: 45
   - platform: state
     entity_id: media_player.lounge_android_tv
     from: 'paused'
     to: 'off'
-    for:
-      seconds: 45
   - platform: state
     entity_id: media_player.lounge_android_tv
     from: 'idle'
     to: 'off'
-    for:
-      seconds: 45
   condition:
   - condition: numeric_state
     entity_id: sensor.lounge_activity
