@@ -1,8 +1,10 @@
 - platform: command_line
   switches:
     plant_monitor_indoor_restart:
-      command_on: !secret plant_monitor_indoor_reboot
+      command_off: !secret plant_monitor_indoor_reboot
+      value_template: "{{ states('sensor.plant_monitor_indoor_cpu_used') | float >= 0.1 }}"
       friendly_name: Reboot Indoor Plant monitor
     plant_monitor_outdoor_restart:
-      command_on: !secret plant_monitor_outdoor_reboot
+      command_off: !secret plant_monitor_outdoor_reboot
+      value_template: "{{ states('sensor.plant_monitor_outdoor_cpu_used') | float >= 0.1 }}"
       friendly_name: Reboot Outdoor Plant monitor
