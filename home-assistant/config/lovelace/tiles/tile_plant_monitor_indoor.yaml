@@ -43,8 +43,7 @@ cards:
       name: Reboot
       icon: mdi:restart
       tap_action:
-        action: call-service
-        service: switch.turn_on
+        action: toggle
 
 - type: custom:decluttering-card
   template: cpu_temperature_graph
