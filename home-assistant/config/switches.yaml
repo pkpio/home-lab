@@ -1,8 +1,8 @@
 - platform: command_line
   switches:
     plant_monitor_indoor_restart:
-      command_off: !secret plant_monitor_indoor_reboot
+      command_on: !secret plant_monitor_indoor_reboot
       friendly_name: Reboot Indoor Plant monitor
     plant_monitor_outdoor_restart:
-      command_off: !secret plant_monitor_outdoor_reboot
+      command_on: !secret plant_monitor_outdoor_reboot
       friendly_name: Reboot Outdoor Plant monitor

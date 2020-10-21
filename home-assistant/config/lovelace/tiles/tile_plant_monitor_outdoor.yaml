@@ -24,6 +24,9 @@ cards:
       red: 3000
     name: Memory
 
+- type: custom:vertical-stack-in-card
+  horizontal: true
+  cards:
   - type: gauge
     entity: sensor.plant_monitor_outdoor_etc_hostname_used
     max: 14.7
@@ -33,6 +36,15 @@ cards:
       yellow: 6
       red: 10
     name: Internal HD
+
+  - type: glance
+    entities:
+    - entity: switch.plant_monitor_outdoor_reboot
+      name: Reboot
+      icon: mdi:restart
+      tap_action:
+        action: call-service
+        service: switch.turn_on
 
 - type: custom:decluttering-card
   template: cpu_temperature_graph
