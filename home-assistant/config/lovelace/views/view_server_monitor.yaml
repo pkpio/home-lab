@@ -8,6 +8,6 @@ cards:
   layout: horizontal
   cards:
   - !include /config/lovelace/tiles/tile_home_lab.yaml
-  - !include /config/lovelace/tiles/tile_plant_monitor_1.yaml
-  - !include /config/lovelace/tiles/tile_plant_monitor_2.yaml
+  - !include /config/lovelace/tiles/tile_plant_monitor_indoor.yaml
+  - !include /config/lovelace/tiles/tile_plant_monitor_outdoor.yaml
   - !include /config/lovelace/tiles/tile_torrent_client.yaml

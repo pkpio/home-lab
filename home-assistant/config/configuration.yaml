@@ -30,6 +30,7 @@ lovelace: !include lovelace.yaml
 
 light: !include lights.yaml
 cover: !include covers.yaml
+switch: !include switches.yaml
 automation: !include_dir_merge_list automations
 script: !include_dir_merge_named scripts
 input_select: !include input_selects.yaml
@@ -109,10 +110,10 @@ notify:
 glances:
 - name: Home Lab
   host: !secret home_assistant_host
-- name: Plant Monitor 1
-  host: !secret plant_monitor_1_host
-- name: Plant Monitor 2
-  host: !secret plant_monitor_2_host
+- name: Plant Monitor Indoor
+  host: !secret plant_monitor_indoor_host
+- name: Plant Monitor Outdoor
+  host: !secret plant_monitor_outdoor_host
 
 transmission:
   host: !secret home_assistant_host

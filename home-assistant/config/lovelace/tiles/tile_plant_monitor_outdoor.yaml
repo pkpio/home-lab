@@ -1,11 +1,11 @@
 type: custom:vertical-stack-in-card
-title: Plant Monitor 1
+title: Plant Monitor Outdoor
 cards:
 - type: custom:vertical-stack-in-card
   horizontal: true
   cards:
   - type: gauge
-    entity: sensor.plant_monitor_1_cpu_used
+    entity: sensor.plant_monitor_outdoor_cpu_used
     max: 100
     min: 0
     severity:
@@ -15,7 +15,7 @@ cards:
     name: CPU
 
   - type: gauge
-    entity: sensor.plant_monitor_1_ram_used
+    entity: sensor.plant_monitor_outdoor_ram_used
     max: 4000
     min: 0
     severity:
@@ -25,26 +25,26 @@ cards:
     name: Memory
 
   - type: gauge
-    entity: sensor.plant_monitor_1_etc_hostname_used
-    max: 224.8
+    entity: sensor.plant_monitor_outdoor_etc_hostname_used
+    max: 14.7
     min: 0
     severity:
       green: 0
-      yellow: 120
-      red: 200
+      yellow: 6
+      red: 10
     name: Internal HD
 
 - type: custom:decluttering-card
   template: cpu_temperature_graph
   variables:
   - name: CPU temperature
-  - entity: sensor.plant_monitor_1_cpu_thermal_1_temp
+  - entity: sensor.plant_monitor_outdoor_cpu_thermal_1_temp
 
 - type: glance
   entities:
-  - entity: sensor.plant_monitor_1_total
+  - entity: sensor.plant_monitor_outdoor_total
     name: Processes
-  - entity: sensor.plant_monitor_1_thread
+  - entity: sensor.plant_monitor_outdoor_thread
     name: Threads
-  - entity: sensor.plant_monitor_1_containers_active
+  - entity: sensor.plant_monitor_outdoor_containers_active
     name: Containers
