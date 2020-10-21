@@ -44,6 +44,8 @@ cards:
       icon: mdi:restart
       tap_action:
         action: toggle
+        confirmation:
+          text: Are you sure you want to restart?
 
 - type: custom:decluttering-card
   template: cpu_temperature_graph
