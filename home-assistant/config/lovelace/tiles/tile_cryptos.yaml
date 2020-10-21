@@ -19,33 +19,33 @@ cards:
   template: crypto_graph
   variables:
   - name: Celsius Token
-  - entity: sensor.cryptoinfo_cel_usd
+  - entity: sensor.cryptoinfo_celsius_degree_token_usd
   - icon: 'mdi:ethereum'
 
 - type: custom:decluttering-card
   template: crypto_graph
   variables:
   - name: Polka Dot
-  - entity: sensor.cryptoinfo_dot_usd
+  - entity: sensor.cryptoinfo_polkadot_usd
   - icon: 'mdi:ethereum'
 
 - type: custom:decluttering-card
   template: crypto_graph
   variables:
   - name: Yarn Finance
-  - entity: sensor.cryptoinfo_yfi_usd
+  - entity: sensor.cryptoinfo_yearn_finance_usd
   - icon: 'mdi:ethereum'
 
 - type: custom:decluttering-card
   template: crypto_graph
   variables:
   - name: Matic coin
-  - entity: sensor.cryptoinfo_matic_usd
+  - entity: sensor.cryptoinfo_matic_network_usd
   - icon: 'mdi:ethereum'
 
 - type: custom:decluttering-card
   template: crypto_graph
   variables:
   - name: XRP
-  - entity: sensor.cryptoinfo_xrp_usd
+  - entity: sensor.cryptoinfo_ripple_usd
   - icon: 'mdi:ethereum'
