@@ -39,7 +39,7 @@ cards:
 
   - type: glance
     entities:
-    - entity: switch.plant_monitor_outdoor_reboot
+    - entity: switch.plant_monitor_outdoor_restart
       name: Reboot
       icon: mdi:restart
       tap_action:
