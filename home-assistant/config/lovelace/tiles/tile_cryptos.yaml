@@ -21,6 +21,7 @@ cards:
   - name: Celsius Token
   - entity: sensor.cryptoinfo_celsius_degree_token_usd
   - icon: 'mdi:ethereum'
+  - decimals: 3
 
 - type: custom:decluttering-card
   template: crypto_graph
@@ -42,6 +43,7 @@ cards:
   - name: Matic coin
   - entity: sensor.cryptoinfo_matic_network_usd
   - icon: 'mdi:ethereum'
+  - decimals: 4
 
 - type: custom:decluttering-card
   template: crypto_graph
@@ -49,3 +51,4 @@ cards:
   - name: XRP
   - entity: sensor.cryptoinfo_ripple_usd
   - icon: 'mdi:ethereum'
+  - decimals: 3

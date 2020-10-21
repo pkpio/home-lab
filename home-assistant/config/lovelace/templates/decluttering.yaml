@@ -181,12 +181,13 @@ crypto_graph:
   - name: Asset
   - entity: ''
   - icon: 'mdi:bitcoin'
+  - decimals: 2
   card:
     type: 'custom:mini-graph-card'
     name: '[[name]]'
     aggregate_func: avg
     animate: true
-    decimals: 1
+    decimals: '[[decimals]]'
     entities:
     - entity: '[[entity]]'
       name: '[[name]]'
@@ -198,11 +199,12 @@ crypto_graph:
 stock_graph:
   default:
   - entity: ''
+  - decimals: 2
   card:
     type: 'custom:mini-graph-card'
     aggregate_func: avg
     animate: true
-    decimals: 1
+    decimals: '[[decimals]]'
     entities:
     - entity: '[[entity]]'
     hours_to_show: 168
