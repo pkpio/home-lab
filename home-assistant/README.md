@@ -40,4 +40,9 @@ Lot's of connect hardware that accumulated over time on a need by basis.
 This is required for the Android TV integration.
 - Install adb `sudo apt install android-tools-adb`
 - Authorize adb with the TV `adb connect TV_IP`
-- Copy authorized key to config `cp ~/.android/adbkey home-assistant/config/adbkey`
+- Copy authorized key to config `cp ~/.android/adbkey home-assistant/config/keys/adbkey`
+
+## Plant monitor server controls
+- Generate an ssh key with name `home-assistant/config/keys/plantmon`
+- Copy the public to `authorized_keys` of each plant monitor server
+
