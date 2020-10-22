@@ -11,7 +11,7 @@ vacuum_automation_ran_today:
   icon: mdi:robot-vacuum-variant
 
 lounge_motion_sensing:
-  name: Indicates if lounge motion sensing is active
+  name: Indicates if lounge motion sensing is active (used mostly for TV)
   icon: mdi:robot-vacuum-variant
 
 plant_water_notifications:

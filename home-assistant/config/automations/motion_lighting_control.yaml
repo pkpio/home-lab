@@ -9,7 +9,7 @@
   action:
     service: input_boolean.turn_off
     data:
-      entity_id: input_boolean.lounge_motion_sensing
+      entity_id: input_boolean.motion_lighting
 
 - alias: Living room switch 1 - OFF press - disable motion sensing
   mode: parallel
@@ -22,4 +22,4 @@
   action:
     service: input_boolean.turn_on
     data:
-      entity_id: input_boolean.lounge_motion_sensing
+      entity_id: input_boolean.motion_lighting
