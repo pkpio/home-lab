@@ -1,4 +1,4 @@
-- alias: Living room switch 1 - ON long press - disable motion sensing
+- alias: Living room switch 1 - ON long press - disable motion lighting
   mode: parallel
   trigger:
     platform: event
@@ -11,7 +11,7 @@
     data:
       entity_id: input_boolean.motion_lighting
 
-- alias: Living room switch 1 - OFF press - disable motion sensing
+- alias: Living room switch 1 - OFF press - enable motion lighting
   mode: parallel
   trigger:
     platform: event
