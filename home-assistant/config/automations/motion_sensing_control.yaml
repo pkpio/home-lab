@@ -1,0 +1,25 @@
+- alias: Living room switch 1 - ON long press - disable motion sensing
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: living_room_switch_1
+      event: 1001 # long press on button
+  action:
+    service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.lounge_motion_sensing
+
+- alias: Living room switch 1 - OFF press - disable motion sensing
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: living_room_switch_1
+      event: 4000 # press the off button
+  action:
+    service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.lounge_motion_sensing
