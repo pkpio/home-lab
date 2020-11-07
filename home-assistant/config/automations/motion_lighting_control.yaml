@@ -1,11 +1,11 @@
-- alias: Living room switch 1 - ON long press - disable motion lighting
+- alias: Living room switch 1 - ON press - disable motion lighting
   mode: parallel
   trigger:
     platform: event
     event_type: deconz_event
     event_data:
       id: living_room_switch_1
-      event: 1001 # long press on button
+      event: 1000 # press on button
   action:
     service: input_boolean.turn_off
     data:
