@@ -65,6 +65,6 @@
   action:
   - service: scene.turn_on
     data:
-      entity_id: scene.bedroom_romantic_lights
+      entity_id: scene.romantic_bedroom_lights
       transition: 5
 
