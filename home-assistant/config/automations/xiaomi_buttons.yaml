@@ -54,3 +54,17 @@
       entity_id: light.bedroom_lights
       event: "{{ trigger.event.data.event }}"
 
+- alias: Bedroom button double click
+  mode: queued
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: bedroom_button
+      event: 1004 # double press
+  action:
+  - service: scene.turn_on
+    data:
+      entity_id: scene.bedroom_romantic_lights
+      transition: 5
+

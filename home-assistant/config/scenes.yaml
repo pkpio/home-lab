@@ -1,0 +1,16 @@
+- id: bedroom_romantic_lights
+  name: Romantic bedroom lights
+  entities:
+    light.bedroom_light_1:
+      state: on
+      rgb_color: [255, 160, 77]
+      brightness: 51
+    light.bedroom_light_2:
+      state: on
+      rgb_color: [200, 166, 255]
+      brightness: 51
+    light.bedroom_light_3:
+      state: on
+      rgb_color: [255, 134, 27]
+      brightness: 51
+
