@@ -14,6 +14,10 @@ lounge_motion_sensing:
   name: Indicates if lounge motion sensing is active (used mostly for TV)
   icon: mdi:robot-vacuum-variant
 
+lounge_lights_toggled_by_tv:
+  name: Indicates if lounge lights were toggled by TV
+  icon: mdi:lightbulb-on
+
 plant_water_notifications:
   name: Indicates if plant water notifications should be sent
   icon: mdi:water

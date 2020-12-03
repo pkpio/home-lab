@@ -12,11 +12,17 @@
     for:
       seconds: 20
   condition:
-    condition: template
+  - condition: template
     value_template: '{{ state_attr("media_player.lounge_android_tv", "source") in state_attr("media_player.lounge_android_tv", "source_list") }}'
-  action:
-    service: light.turn_off
+  - condition: state
     entity_id: light.lounge_lights
+    state: 'on'
+  action:
+  - service: light.turn_off
+    entity_id: light.lounge_lights
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.lounge_lights_toggled_by_tv
 
 #### Lounge TV pause / idle turns on lights if it's dark ####
 - alias: TV pause or idle turns on lounge lights
@@ -40,6 +46,9 @@
     from: 'idle'
     to: 'off'
   condition:
+  - condition: state
+    entity_id: input_boolean.lounge_lights_toggled_by_tv
+    state: 'on'
   - condition: numeric_state
     entity_id: sensor.lounge_activity
     below: 18
@@ -52,6 +61,9 @@
       before: sunrise
       before_offset: "01:00:00"
   action:
-    service: script.lights_on_smart
+  - service: script.lights_on_smart
     data:
       entity_id: light.lounge_lights
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.lounge_lights_toggled_by_tv
