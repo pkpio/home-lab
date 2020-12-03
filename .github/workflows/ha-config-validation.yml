@@ -14,7 +14,8 @@ jobs:
       run: |
         cd home-assistant/config/
         cp secrets.yaml.sample secrets.yaml
-        touch adbkey
+        mkdir keys
+        touch keys/adbkey
 
     - name: Start Home Assistant
       run: |
