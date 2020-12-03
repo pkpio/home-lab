@@ -84,9 +84,6 @@ sonoff:
       device_class: light
       name: Cooking lights
 
-hacs:
-  token: !secret github_personal_token
-
 media_player:
 - platform: androidtv
   name: Lounge Android TV
