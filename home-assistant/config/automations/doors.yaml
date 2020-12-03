@@ -131,6 +131,10 @@
     platform: state
     entity_id: binary_sensor.ensuite_door
     to: 'on'
+  condition:
+  - condition: state
+    entity_id: light.ensuite_lights
+    state: 'off'
   action:
   - service: script.lights_on_smart
     data:

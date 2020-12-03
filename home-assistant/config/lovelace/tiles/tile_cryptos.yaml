@@ -26,6 +26,14 @@ cards:
 - type: custom:decluttering-card
   template: crypto_graph
   variables:
+  - name: Nexo Token
+  - entity: sensor.cryptoinfo_nexo_usd
+  - icon: 'mdi:ethereum'
+  - decimals: 3
+
+- type: custom:decluttering-card
+  template: crypto_graph
+  variables:
   - name: Polka Dot
   - entity: sensor.cryptoinfo_polkadot_usd
   - icon: 'mdi:ethereum'

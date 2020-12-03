@@ -11,6 +11,10 @@
   currency_name: "usd"
 
 - platform: cryptoinfo
+  cryptocurrency_name: "nexo"
+  currency_name: "usd"
+
+- platform: cryptoinfo
   cryptocurrency_name: "ripple"
   currency_name: "usd"
 
