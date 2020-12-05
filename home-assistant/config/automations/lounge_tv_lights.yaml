@@ -67,3 +67,15 @@
   - service: input_boolean.turn_off
     data:
       entity_id: input_boolean.lounge_lights_toggled_by_tv
+
+#### Lounge TV disable turning on lights if ever goes unavailable ####
+# This is to prevent randomly lights going on due to fiddly TV state
+- alias: TV goes unavailable disable lounge lights control
+  trigger:
+  - platform: state
+    entity_id: media_player.lounge_android_tv
+    to: 'unavailable'
+  action:
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.lounge_lights_toggled_by_tv
