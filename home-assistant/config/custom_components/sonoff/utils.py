@@ -19,6 +19,11 @@ try:  # support old Home Assistant version
 except:
     from homeassistant.components.cover import CoverDevice as CoverEntity
 
+try:  # support old Home Assistant version
+    from homeassistant.components.remote import RemoteEntity
+except:
+    from homeassistant.components.remote import RemoteDevice as RemoteEntity
+
 _LOGGER = logging.getLogger(__name__)
 
 
@@ -71,13 +76,16 @@ def init_device_class(default_class: str = 'switch'):
         66: switch1,  # ZigBee Bridge
         77: switchx,  # Sonoff Micro
         78: switchx,
-        81: switch1,
+        81: switchx,
         82: switch2,
         83: switch3,
         84: switch4,
+        98: 'remote',  # SA-026 door bell
         102: 'binary_sensor',  # Sonoff DW2 Door/Window sensor
-        104: 'light',  # RGB+CCT color bulb
+        103: 'light',  # Sonoff B02 CCT bulb
+        104: 'light',  # Sonoff B05 RGB+CCT color bulb
         107: switchx,
+        126: switch2,  # DUALR3
         1000: 'sensor',  # zigbee_ON_OFF_SWITCH_1000
         1256: 'light',  # ZCL_HA_DEVICEID_ON_OFF_LIGHT
         1770: 'sensor',  # ZCL_HA_DEVICEID_TEMPERATURE_SENSOR
@@ -103,6 +111,9 @@ def guess_device_class(config: dict):
     be displayed as 4 switches.
     """
     uiid = config.get('uiid')
+    # DualR3 in cover mode
+    if uiid == 126 and config.get('params', {}).get('workMode') == 2:
+        return 'cover'
     return UIIDS.get(uiid)
 
 
@@ -180,7 +191,7 @@ RE_DEVICEID = re.compile(r"^[a-z0-9]{10}\b")
 # remove uiid, MAC, IP
 RE_PRIVATE = re.compile(
     r"\b([a-zA-Z0-9_-]{36,}|[A-F0-9:]{17}|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|"
-    r"EWLK-\d{6}-[A-Z]{5})\b")
+    r"EWLK-\d{6}-[A-Z]{5})\b|(?<=ssid': ')[^']+")
 NOTIFY_TEXT = (
     '<a href="%s" target="_blank">Open Log<a> | '
     '[New Issue on GitHub](https://github.com/AlexxIT/SonoffLAN/issues/new) | '

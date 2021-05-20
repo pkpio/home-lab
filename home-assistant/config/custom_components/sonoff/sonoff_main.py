@@ -6,6 +6,8 @@ import time
 from typing import Optional, List, Callable
 
 from aiohttp import ClientSession
+from homeassistant.const import ATTR_BATTERY_LEVEL, MAJOR_VERSION, \
+    MINOR_VERSION
 
 from .sonoff_cloud import EWeLinkCloud
 from .sonoff_local import EWeLinkLocal
@@ -13,7 +15,7 @@ from .sonoff_local import EWeLinkLocal
 _LOGGER = logging.getLogger(__name__)
 
 ATTRS = ('local', 'cloud', 'rssi', 'humidity', 'temperature', 'power',
-         'current', 'voltage', 'battery', 'consumption', 'water')
+         'current', 'voltage', 'consumption', 'water', ATTR_BATTERY_LEVEL)
 
 
 def load_cache(filename: str):
@@ -70,9 +72,15 @@ class EWeLinkRegistry:
 
         # skip update with same sequence (from cloud and local or from local)
         if sequence:
-            if device.get('seq') == sequence:
+            sequence = int(sequence)
+            ts = time.time()
+            # skip same and lower sequence in last 10 seconds
+            if ('seq' in device and ts - device['seq_ts'] < 10 and
+                    sequence <= device['seq']):
+                _LOGGER.debug("Skip update with same sequence")
                 return
             device['seq'] = sequence
+            device['seq_ts'] = ts
 
         # check when cloud offline first time
         if state.get('cloud') == 'offline' and device.get('host'):
@@ -135,7 +143,7 @@ class EWeLinkRegistry:
 
         self.local.start(handlers, self.devices, zeroconf)
 
-    async def stop(self):
+    async def stop(self, *args):
         # TODO: do something
         pass
 
@@ -194,7 +202,7 @@ class EWeLinkRegistry:
             self.bulk_params[deviceid]['switches'] += params['switches']
 
 
-class EWeLinkDevice:
+class EWeLinkBase:
     registry: EWeLinkRegistry = None
     deviceid: str = None
     channels: list = None
@@ -290,3 +298,36 @@ class EWeLinkDevice:
             for channel, switch in channels.items()
         ]
         await self.registry.send(self.deviceid, {'switches': switches})
+
+
+class EWeLinkEntity(EWeLinkBase):
+    @property
+    def should_poll(self):
+        return False
+
+    @property
+    def unique_id(self):
+        return self.deviceid
+
+    @property
+    def name(self):
+        return self._name
+
+    @property
+    def extra_state_attributes(self):
+        return self._attrs
+
+    @property
+    def available(self):
+        device: dict = self.registry.devices[self.deviceid]
+        return device['available']
+
+    async def async_added_to_hass(self):
+        self._init()
+
+
+if [MAJOR_VERSION, MINOR_VERSION] < [2021, 4]:
+    # Backwards compatibility for "device_state_attributes"
+    # deprecated in 2021.4, add warning in 2021.6, remove in 2021.10
+    p = getattr(EWeLinkEntity, 'extra_state_attributes')
+    setattr(EWeLinkEntity, 'device_state_attributes', p)

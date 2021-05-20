@@ -51,13 +51,13 @@ cards:
   template: cpu_temperature_graph
   variables:
   - name: Temperature - Core 0
-  - entity: sensor.home_lab_core_0_temp
+  - entity: sensor.home_lab_core_0_temperature
 
 - type: custom:decluttering-card
   template: cpu_temperature_graph
   variables:
   - name: Temperature - Core 1
-  - entity: sensor.home_lab_core_1_temp
+  - entity: sensor.home_lab_core_1_temperature
 
 - type: glance
   entities:

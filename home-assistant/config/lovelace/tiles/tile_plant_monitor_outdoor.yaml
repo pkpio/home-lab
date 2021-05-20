@@ -51,7 +51,7 @@ cards:
   template: cpu_temperature_graph
   variables:
   - name: CPU temperature
-  - entity: sensor.plant_monitor_outdoor_cpu_thermal_1_temp
+  - entity: sensor.plant_monitor_outdoor_cpu_thermal_1_temperature
 
 - type: glance
   entities:

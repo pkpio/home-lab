@@ -1,122 +1,112 @@
 """
 A component which presents Yahoo Finance stock quotes.
 
-https://github.com/InduPrakash/yahoofinance
+https://github.com/iprak/yahoofinance
 """
 
-import asyncio
 import logging
-from datetime import timedelta
 
-import aiohttp
-import async_timeout
-import homeassistant.helpers.config_validation as cv
-import voluptuous as vol
-from homeassistant.components.sensor import PLATFORM_SCHEMA
-from homeassistant.const import ATTR_ATTRIBUTION, CONF_SCAN_INTERVAL
-from homeassistant.helpers.aiohttp_client import async_get_clientsession
+from homeassistant.const import ATTR_ATTRIBUTION
 from homeassistant.helpers.entity import Entity, async_generate_entity_id
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from .const import (
     ATTR_CURRENCY_SYMBOL,
-    ATTR_FIFTY_DAY_AVERAGE,
-    ATTR_FIFTY_DAY_AVERAGE_CHANGE,
-    ATTR_FIFTY_DAY_AVERAGE_CHANGE_PERCENTAGE,
-    ATTR_MARKET_CHANGE,
-    ATTR_MARKET_CHANGE_PERCENTAGE,
-    ATTR_PREVIOUS_CLOSE,
+    ATTR_MARKET_STATE,
+    ATTR_QUOTE_SOURCE_NAME,
+    ATTR_QUOTE_TYPE,
     ATTR_SYMBOL,
+    ATTR_TRENDING,
     ATTRIBUTION,
-    BASE,
+    CONF_DECIMAL_PLACES,
     CONF_SHOW_TRENDING_ICON,
     CONF_SYMBOLS,
+    CONF_TARGET_CURRENCY,
     CURRENCY_CODES,
+    DATA_CURRENCY_SYMBOL,
+    DATA_FINANCIAL_CURRENCY,
+    DATA_MARKET_STATE,
+    DATA_QUOTE_SOURCE_NAME,
+    DATA_QUOTE_TYPE,
+    DATA_REGULAR_MARKET_PREVIOUS_CLOSE,
+    DATA_REGULAR_MARKET_PRICE,
+    DATA_SHORT_NAME,
     DEFAULT_CURRENCY,
-    DEFAULT_CURRENCY_SYMBOL,
     DEFAULT_ICON,
+    DEFAULT_NUMERIC_DATA_GROUP,
     DOMAIN,
-    SERVICE_REFRESH,
+    HASS_DATA_CONFIG,
+    HASS_DATA_COORDINATOR,
+    NUMERIC_DATA_GROUPS,
 )
 
 _LOGGER = logging.getLogger(__name__)
 ENTITY_ID_FORMAT = DOMAIN + ".{}"
-SCAN_INTERVAL = timedelta(hours=6)
-DEFAULT_TIMEOUT = 10
-DEFAULT_CONF_SHOW_TRENDING_ICON = False
-
-PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
-    {
-        vol.Required(CONF_SYMBOLS): vol.All(cv.ensure_list, [cv.string]),
-        vol.Optional(CONF_SCAN_INTERVAL, default=SCAN_INTERVAL): cv.time_period,
-        vol.Optional(
-            CONF_SHOW_TRENDING_ICON, default=DEFAULT_CONF_SHOW_TRENDING_ICON
-        ): cv.boolean,
-    }
-)
 
 
-async def async_setup_platform(
-    hass, config, async_add_entities, discovery_info=None
-):  # pylint: disable=unused-argument
-    """Set up the Yahoo Finance sensors."""
-    symbols = config.get(CONF_SYMBOLS, [])
-    show_trending_icon = config.get(
-        CONF_SHOW_TRENDING_ICON, DEFAULT_CONF_SHOW_TRENDING_ICON
-    )
+async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
+    """Set up the Yahoo Finance sensor platform."""
 
-    coordinator = YahooSymbolUpdateCoordinator(
-        symbols, hass, config.get(CONF_SCAN_INTERVAL)
-    )
-    await coordinator.async_refresh()
+    coordinator = hass.data[DOMAIN][HASS_DATA_COORDINATOR]
+    domain_config = hass.data[DOMAIN][HASS_DATA_CONFIG]
+    symbols = domain_config[CONF_SYMBOLS]
 
-    sensors = []
-    for symbol in symbols:
-        sensors.append(
-            YahooFinanceSensor(hass, coordinator, symbol, show_trending_icon)
-        )
+    sensors = [
+        YahooFinanceSensor(hass, coordinator, symbol, domain_config)
+        for symbol in symbols
+    ]
 
-    # The True param fetches data first time before being written to HA
-    async_add_entities(sensors, True)
-
-    async def handle_refresh_symbols(_call):
-        """Refresh symbol data."""
-        _LOGGER.info("Processing refresh_symbols")
-        await coordinator.async_request_refresh()
-
-    hass.services.async_register(
-        DOMAIN,
-        SERVICE_REFRESH,
-        handle_refresh_symbols,
-    )
-
-    _LOGGER.info("Added sensors for %s", symbols)
+    async_add_entities(sensors, update_before_add=False)
+    _LOGGER.info("Entities added for %s", [item["symbol"] for item in symbols])
 
 
 class YahooFinanceSensor(Entity):
-    """Defines a Yahoo finance sensor."""
+    """Represents a Yahoo finance entity."""
 
-    # pylint: disable=too-many-instance-attributes
     _currency = DEFAULT_CURRENCY
-    _currency_symbol = DEFAULT_CURRENCY_SYMBOL
-    _fifty_day_average = None
-    _fifty_day_average_change = None
-    _fifty_day_average_change_percent = None
     _icon = DEFAULT_ICON
-    _previous_close = None
-    _market_change = None
-    _market_change_percent = None
+    _market_price = None
     _short_name = None
-    _state = None
-    _symbol = None
+    _target_currency = None
+    _original_currency = None
 
-    def __init__(self, hass, coordinator, symbol, show_trending_icon) -> None:
+    def __init__(self, hass, coordinator, symbol_definition, domain_config) -> None:
         """Initialize the sensor."""
+        symbol = symbol_definition.get("symbol")
+        self._hass = hass
         self._symbol = symbol
         self._coordinator = coordinator
+        self._show_trending_icon = domain_config[CONF_SHOW_TRENDING_ICON]
+        self._decimal_places = domain_config[CONF_DECIMAL_PLACES]
+        self._previous_close = None
+        self._target_currency = symbol_definition.get(CONF_TARGET_CURRENCY)
+
         self.entity_id = async_generate_entity_id(ENTITY_ID_FORMAT, symbol, hass=hass)
-        self.show_trending_icon = show_trending_icon
-        _LOGGER.debug("Created %s", self.entity_id)
+
+        self._attributes = {
+            ATTR_ATTRIBUTION: ATTRIBUTION,
+            ATTR_CURRENCY_SYMBOL: None,
+            ATTR_SYMBOL: symbol,
+            ATTR_QUOTE_TYPE: None,
+            ATTR_QUOTE_SOURCE_NAME: None,
+            ATTR_MARKET_STATE: None,
+        }
+
+        # List of groups to include as attributes
+        self._numeric_data_to_include = []
+
+        # Initialize all numeric attributes which we want to include to None
+        for group in NUMERIC_DATA_GROUPS:
+            if group == DEFAULT_NUMERIC_DATA_GROUP or domain_config.get(group, True):
+                for value in NUMERIC_DATA_GROUPS[group]:
+                    self._numeric_data_to_include.append(value)
+
+                    key = value[0]
+                    self._attributes[key] = None
+
+        # Delay initial data population to `available` which is called from `_async_write_ha_state`
+        _LOGGER.debug(
+            "Created %s target_currency=%s", self.entity_id, self._target_currency
+        )
 
     @property
     def name(self) -> str:
@@ -134,7 +124,7 @@ class YahooFinanceSensor(Entity):
     @property
     def state(self):
         """Return the state of the sensor."""
-        return self._state
+        return self._round(self._market_price)
 
     @property
     def unit_of_measurement(self) -> str:
@@ -144,69 +134,153 @@ class YahooFinanceSensor(Entity):
     @property
     def device_state_attributes(self):
         """Return the state attributes."""
-        return {
-            ATTR_ATTRIBUTION: ATTRIBUTION,
-            ATTR_CURRENCY_SYMBOL: self._currency_symbol,
-            ATTR_FIFTY_DAY_AVERAGE: self._fifty_day_average,
-            ATTR_FIFTY_DAY_AVERAGE_CHANGE: self._fifty_day_average_change,
-            ATTR_FIFTY_DAY_AVERAGE_CHANGE_PERCENTAGE: self._fifty_day_average_change_percent,
-            ATTR_PREVIOUS_CLOSE: self._previous_close,
-            ATTR_MARKET_CHANGE: self._market_change,
-            ATTR_MARKET_CHANGE_PERCENTAGE: self._market_change_percent,
-            ATTR_SYMBOL: self._symbol,
-        }
+        return self._attributes
 
     @property
     def icon(self) -> str:
         """Return the icon to use in the frontend, if any."""
         return self._icon
 
-    def fetch_data(self) -> None:
-        """Fetch data and populate local fields."""
+    def _round(self, value):
+        """Return formatted value based on decimal_places."""
+        if value is None:
+            return None
+
+        if self._decimal_places < 0:
+            return value
+        if self._decimal_places == 0:
+            return int(value)
+
+        return round(value, self._decimal_places)
+
+    def _get_target_currency_conversion(self) -> float:
+        value = None
+
+        if self._target_currency and self._original_currency:
+            conversion_symbol = (
+                f"{self._original_currency}{self._target_currency}=X".upper()
+            )
+            data = self._coordinator.data
+
+            if data is not None:
+                symbol_data = data.get(conversion_symbol)
+
+                if symbol_data is not None:
+                    value = symbol_data[DATA_REGULAR_MARKET_PRICE]
+                else:
+                    self._coordinator.add_symbol(conversion_symbol)
+
+            _LOGGER.debug("%s conversion %s=%s", self._symbol, conversion_symbol, value)
+
+        return value
+
+    @staticmethod
+    def safe_convert(value, conversion):
+        """Return the converted value. The original value is returned if there is no conversion."""
+        if value is None:
+            return None
+        if conversion is None:
+            return value
+        return value * conversion
+
+    def _get_original_currency(self, symbol_data):
+        # Prefer currency over financialCurrency, for foreign symbols financialCurrency
+        # can represent the remote currency. But financialCurrency can also be None.
+        financial_currency = symbol_data[DATA_FINANCIAL_CURRENCY]
+        currency = symbol_data[DATA_CURRENCY_SYMBOL]
+
+        _LOGGER.debug(
+            "%s currency=%s, financialCurrency=%s",
+            self._symbol,
+            ("None" if currency is None else currency),
+            ("None" if financial_currency is None else financial_currency),
+        )
+
+        currency = currency or financial_currency or DEFAULT_CURRENCY
+        return currency
+
+    def _update_data(self) -> None:
+        """Update local fields."""
+
         data = self._coordinator.data
         if data is None:
+            _LOGGER.debug("%s Coordinator data is None", self._symbol)
             return
 
-        symbol_data = data[self._symbol]
+        symbol_data = data.get(self._symbol)
         if symbol_data is None:
+            _LOGGER.debug("%s Symbol data is None", self._symbol)
             return
 
-        self._short_name = symbol_data["shortName"]
-        self._state = symbol_data["regularMarketPrice"]
-        self._fifty_day_average = symbol_data["fiftyDayAverage"]
-        self._fifty_day_average_change = symbol_data["fiftyDayAverageChange"]
-        self._fifty_day_average_change_percent = symbol_data[
-            "fiftyDayAverageChangePercent"
-        ]
-        self._previous_close = symbol_data["regularMarketPreviousClose"]
-        self._market_change = symbol_data["regularMarketChange"]
-        self._market_change_percent = symbol_data["regularMarketChangePercent"]
+        self._original_currency = self._get_original_currency(symbol_data)
+        conversion = self._get_target_currency_conversion()
 
-        currency = symbol_data["financialCurrency"]
-        if currency is None:
-            currency = symbol_data.get("currency", DEFAULT_CURRENCY)
+        self._short_name = symbol_data[DATA_SHORT_NAME]
+        self._market_price = self.safe_convert(
+            symbol_data[DATA_REGULAR_MARKET_PRICE], conversion
+        )
+        self._previous_close = self.safe_convert(
+            symbol_data[DATA_REGULAR_MARKET_PREVIOUS_CLOSE], conversion
+        )
+
+        for value in self._numeric_data_to_include:
+            key = value[0]
+            attr_value = symbol_data[key]
+
+            # Convert if currency value
+            if value[1]:
+                attr_value = self.safe_convert(attr_value, conversion)
+
+            self._attributes[key] = self._round(attr_value)
+
+        # Add some other string attributes
+        self._attributes[ATTR_QUOTE_TYPE] = symbol_data[DATA_QUOTE_TYPE]
+        self._attributes[ATTR_QUOTE_SOURCE_NAME] = symbol_data[DATA_QUOTE_SOURCE_NAME]
+        self._attributes[ATTR_MARKET_STATE] = symbol_data[DATA_MARKET_STATE]
+
+        # Use target_currency if we have conversion data. Otherwise keep using the
+        # currency from data.
+        if conversion is not None:
+            currency = self._target_currency or self._original_currency
+        else:
+            currency = self._original_currency
 
         self._currency = currency.upper()
         lower_currency = self._currency.lower()
 
-        # Fall back to currency based icon if there is no _previous_close value
-        if self.show_trending_icon and not (self._previous_close is None):
-            if self._state > self._previous_close:
-                self._icon = "mdi:trending-up"
-            elif self._state < self._previous_close:
-                self._icon = "mdi:trending-down"
-            else:
-                self._icon = "mdi:trending-neutral"
-        else:
-            self._icon = "mdi:currency-" + lower_currency
+        trending_state = self._calc_trending_state()
 
-        if lower_currency in CURRENCY_CODES:
-            self._currency_symbol = CURRENCY_CODES[lower_currency]
+        # Fall back to currency based icon if there is no trending state
+        if trending_state is not None:
+            self._attributes[ATTR_TRENDING] = trending_state
+
+            if self._show_trending_icon:
+                self._icon = f"mdi:trending-{trending_state}"
+            else:
+                self._icon = f"mdi:currency-{lower_currency}"
+        else:
+            self._icon = f"mdi:currency-{lower_currency}"
+
+        # If this one of the known currencies, then include the correct currency symbol.
+        # Don't show $ as the CurrencySymbol even if we can't get one.
+        self._attributes[ATTR_CURRENCY_SYMBOL] = CURRENCY_CODES.get(lower_currency)
+
+    def _calc_trending_state(self):
+        """Return the trending state for the symbol."""
+        if self._market_price is None or self._previous_close is None:
+            return None
+
+        if self._market_price > self._previous_close:
+            return "up"
+        if self._market_price < self._previous_close:
+            return "down"
+
+        return "neutral"
 
     @property
     def available(self) -> bool:
         """Return if entity is available."""
-        self.fetch_data()
+        self._update_data()
         return self._coordinator.last_update_success
 
     async def async_added_to_hass(self) -> None:
@@ -220,89 +294,3 @@ class YahooFinanceSensor(Entity):
     async def async_update(self) -> None:
         """Update symbol data."""
         await self._coordinator.async_request_refresh()
-
-
-class YahooSymbolUpdateCoordinator(DataUpdateCoordinator):
-    """Class to manage Yahoo finance data update."""
-
-    def __init__(self, symbols, hass, update_interval) -> None:
-        """Initialize."""
-        self._symbols = symbols
-        self.data = None
-        self.loop = hass.loop
-        self.websession = async_get_clientsession(hass)
-
-        super().__init__(
-            hass,
-            _LOGGER,
-            name=DOMAIN,
-            update_interval=update_interval,
-        )
-
-    async def _async_update_data(self):
-        """Fetch the latest data from the source."""
-        try:
-            await self.update()
-        except () as error:
-            raise UpdateFailed(error)
-        return self.data
-
-    async def get_json(self):
-        """Get the JSON data."""
-        json = None
-        try:
-            async with async_timeout.timeout(DEFAULT_TIMEOUT, loop=self.loop):
-                response = await self.websession.get(BASE + ",".join(self._symbols))
-                json = await response.json()
-
-            _LOGGER.debug("Data = %s", json)
-            self.last_update_success = True
-        except asyncio.TimeoutError:
-            _LOGGER.error("Timed out getting data")
-            self.last_update_success = False
-        except aiohttp.ClientError as exception:
-            _LOGGER.error("Error getting data: %s", exception)
-            self.last_update_success = False
-
-        return json
-
-    async def update(self):
-        """Update data."""
-        json = await self.get_json()
-        if json is not None:
-            if "error" in json:
-                raise ValueError(json["error"]["info"])
-
-            result = json["quoteResponse"]["result"]
-            data = {}
-
-            for item in result:
-                symbol = item["symbol"]
-
-                # Return data pieces which we care about, use 0 for missing numeric values
-                data[symbol] = {
-                    "regularMarketPrice": item.get("regularMarketPrice", 0),
-                    "regularMarketChange": item.get("regularMarketChange", 0),
-                    "regularMarketChangePercent": item.get(
-                        "regularMarketChangePercent", 0
-                    ),
-                    "regularMarketPreviousClose": item.get(
-                        "regularMarketPreviousClose", 0
-                    ),
-                    "fiftyDayAverage": item.get("fiftyDayAverage", 0),
-                    "fiftyDayAverageChange": item.get("fiftyDayAverageChange", 0),
-                    "fiftyDayAverageChangePercent": item.get(
-                        "fiftyDayAverageChangePercent", 0
-                    ),
-                    "currency": item.get("currency"),
-                    "financialCurrency": item.get("financialCurrency"),
-                    "shortName": item.get("shortName"),
-                }
-                _LOGGER.debug(
-                    "Updated %s=%s",
-                    symbol,
-                    data[symbol]["regularMarketPrice"],
-                )
-
-            self.data = data
-            _LOGGER.info("Data updated")

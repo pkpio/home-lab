@@ -7,9 +7,9 @@ PSF-BFB-GL | fan_light | 34   | iFan (Sonoff iFan03)
 import logging
 
 from homeassistant.components.light import SUPPORT_BRIGHTNESS, \
-    ATTR_BRIGHTNESS, SUPPORT_COLOR, ATTR_HS_COLOR, \
-    SUPPORT_EFFECT, ATTR_EFFECT, ATTR_EFFECT_LIST, SUPPORT_COLOR_TEMP, \
-    ATTR_COLOR_TEMP, ATTR_MIN_MIREDS, ATTR_MAX_MIREDS
+    ATTR_BRIGHTNESS, SUPPORT_COLOR, ATTR_HS_COLOR, SUPPORT_EFFECT, \
+    ATTR_EFFECT, SUPPORT_COLOR_TEMP, \
+    ATTR_COLOR_TEMP, LightEntity
 from homeassistant.util import color
 
 # noinspection PyUnresolvedReferences
@@ -29,6 +29,8 @@ async def async_setup_platform(hass, config, add_entities,
     registry = hass.data[DOMAIN]
 
     uiid = registry.devices[deviceid].get('uiid')
+    model = registry.devices[deviceid].get('productModel')
+
     if uiid == 44 or uiid == 'light':
         add_entities([SonoffD1(registry, deviceid)])
     elif uiid == 59:
@@ -41,15 +43,23 @@ async def async_setup_platform(hass, config, add_entities,
         add_entities([SonoffDiffuserLight(registry, deviceid)])
     elif uiid == 57:
         add_entities([Sonoff57(registry, deviceid)])
+    elif uiid == 103:
+        add_entities([Sonoff103(registry, deviceid)])
     elif uiid == 104:
-        add_entities([Sonoff104(registry, deviceid)])
+        add_entities([SonoffB05(registry, deviceid)])
     elif channels and len(channels) >= 2:
         add_entities([EWeLinkLightGroup(registry, deviceid, channels)])
     else:
-        add_entities([EWeLinkToggle(registry, deviceid, channels)])
+        add_entities([EWeLinkLight(registry, deviceid, channels)])
 
 
-class SonoffD1(EWeLinkToggle):
+class EWeLinkLight(EWeLinkToggle, LightEntity):
+    @property
+    def supported_features(self):
+        return 0
+
+
+class SonoffD1(EWeLinkLight):
     _brightness = 0
 
     def _update_handler(self, state: dict, attrs: dict):
@@ -70,13 +80,6 @@ class SonoffD1(EWeLinkToggle):
     @property
     def supported_features(self):
         return SUPPORT_BRIGHTNESS
-
-    @property
-    def state_attributes(self):
-        return {
-            **self._attrs,
-            ATTR_BRIGHTNESS: self.brightness
-        }
 
     async def async_turn_on(self, **kwargs) -> None:
         if ATTR_BRIGHTNESS in kwargs:
@@ -120,7 +123,7 @@ LED_EFFECTS = [
 ]
 
 
-class SonoffLED(EWeLinkToggle):
+class SonoffLED(EWeLinkLight):
     _brightness = 0
     _hs_color = None
     _mode = 0
@@ -171,20 +174,6 @@ class SonoffLED(EWeLinkToggle):
     def supported_features(self):
         return SUPPORT_BRIGHTNESS | SUPPORT_COLOR | SUPPORT_EFFECT
 
-    @property
-    def state_attributes(self):
-        return {
-            **self._attrs,
-            ATTR_BRIGHTNESS: self.brightness,
-            ATTR_HS_COLOR: self._hs_color,
-            ATTR_EFFECT: self.effect
-        }
-
-    @property
-    def capability_attributes(self):
-        """Return capability attributes."""
-        return {ATTR_EFFECT_LIST: self.effect_list}
-
     async def async_turn_on(self, **kwargs) -> None:
         if ATTR_EFFECT in kwargs:
             mode = LED_EFFECTS.index(kwargs[ATTR_EFFECT]) + 1
@@ -208,7 +197,7 @@ class SonoffLED(EWeLinkToggle):
         await self.registry.send(self.deviceid, payload)
 
 
-class SonoffB1(EWeLinkToggle):
+class SonoffB1(EWeLinkLight):
     _brightness = None
     _hs_color = None
     _temp = None
@@ -272,20 +261,12 @@ class SonoffB1(EWeLinkToggle):
         return SUPPORT_BRIGHTNESS | SUPPORT_COLOR | SUPPORT_COLOR_TEMP
 
     @property
-    def capability_attributes(self):
-        return {
-            ATTR_MIN_MIREDS: 1,
-            ATTR_MAX_MIREDS: 3
-        }
+    def min_mireds(self):
+        return 1
 
     @property
-    def state_attributes(self):
-        return {
-            **self._attrs,
-            ATTR_BRIGHTNESS: self.brightness,
-            ATTR_HS_COLOR: self._hs_color,
-            ATTR_COLOR_TEMP: self._temp
-        }
+    def max_mireds(self):
+        return 3
 
     async def async_turn_on(self, **kwargs) -> None:
         if ATTR_COLOR_TEMP in kwargs or ATTR_BRIGHTNESS in kwargs:
@@ -335,7 +316,6 @@ class EWeLinkLightGroup(SonoffD1):
     """Differs from the usual switch by brightness adjustment. Is logical
     use only for two or more channels. Able to remember brightness on moment
     off.
-
     The sequence of channels is important. The first channels will be turned on
     at low brightness.
     """
@@ -381,7 +361,7 @@ class EWeLinkLightGroup(SonoffD1):
 DIFFUSER_EFFECTS = ["Color Light", "RGB Color", "Night Light"]
 
 
-class SonoffDiffuserLight(EWeLinkToggle):
+class SonoffDiffuserLight(EWeLinkLight):
     _brightness = 0
     _hs_color = None
     _mode = 0
@@ -434,20 +414,7 @@ class SonoffDiffuserLight(EWeLinkToggle):
             return SUPPORT_BRIGHTNESS | SUPPORT_COLOR | SUPPORT_EFFECT
         elif self._mode == 3:
             return SUPPORT_BRIGHTNESS | SUPPORT_EFFECT
-
-    @property
-    def state_attributes(self):
-        return {
-            **self._attrs,
-            ATTR_BRIGHTNESS: self.brightness,
-            ATTR_HS_COLOR: self._hs_color,
-            ATTR_EFFECT: self.effect
-        }
-
-    @property
-    def capability_attributes(self):
-        """Return capability attributes."""
-        return {ATTR_EFFECT_LIST: self.effect_list}
+        return 0
 
     async def async_turn_off(self, **kwargs) -> None:
         await self.registry.send(self.deviceid, {'lightswitch': 0})
@@ -506,7 +473,130 @@ class Sonoff57(SonoffD1):
         await self.registry.send(self.deviceid, {'state': 'off'})
 
 
-SONOFF104_MODES = {
+SONOFF103_MODES = {
+    'white': 'Custom',
+    'nightLight': 'Night',
+    'read': 'Reading',
+    'computer': 'Work',
+    'bright': 'Bright'
+}
+
+SONOFF103_MODE_PAYLOADS = {
+    'nightLight': {'br': 5, 'ct': 0},
+    'read': {'br': 50, 'ct': 0},
+    'computer': {'br': 20, 'ct': 255},
+    'bright': {'br': 100, 'ct': 255},
+}
+
+
+class Sonoff103(EWeLinkLight):
+    _brightness = None
+    _mode = None
+    _temp = None
+
+    # FS-1, B02-F-A60 and other
+    _min_mireds = int(1000000 / 6500)
+    _max_mireds = int(1000000 / 2200)
+
+    async def async_added_to_hass(self) -> None:
+        await super().async_added_to_hass()
+
+        device: dict = self.registry.devices[self.deviceid]
+        model = device.get('productModel')
+        if model == 'B02-F-ST64':
+            self._min_mireds = int(1000000 / 5000)
+            self._max_mireds = int(1000000 / 1800)
+        elif model == 'QMS-2C-CW':
+            self._min_mireds = int(1000000 / 6500)
+            self._max_mireds = int(1000000 / 2700)
+
+    def _update_handler(self, state: dict, attrs: dict):
+        self._attrs.update(attrs)
+
+        if 'switch' in state:
+            self._is_on = state['switch'] == 'on'
+
+        if 'ltype' in state:
+            self._mode = state['ltype']
+            state = state[self._mode]
+
+            if 'br' in state:
+                # 1..100 => 1..255
+                br = state['br']
+                self._brightness = \
+                    round(1.0 + (br - 1.0) / (100.0 - 1.0) * 254.0)
+
+            if 'ct' in state:
+                # 0..255 => Mireds..
+                ct = min(255, max(0, state['ct']))
+                self._temp = round(self._max_mireds - ct / 255.0 *
+                                   (self._max_mireds - self._min_mireds))
+
+        self.async_write_ha_state()
+
+    @property
+    def brightness(self):
+        """Return the brightness of this light between 0..255."""
+        return self._brightness
+
+    @property
+    def color_temp(self):
+        """Return the CT color value in mireds."""
+        return self._temp
+
+    @property
+    def effect(self):
+        """Return the current effect."""
+        return SONOFF103_MODES[self._mode]
+
+    @property
+    def effect_list(self):
+        """Return the list of supported effects."""
+        return list(SONOFF103_MODES.values())
+
+    @property
+    def supported_features(self):
+        return SUPPORT_BRIGHTNESS | SUPPORT_COLOR_TEMP | SUPPORT_EFFECT
+
+    @property
+    def min_mireds(self):
+        return round(self._min_mireds)
+
+    @property
+    def max_mireds(self):
+        return round(self._max_mireds)
+
+    async def async_turn_on(self, **kwargs) -> None:
+        if ATTR_BRIGHTNESS in kwargs or ATTR_COLOR_TEMP in kwargs:
+            mode = 'white'
+        elif ATTR_EFFECT in kwargs:
+            mode = next(k for k, v in SONOFF103_MODES.items()
+                        if v == kwargs[ATTR_EFFECT])
+        else:
+            mode = self._mode
+
+        if mode == 'white':
+            br = kwargs.get(ATTR_BRIGHTNESS) or self._brightness or 1
+            ct = kwargs.get(ATTR_COLOR_TEMP) or self._temp or 153
+            # Adjust to the dynamic range of the device.
+            ct = min(self._max_mireds, max(self._min_mireds, ct))
+            payload = {
+                'br': int(round((br - 1.0) * (100.0 - 1.0) / 254.0 + 1.0)),
+                'ct': int(round((self._max_mireds - ct) /
+                                (self._max_mireds - self._min_mireds) * 255.0))
+            }
+        else:
+            payload = SONOFF103_MODE_PAYLOADS[mode]
+
+        if not self._is_on:
+            await self.registry.send(self.deviceid, {'switch': 'on'})
+
+        payload = {'ltype': mode, mode: payload}
+
+        await self.registry.send(self.deviceid, payload)
+
+
+B05_MODES = {
     'color': 'Color',
     'white': 'White',
     'bright': 'Bright',
@@ -519,8 +609,20 @@ SONOFF104_MODES = {
     'colorful': 'Vivid'
 }
 
+# Taken straight from the debug mode and the eWeLink app
+B05_MODE_PAYLOADS = {
+    'bright': {'r': 255, 'g': 255, 'b': 255, 'br': 100},
+    'goodNight': {'r': 254, 'g': 254, 'b': 126, 'br': 25},
+    'read': {'r': 255, 'g': 255, 'b': 255, 'br': 60},
+    'nightLight': {'r': 255, 'g': 242, 'b': 226, 'br': 5},
+    'party': {'r': 254, 'g': 132, 'b': 0, 'br': 45, 'tf': 1, 'sp': 1},
+    'leisure': {'r': 0, 'g': 40, 'b': 254, 'br': 55, 'tf': 1, 'sp': 1},
+    'soft': {'r': 38, 'g': 254, 'b': 0, 'br': 20, 'tf': 1, 'sp': 1},
+    'colorful': {'r': 255, 'g': 0, 'b': 0, 'br': 100, 'tf': 1, 'sp': 1},
+}
 
-class Sonoff104(EWeLinkToggle):
+
+class SonoffB05(EWeLinkLight):
     _brightness = None
     _hs_color = None
     _mode = None
@@ -557,7 +659,7 @@ class Sonoff104(EWeLinkToggle):
                 )
                 self._temp = None
 
-        self.schedule_update_ha_state()
+        self.async_write_ha_state()
 
     @property
     def brightness(self):
@@ -577,12 +679,12 @@ class Sonoff104(EWeLinkToggle):
     @property
     def effect_list(self):
         """Return the list of supported effects."""
-        return list(SONOFF104_MODES.values())
+        return list(B05_MODES.values())
 
     @property
     def effect(self):
         """Return the current effect."""
-        return SONOFF104_MODES[self._mode]
+        return B05_MODES[self._mode]
 
     @property
     def supported_features(self):
@@ -594,35 +696,26 @@ class Sonoff104(EWeLinkToggle):
             return SUPPORT_EFFECT
 
     @property
-    def capability_attributes(self):
-        return {
-            ATTR_EFFECT_LIST: self.effect_list,
-            ATTR_MIN_MIREDS: 153,
-            ATTR_MAX_MIREDS: 500
-        }
+    def min_mireds(self):
+        return 153
 
     @property
-    def state_attributes(self):
-        return {
-            **self._attrs,
-            ATTR_BRIGHTNESS: self.brightness,
-            ATTR_HS_COLOR: self._hs_color,
-            ATTR_COLOR_TEMP: self._temp,
-            ATTR_EFFECT: self.effect
-        }
+    def max_mireds(self):
+        return 500
 
     async def async_turn_on(self, **kwargs) -> None:
-        payload = {'switch': 'on'}
+        payload = {}
 
         if ATTR_EFFECT in kwargs:
-            mode = next(k for k, v in SONOFF104_MODES.items()
+            mode = next(k for k, v in B05_MODES.items()
                         if v == kwargs[ATTR_EFFECT])
             payload['ltype'] = mode
+            if mode in B05_MODE_PAYLOADS:
+                payload.update({mode: B05_MODE_PAYLOADS[mode]})
         else:
             mode = self._mode
 
-        if mode == 'color' and (ATTR_BRIGHTNESS in kwargs or
-                                ATTR_HS_COLOR in kwargs):
+        if mode == 'color':
             br = kwargs.get(ATTR_BRIGHTNESS) or self._brightness or 1
             hs = kwargs.get(ATTR_HS_COLOR) or self._hs_color or (0, 0)
             rgb = color.color_hs_to_RGB(*hs)
@@ -635,8 +728,7 @@ class Sonoff104(EWeLinkToggle):
                 'b': rgb[2],
             }
 
-        if mode == 'white' and (ATTR_BRIGHTNESS in kwargs or
-                                ATTR_COLOR_TEMP in kwargs):
+        elif mode == 'white':
             br = kwargs.get(ATTR_BRIGHTNESS) or self._brightness or 1
             ct = kwargs.get(ATTR_COLOR_TEMP) or self._temp or 153
 
@@ -645,5 +737,8 @@ class Sonoff104(EWeLinkToggle):
                 'br': int(round((br - 1.0) * (100.0 - 1.0) / 254.0 + 1.0)),
                 'ct': int(round((500.0 - ct) / (500.0 - 153.0) * 255.0))
             }
+
+        if not self._is_on:
+            await self.registry.send(self.deviceid, {'switch': 'on'})
 
         await self.registry.send(self.deviceid, payload)
