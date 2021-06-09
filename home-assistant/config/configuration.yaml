@@ -72,7 +72,7 @@ tuya:
 sonoff:
   username: !secret sonoff_username
   password: !secret sonoff_password
-  mode: local
+  reload: always
   devices:
     100094996f:
       device_class: light

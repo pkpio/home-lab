@@ -16,8 +16,8 @@
 - platform: group
   name: Cooktop lights
   entities:
-  - light.microwave_light
-  - light.cooking_lights
+  - light.sonoff_1000c1872c
+  - light.sonoff_1000b7ee2a
 
 - platform: group
   name: Kitchen lights

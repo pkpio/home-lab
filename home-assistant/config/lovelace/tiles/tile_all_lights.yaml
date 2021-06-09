@@ -11,7 +11,7 @@ entities:
   name: Cooktop
 - entity: light.dining_lights
   name: Dining
-- entity: light.balcony_light
+- entity: light.sonoff_100094996f
   name: Balcony
 - entity: light.bedroom_lights
   name: Bedroom
