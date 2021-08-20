@@ -7,7 +7,8 @@ services:
     container_name: home-assistant
     image: homeassistant/home-assistant:stable
     restart: always
-    network_mode: host
+    ports:
+      - "8123:8123"
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./home-assistant/config/:/config
@@ -73,6 +74,17 @@ services:
     container_name: media-server
     image: plexinc/pms-docker:latest
     restart: unless-stopped
+    ports:
+      - "32400:32400"
+      - "1900:1900/udp"
+      - "3005:3005"
+      - "5353:5353/udp"
+      - "8324:8324"
+      - "32410:32410/udp"
+      - "32412:32412/udp"
+      - "32413:32413/udp"
+      - "32414:32414/udp"
+      - "32469:32469"
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./media-server/config:/config
@@ -81,7 +93,6 @@ services:
       - /media/external-hd:/data/external-hd
     env_file:
       - media-server/.env
-    network_mode: host
     devices:
       - /dev/dri:/dev/dri
     labels:
@@ -172,10 +183,13 @@ services:
   #===================== Torrent client =======================#
   # Runs tranmission torrent client through an OpenVPN tunnel
   #============================================================#
-  torrent-client:
-    container_name: torrent-client
+  transmission:
+    container_name: transmission
     image: haugene/transmission-openvpn:latest
     restart: unless-stopped
+    ports:
+      - "9091:9091"
+      - "8888:8888"
     cap_add:
       - NET_ADMIN
     dns:
@@ -189,20 +203,17 @@ services:
       - /dev/net/tun
     env_file:
       - torrent-client/.env
-    network_mode: host
 
 
-  #================== Local SpeedTest server ==================#
-  # Runs iperf3 tool in server mode for LAN speed testing
+  #=================== Transmission proxy =====================#
+  # Proxy to access the torrent client due to internal VPN
   #============================================================#
-  lan-speed-test:
-    container_name: lan-speed-test
-    image: networkstatic/iperf3:latest
-    restart: unless-stopped
-    command: -s
+  transmission-proxy:
+    container_name: transmission-proxy
+    image: haugene/transmission-openvpn-proxy
+    links:
+      - transmission
     ports:
-      - "5201:5201"
+      - 8081:8080
     volumes:
       - /etc/localtime:/etc/localtime:ro
-
-
