@@ -217,3 +217,34 @@ services:
       - 8081:8080
     volumes:
       - /etc/localtime:/etc/localtime:ro
+
+  #=================== Proxy manager =====================#
+  # Proxy manager for different services
+  #============================================================#
+  proxy-manager:
+    container_name: proxy-manager
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "81:81"
+      - "443:443"
+    env_file:
+      - proxy-manager/.env
+    volumes:
+      - ./proxy-manager/data/:/data
+      - ./proxy-manager/letsencrypt:/etc/letsencrypt
+    depends_on:
+      - proxy-manager-db
+
+  #=================== Proxy manager Database =====================#
+  # Proxy manager database container
+  #============================================================#
+  proxy-manager-db:
+    container_name: proxy-manager-db
+    image: 'jc21/mariadb-aria:latest'
+    restart: unless-stopped
+    env_file:
+      - proxy-manager/.env
+    volumes:
+      - ./proxy-manager/mysql:/var/lib/mysql

@@ -15,6 +15,11 @@ homeassistant:
   packages: !include_dir_named packages
   customize: !include customize.yaml
 
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 172.19.0.1
+
 # Data saving policy
 recorder:
   db_url: !secret database_url
