@@ -26,3 +26,5 @@ resources:
   type: module
 - url: /hacsfiles/bar-card/bar-card.js
   type: module
+- url: /hacsfiles/config-editor-card/config-editor-card.js
+  type: module

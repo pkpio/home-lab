@@ -1,11 +1,11 @@
 - name: Praveen
   id: praveen
-  user_id: !secret person_praveen_userid
+  user_id: 5bcb46a84f804211b888cf1b57ef3800
   device_trackers:
   - device_tracker.praveen_phone
 
-- name: Mar
-  id: mar
-  user_id: !secret person_mar_userid
-  device_trackers:
-  - device_tracker.mar_phone
+#- name:Jade
+#  id: jade
+
+#- name:Edward
+#  id: edward

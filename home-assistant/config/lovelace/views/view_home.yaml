@@ -6,7 +6,8 @@ badges:
 - entity: sun.sun
 
 - entity: person.praveen
-- entity: person.mar
+- entity: device_tracker.jade_phone
+- entity: device_tracker.edward_phone
 
 - entity: sensor.living_room_environment
   name: Living room

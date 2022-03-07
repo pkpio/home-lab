@@ -16,15 +16,9 @@
   - platform: state
     entity_id: input_boolean.praveen_home
     to: 'off'
-  - platform: state
-    entity_id: input_boolean.mar_home
-    to: 'off'
   condition:
   - condition: state
     entity_id: input_boolean.praveen_home
-    state: 'off'
-  - condition: state
-    entity_id: input_boolean.mar_home
     state: 'off'
   - condition: state
     entity_id: input_boolean.vacuum_automation_ran_today
@@ -50,15 +44,9 @@
   - platform: state
     entity_id: input_boolean.praveen_home
     to: 'off'
-  - platform: state
-    entity_id: input_boolean.mar_home
-    to: 'off'
   condition:
   - condition: state
     entity_id: input_boolean.praveen_home
-    state: 'off'
-  - condition: state
-    entity_id: input_boolean.mar_home
     state: 'off'
   - condition: state
     entity_id: input_boolean.vacuum_automation_ran_today
