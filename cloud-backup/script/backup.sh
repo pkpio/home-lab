@@ -25,6 +25,6 @@ tar \
 	-cpzf $ARCHIVE_FILEPATH $SOURCE_DIR
 echo "Backed up $SOURCE_DIR to $ARCHIVE_FILEPATH"
 
-# Delete backups older than 10 days
-find $DESTINATION_DIR -name 'home-lab-*.tar.gz' -mtime +10 -exec rm {} \;
-echo "Deleted backups older than 10 days"
+# Delete backups older than 1 day(s)
+find $DESTINATION_DIR -name 'home-lab-*.tar.gz' -mtime +1 -exec rm {} \;
+echo "Deleted backups older than 1 day(s) old"
