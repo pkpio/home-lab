@@ -13,30 +13,30 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ./home-assistant/config/:/config
     depends_on:
-      - database
+      - mariadb
 
 
   #========================== Database ========================#
   # MariaDB database for home assistant
   #============================================================#
-  database:
-    container_name: database
+  mariadb:
+    container_name: mariadb
     image: mariadb/server:latest
     restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./database/data:/var/lib/mysql
+      - ./mariadb/data:/var/lib/mysql
     ports:
       - "3306:3306"
     env_file:
-      - database/.env
+      - mariadb/.env
 
 
   #====================== Zigbee dongle =======================#
   # Runs deconz to support conbee ii usb zigbee dongle
   #============================================================#
-  zigbee-app:
-    container_name: zigbee-app
+  deconz:
+    container_name: deconz
     image: marthoc/deconz:latest
     restart: always
     ports:
@@ -45,33 +45,19 @@ services:
       - "5900:5900"
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./zigbee-app/config:/root/.local/share/dresden-elektronik/deCONZ
+      - ./deconz/config:/root/.local/share/dresden-elektronik/deCONZ
     devices:
       - /dev/ttyACM0
     env_file:
-      - zigbee-app/.env
-
-
-  #=========================== MQTT ===========================#
-  # Runs a mosquitto mqtt broker
-  #============================================================#
-  mqtt-broker:
-    container_name: mqtt-broker
-    image: eclipse-mosquitto:latest
-    restart: unless-stopped
-    ports:
-      - "1883:1883"
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ./mqtt-broker/:/mosquitto/
+      - deconz/.env
 
 
   #====================== Media server ========================#
   # Runs Plex media server in docker. TODO: Setup to use 
   # graphic card for hardware accelarated transcoding.
   #============================================================#
-  media-server:
-    container_name: media-server
+  plex-media-server:
+    container_name: plex-media-server
     image: plexinc/pms-docker:latest
     restart: unless-stopped
     ports:
@@ -87,48 +73,20 @@ services:
       - "32469:32469"
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./media-server/config:/config
-      - ./media-server/transcode:/transcode
-      - ./media-server/data:/data/internal-hd
-      - /media/external-hd:/data/external-hd
+      - ./plex-media-server/config:/config
+      - ./plex-media-server/transcode:/transcode
+      - /media/external-hd/data:/media/external-hd/data
     env_file:
-      - media-server/.env
+      - plex-media-server/.env
     devices:
       - /dev/dri:/dev/dri
-    labels:
-      ofelia.enabled: "true"
-
-      # Cleanup empty dirs left after move - every Sunday at 5 am
-      # Cannot run this on local-sync container due to find tool not supporting -empty option
-      ofelia.job-exec.cleanup-local-data-move.schedule: "0 0 5 * * 0"
-      ofelia.job-exec.cleanup-local-data-move.command: "find /data/internal-hd -mindepth 2 -type d -empty -delete"
-
-  #======================== Local sync =========================#
-  # Local sync moves data from Internal to External HD. Has a 
-  # cron task setup using the cron-service to do this periodically.
-  #=============================================================#
-  local-sync:
-    container_name: local-sync
-    image: eeacms/rsync:latest
-    restart: unless-stopped
-    command: tail -F keep-alive
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ./media-server/data:/data/internal-hd
-      - /media/external-hd:/data/external-hd
-    labels:
-      ofelia.enabled: "true"
-
-      # Move data from internal to external HD - every Sunday at 3 am
-      ofelia.job-exec.local-data-move.schedule: "0 0 3 * * 0" 
-      ofelia.job-exec.local-data-move.command: "rsync -arvP --remove-source-files --exclude='downloads' /data/internal-hd/ /data/external-hd/"
 
 
   #====================== Monitoring ========================#
   # Runs Glances to monitor the resources of the Host
   #============================================================#
-  monitoring:
-    container_name: monitoring
+  glances:
+    container_name: glances
     image: nicolargo/glances:latest
     restart: unless-stopped
     ports:
@@ -197,12 +155,68 @@ services:
       - 8.8.4.4
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./torrent-client/data:/data
-      - ./media-server/data:/internal-hd
+      - ./transmission/data:/torrent/data
     devices:
       - /dev/net/tun
     env_file:
-      - torrent-client/.env
+      - transmission/.env
+
+
+  #=====================     Sonarr     =======================#
+  # To manage TV series
+  #============================================================#
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ./sonarr/data:/config
+      - ./transmission/data:/torrent/data
+      - /media/external-hd/data/tv:/tv
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+
+
+  #=====================     Radarr     =======================#
+  # To manage Movies
+  #============================================================#
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ./radarr/data:/config
+      - ./transmission/data:/torrent/data
+      - /media/external-hd/data/movies:/movies
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+
+
+  #=====================     Jackett     =======================#
+  # To manage torrent indexers
+  #============================================================#
+  jackett:
+    image: lscr.io/linuxserver/jackett:latest
+    container_name: jackett
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - AUTO_UPDATE=true #optional
+    volumes:
+      - ./jackett/config/:/config
+      - ./jackett/downloads:/downloads
+    ports:
+      - 9117:9117
+    restart: unless-stopped
 
 
   #=================== Transmission proxy =====================#
@@ -218,33 +232,32 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
 
-  #=================== Proxy manager =====================#
-  # Proxy manager for different services
-  #============================================================#
-  proxy-manager:
-    container_name: proxy-manager
-    image: 'jc21/nginx-proxy-manager:latest'
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "81:81"
-      - "443:443"
-    env_file:
-      - proxy-manager/.env
-    volumes:
-      - ./proxy-manager/data/:/data
-      - ./proxy-manager/letsencrypt:/etc/letsencrypt
-    depends_on:
-      - proxy-manager-db
 
-  #=================== Proxy manager Database =====================#
-  # Proxy manager database container
+  #======================= Wireguard  =========================#
+  # VPN server to access services available only locally
   #============================================================#
-  proxy-manager-db:
-    container_name: proxy-manager-db
-    image: 'jc21/mariadb-aria:latest'
-    restart: unless-stopped
-    env_file:
-      - proxy-manager/.env
+  wireguard:
+    image: lscr.io/linuxserver/wireguard:latest
+    container_name: wireguard
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - SERVERURL=home.pkp.io
+      - SERVERPORT=51820
+      - PEERS=2
+      - PEERDNS=auto
+      - INTERNAL_SUBNET=10.13.13.0
+      - ALLOWEDIPS=0.0.0.0/0
+      - LOG_CONFS=true #optional
     volumes:
-      - ./proxy-manager/mysql:/var/lib/mysql
+      - ./wireguard/config:/config
+      - /lib/modules:/lib/modules
+    ports:
+      - 51820:51820/udp
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    restart: unless-stopped
