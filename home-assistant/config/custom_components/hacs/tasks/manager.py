@@ -51,7 +51,7 @@ class HacsTaskManager:
 
             if task.schedule is not None and schedule_tasks:
                 self.hacs.log.debug(
-                    "Scheduling HacsTask<%s> to run every %s", task.slug, task.schedule
+                    "Scheduling <HacsTask %s> to run every %s", task.slug, task.schedule
                 )
                 self.hacs.recuring_tasks.append(
                     self.hacs.hass.helpers.event.async_track_time_interval(
@@ -65,7 +65,6 @@ class HacsTaskManager:
 
     async def async_execute_runtume_tasks(self) -> None:
         """Execute the the execute methods of each runtime task if the stage matches."""
-        self.hacs.status.background_task = True
         await asyncio.gather(
             *(
                 task.execute_task()
@@ -73,4 +72,3 @@ class HacsTaskManager:
                 if task.stages is not None and self.hacs.stage in task.stages
             )
         )
-        self.hacs.status.background_task = False

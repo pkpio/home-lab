@@ -13,6 +13,6 @@
       rgb_color: [255, 134, 27]
       brightness: 51
     cover.bedroom_curtain:
-      state: closed
+      state: open # actual state is inverted
 
 

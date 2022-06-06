@@ -21,7 +21,7 @@ from homeassistant.loader import async_get_integration
 import voluptuous as vol
 
 from .base import HacsBase
-from .const import DOMAIN, PLATFORMS, STARTUP
+from .const import DOMAIN, STARTUP
 from .enums import ConfigurationType, HacsDisabledReason, HacsStage, LovelaceMode
 from .tasks.manager import HacsTaskManager
 from .utils.configuration_schema import hacs_config_combined
@@ -79,6 +79,7 @@ async def async_initialize_integration(
 
     hacs.integration = integration
     hacs.version = integration.version
+    hacs.configuration.dev = integration.version == "0.0.0"
     hacs.hass = hass
     hacs.queue = QueueManager(hass=hass)
     hacs.data = HacsData(hacs=hacs)
@@ -163,7 +164,7 @@ async def async_setup(hass: HomeAssistant, config: dict[str, Any]) -> bool:
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> bool:
     """Set up this integration using UI."""
-    config_entry.add_update_listener(async_reload_entry)
+    config_entry.async_on_unload(config_entry.add_update_listener(async_reload_entry))
     return await async_initialize_integration(hass=hass, config_entry=config_entry)
 
 
@@ -188,9 +189,15 @@ async def async_unload_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> 
     except AttributeError:
         pass
 
-    unload_ok = await hass.config_entries.async_unload_platforms(config_entry, PLATFORMS)
+    platforms = ["sensor"]
+    if hacs.core.ha_version >= "2022.4.0.dev0" and hacs.configuration.experimental:
+        platforms.append("update")
 
+    unload_ok = await hass.config_entries.async_unload_platforms(config_entry, platforms)
+
+    await hacs.async_set_stage(None)
     hacs.disable_hacs(HacsDisabledReason.REMOVED)
+
     hass.data.pop(DOMAIN, None)
 
     return unload_ok

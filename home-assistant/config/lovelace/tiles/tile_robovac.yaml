@@ -1,6 +1,6 @@
 type: 'custom:vacuum-card'
 entity: vacuum.kevin_clean
-actions:
+shortcuts:
 - icon: 'mdi:silverware-spoon'
   name: Clean kitchen
   service: python_script.vacuum_clean_room

@@ -54,7 +54,7 @@ frontend: !include frontend.yaml
 device_tracker:
 - platform: ping
   hosts:
-    jade_phone: 192.168.1.126
+    jade_phone: 192.168.1.119
     edward_phone: 192.168.1.129
 person: !include persons.yaml
 plant: !include_dir_merge_named plants
@@ -63,6 +63,14 @@ mobile_app:
 #  google_actions: !include google_actions.yaml
 python_script:
 sun:
+
+google_assistant:
+  project_id: home-lab-6dcf2
+  service_account: !include home-lab-google-service-account.json
+  report_state: true
+  exposed_domains:
+    - switch
+    - light
 
 hue:
   bridges:
