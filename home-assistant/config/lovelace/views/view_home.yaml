@@ -5,7 +5,7 @@ path: home
 badges:
 - entity: sun.sun
 
-- entity: person.praveen
+- entity: device_tracker.praveen_phone
 - entity: device_tracker.jade_phone
 - entity: device_tracker.edward_phone
 

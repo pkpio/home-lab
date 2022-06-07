@@ -1,11 +1,1 @@
-- name: Praveen
-  id: praveen
-  user_id: 5bcb46a84f804211b888cf1b57ef3800
-  device_trackers:
-  - device_tracker.praveen_phone
 
-#- name:Jade
-#  id: jade
-
-#- name:Edward
-#  id: edward

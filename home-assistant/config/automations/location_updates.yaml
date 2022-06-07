@@ -1,10 +1,9 @@
 # Mark Praveen's not home
 - alias: Praveen left home zone
   trigger:
-    platform: zone
-    event: leave
-    zone: zone.home
+    platform: state
     entity_id: device_tracker.praveen_phone
+    state: away
   action:
     service: input_boolean.turn_off
     data:
@@ -13,10 +12,9 @@
 # Mark Praveen's home
 - alias: Praveen enter home zone
   trigger:
-    platform: zone
-    event: enter
-    zone: zone.home
+    platform: state
     entity_id: device_tracker.praveen_phone
+    state: home
   action:
     service: input_boolean.turn_on
     data:

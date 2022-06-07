@@ -169,10 +169,10 @@ services:
     image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/London
+      - PUID=0
+      - PGID=0
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - ./sonarr/data:/config
       - ./transmission/data:/torrent/data
       - /media/external-hd/data/tv:/tv
@@ -188,10 +188,10 @@ services:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/London
+      - PUID=0
+      - PGID=0
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - ./radarr/data:/config
       - ./transmission/data:/torrent/data
       - /media/external-hd/data/movies:/movies
@@ -206,12 +206,8 @@ services:
   jackett:
     image: lscr.io/linuxserver/jackett:latest
     container_name: jackett
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/London
-      - AUTO_UPDATE=true #optional
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - ./jackett/config/:/config
       - ./jackett/downloads:/downloads
     ports:
@@ -242,22 +238,15 @@ services:
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/London
-      - SERVERURL=home.pkp.io
-      - SERVERPORT=51820
-      - PEERS=2
-      - PEERDNS=auto
-      - INTERNAL_SUBNET=10.13.13.0
-      - ALLOWEDIPS=0.0.0.0/0
-      - LOG_CONFS=true #optional
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - ./wireguard/config:/config
       - /lib/modules:/lib/modules
     ports:
       - 51820:51820/udp
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
+    env_file:
+      - wireguard/.env
     restart: unless-stopped
+
