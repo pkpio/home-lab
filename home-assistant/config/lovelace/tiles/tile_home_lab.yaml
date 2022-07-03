@@ -39,12 +39,12 @@ cards:
 
   - type: gauge
     entity: sensor.home_lab_external_hd_used
-    max: 3700
+    max: 11900
     min: 0
     severity:
       green: 0
-      yellow: 2700
-      red: 3500
+      yellow: 9000
+      red: 11000
     name: External HD
 
 - type: custom:decluttering-card

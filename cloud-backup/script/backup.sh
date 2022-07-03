@@ -17,11 +17,24 @@ ARCHIVE_FILEPATH="$DESTINATION_DIR/$ARCHIVE_FILENAME"
 # - Exclude media-server/transcode/ where PMS keeps transcoding caches
 # - Exclude Plex Media Server/Cache/ where PMS keeps caches
 tar \
-	--exclude='**/cloud-backup/backups/*' \
-	--exclude='**/torrent-client/data/incomplete/*' \
-	--exclude='**/media-server/data/*' \
-	--exclude='**/media-server/transcode/*' \
-	--exclude='**/Plex Media Server/Cache/*' \
+	--exclude='**/cloud-backup/backups' \
+	--exclude='**/transmission/data/downloads' \
+        --exclude='**/transmission/data/incomplete' \
+        --exclude='**/transmission/data/transmission-home/transmission.log' \
+        --exclude='**/radarr/data/logs' \
+        --exclude='**/radarr/data/logs.db' \
+        --exclude='**/radarr/data/MediaCover' \
+        --exclude='**/sonarr/data/logs' \
+        --exclude='**/sonarr/data/logs.db' \
+        --exclude='**/sonarr/data/MediaCover' \
+	--exclude='**/plex-media-server/data' \
+	--exclude='**/plex-media-server/transcode' \
+	--exclude='**/Plex Media Server/Cache' \
+        --exclude='**/Plex Media Server/Logs' \
+        --exclude='**/Plex Media Server/Media' \
+        --exclude='**/Plex Media Server/Metadata' \
+        --exclude='**/Plex Media Server/Plug-in Support/Caches' \
+        --exclude='**/.git' \
 	-cpzf $ARCHIVE_FILEPATH $SOURCE_DIR
 echo "Backed up $SOURCE_DIR to $ARCHIVE_FILEPATH"
 

@@ -37,7 +37,7 @@ services:
   #============================================================#
   deconz:
     container_name: deconz
-    image: marthoc/deconz:latest
+    image: deconzcommunity/deconz:latest
     restart: always
     ports:
       - "8080:8080"
@@ -45,7 +45,7 @@ services:
       - "5900:5900"
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./deconz/config:/root/.local/share/dresden-elektronik/deCONZ
+      - ./deconz/config:/opt/deCONZ
     devices:
       - /dev/ttyACM0
     env_file:
@@ -156,6 +156,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./transmission/data:/torrent/data
+      - /media/external-hd/data:/external-hd/data
     devices:
       - /dev/net/tun
     env_file:
