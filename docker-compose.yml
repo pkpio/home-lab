@@ -21,7 +21,7 @@ services:
   #============================================================#
   mariadb:
     container_name: mariadb
-    image: mariadb/server:latest
+    image: mariadb:latest
     restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
